@@ -1,0 +1,66 @@
+<!-- Upload File Modal -->
+<zf-modal id="edit_address_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+		Update Address
+	</div>
+	<div class="modal-contents">
+		<form name="editAddressForm">
+			<div class="grid-block force-wrap">
+
+
+				<div class="grid-content large-12 medium-12 small-12">
+					<table>
+						<tr>
+							<td class="light w30">Street</td>
+							<td class="w70">
+								<input type="text" autofocus class="form-input-fields no-btm-margin" ng-model="main_address.street" autofocus="" name="compAddress" ng-class="{ 'form-validation-error' : editAddressForm.compAddress.$error.required && !editAddressForm.compAddress.$pristine && editAddressForm.compAddress.$touched}" required></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="light w30">Zip</td>
+							<td class="w70">
+								<input type='text' class="form-input-fields no-btm-margin" ng-model="main_address.zip" name="compZipCode" ng-class="{ 'form-validation-error' : editAddressForm.compZipCode.$error.pattern && !editAddressForm.compZipCode.$pristine && editAddressForm.compZipCode.$touched}" ng-pattern= "/^[0-9]{3,6}$/" required></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="light w30">City</td>
+							<td class="w70">
+								<input type='text' class="form-input-fields no-btm-margin" ng-model="main_address.city" name="compCity" ng-class="{ 'form-validation-error' : editAddressForm.compAddress.$error.required && !editAddressForm.compCity.$pristine && editAddressForm.compCity.$touched}" required></input>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 center">
+					<button type="button" class="button-inline"><p><b><i class="fa fa-plus-circle" aria-hidden="true"></i> Add another address</b></p></button>
+				</div>
+
+				<!-- <div class="grid-content large-6 medium-6 small-12 center">
+					<input type="text" autofocus class="color-liimex-blue account-text center" ng-model="main_address.street" autofocus="" name="compAddress" ng-class="{ 'form-validation-error' : editAddressForm.compAddress.$error.required && !editAddressForm.compAddress.$pristine && editAddressForm.compAddress.$touched}" required></input>
+					<p class="color-gray light centered-text">Street Address</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="main_address.zip" name="compZipCode" ng-class="{ 'form-validation-error' : editAddressForm.compZipCode.$error.pattern && !editAddressForm.compZipCode.$pristine && editAddressForm.compZipCode.$touched}" ng-pattern= "/^[0-9]{3,6}$/" required></input>
+					<p class="color-gray light centered-text">Zip</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="main_address.city" name="compCity" ng-class="{ 'form-validation-error' : 
+							editAddressForm.compAddress.$error.required && 
+							!editAddressForm.compCity.$pristine && 
+							editAddressForm.compCity.$touched}" required></input>
+					<p class="color-gray light centered-text">City</p>
+				</div> -->
+				<!-- <div class="grid-content large-6 medium-6 small-12 center">
+					<p class="color-blue-light account-text centered-text">{{main_address.country}}</p>
+					<p class="color-gray light centered-text">Country</p>
+				</div> -->
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="btn-violett-inverse" type="submit" zf-close="">Close</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="btn-violett" type="submit" ng-click="SaveAddress(editAddressForm)">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</zf-modal>

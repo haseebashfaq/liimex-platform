@@ -1,0 +1,148 @@
+<zf-modal id="sepa_mandate_modal" class="upload-modal">
+    <div class="modal-contents">
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+            <div class="grid-content large-12 medium-12 small-12">
+                <div class="frida-outer">
+                    <div class="our-frida"></div>
+                </div>
+                <p class="color-gray frida-message frida-overview-moda">SEPA-Lastschriftmandat</p>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Name</b></div>
+                <div class="grid-content large-6 medium-6 small-6">Hiscox</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Adresse</b></div>
+                <div class="grid-content large-6 medium-6 small-6">Example Street, 15, 20389, Hamburg</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Gläubiger Identifikationsnummer</b></div>
+                <div class="grid-content large-6 medium-6 small-6">DE32983749309392818</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Mandatsreferenz</b></div>
+                <div class="grid-content large-6 medium-6 small-6">wird separat mitgeteilt</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-message">
+                <div class="grid-content large-12 medium-12 small-12">
+                    <p>Für diesen Vertrag wird das SEPA-Lastschriftverfahren vereinbart. Zu diesem Zweck erteile ich der Hiscox folgendes SEPA-Lastschriftmandat:<br><br>
+                    Ich ermächtige Hiscox, Zahlungen von meinem Konto mittels Lastschrift einzuziehen. Zugleich weise ich das Kreditinstitut an, die von Hiscox auf mein Konto gezogenen Lastschriften einzulösen.<br><br>
+                    Hinweis: Ich kann innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit dem genannten Kreditinstitut vereinbarten Bedingungen.</p>
+                </div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Kontoinhaber</b></div>
+                <div class="grid-content large-6 medium-6 small-6">{{checkout.sepa.account_holder || ''}}</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Kreditinstitut, BIC</b></div>
+                <div class="grid-content large-6 medium-6 small-6">{{checkout.sepa.bic || ''}}</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>IBAN</b></div>
+                <div class="grid-content large-6 medium-6 small-6">{{checkout.sepa.iban || ''}}</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Adresse</b></div>
+                <div class="grid-content large-6 medium-6 small-6">-</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Bemerkung</b></div>
+                <div class="grid-content large-6 medium-6 small-6">-</div>
+            </div>
+            <div class="grid-block large-12 medium-12 small-12 sepa-heading">
+                <div class="grid-content large-6 medium-6 small-6"><b>Datum</b></div>
+                <div class="grid-content large-6 medium-6 small-6">{{date_today || ''}}</div>
+            </div>
+            <div class="liimefix-small large-12 medium-12 small-12">
+            </div>
+            <div class="grid-content large-6 medium-6 small-6 right-align">
+                <button class="btn-yellow-inverse" type="submit" zf-close="">Close</button>
+            </div>
+            <div class="grid-content large-6 medium-6 small-6 left-align">
+                <button type="button" class="btn-yellow" name="button" ng-click="AcceptSepaMandate()" zf-close=""><b>Accept</b></button>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="sepa-mandate">    
+        <div class="mandate-header">
+            <div class="mandate-icon">
+                
+            </div>
+            <div class="left-align">
+                Liimex GmbH
+                Grimm 14
+                20457 Hamburg
+            </div>
+            <div class="right-align">
+                T: +49 (0)40 60 59 09 180
+                E: hello@liimex.com
+            </div>
+        </div>
+        <div class="title">
+            SEPA-Lastschriftmandat
+        </div>
+        <div class="insurance-name">
+            [HISCOX Europe Underwriting Limited Zweigniederlassung für die Bundesrepublik Deutschland], [Arnulfstr. 31, 80636 München]
+        </div>
+        <div class="body">
+            <div class="left-align">
+                Gläubiger-Identifikationsnummer
+            </div>
+            <div>
+                Mandatsreferenz
+            </div>
+            <div class="center">
+                Ich ermächtige (Wir ermächtigen) [FULL LEGAL INSURANCE CARRIER NAME], Zahlungen von meinem (unserem) Konto mittels Lastschrift einzuziehen. Zugleich weise ich mein (weisen wir unser) Kreditinstitut an, die von [FULL LEGAL INSURANCE CARRIER NAME], auf mein (unser) Konto gezogenen Lastschriften einzulösen. 
+                <br/>
+                Hinweis: Ich kann (Wir können) innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem (unserem) Kreditinstitut vereinbarten Bedingungen.
+                
+                
+            </div>
+            <div class="sepa-details">
+                <div class="company-name">
+                        Vorname und Name (Kontoinhaber):
+
+                </div>
+                <div class="company-address">
+                        Straße und Hausnummer
+                </div>
+                <div class="company-address-2">
+                        Postleitzahl, Ort und Land:
+                </div>
+                <div class="bank">
+                        Kreditinstitut
+                </div>
+                <div class="bic">
+                        BIC
+                </div>
+                <div class="iban">
+                    IBAN
+                </div>
+                <div class="sign">
+                    Signature
+                </div>
+                
+            </div>
+        </div>
+        <div class="footer">
+            <div class="col-3 address">
+                    Liimex GmbH
+                    Grimm 14
+                    20457 Hamburg
+            </div>
+            <div class="col-3 contact">
+                    +49 40-60 59 09 180
+                    hello@liimex.com
+            </div>
+            <div class="col-3 registration">
+                    Amtsgericht Hamburg
+                    HRB 143170
+            </div>
+            <div class="col-3 founders">
+                    Benno von Buchwaldt
+                    Christian van der Bosch
+            </div>
+        </div>
+    </div> -->
+</zf-modal>

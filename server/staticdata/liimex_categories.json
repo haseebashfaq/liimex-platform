@@ -1,0 +1,191 @@
+{
+	"profiles" : {
+		"1" : {
+			"includes" : ["1", "2", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"Service provider"
+		},
+		"2": {
+			"includes" : ["1", "2", "3", "4", "5", "6", "7", "10", "11", "12", "13", "14"],
+			"title":"Food/baverages"
+		},
+		"3": {
+			"includes" : ["1", "2", "4", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"Trading"
+		},
+		"4": {
+			"includes" : ["1", "2", "3", "4", "5", "6", "7", "9", "10", "11", "12", "13", "14"],
+			"title":"Health"
+		},
+		"5": {
+			"includes" : ["1", "2", "4", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"E-Commere"
+		}, 
+		"6": {
+			"includes" : ["1", "2", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"Law"
+		},
+		"7": {
+			"includes" : ["1", "2", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"Consulting"
+		},
+		"8": {
+			"includes" : ["1", "2", "3", "4", "5", "6", "7", "9", "10", "11", "12", "13", "14"],
+			"title":"Producing"
+		},
+		"9": {
+			"includes" : ["1", "2", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"Creative Agencies "
+		},
+		"10": {
+			"includes" : ["1", "2", "5", "6", "7", "8", "9", "10", "11", "13", "14"],
+			"title":"Architecure/Civil Engineering"
+		},
+		"11": {
+			"includes" : ["1", "2", "5", "6", "7", "10", "11", "13", "14"],
+			"title":"IT/Engineering"
+		},
+		"12": {
+			"includes" : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
+			"title":"Other"
+		}
+	},
+
+
+	"activities" : {
+		"1": {
+			"includes" : ["1"],
+			"description" : "I own buildings",
+			"icon" : "fa fa-home"
+		},
+		"2": {
+			"includes" : ["2"],
+			"description" : "I have high value stock, interior, equipment",
+			"icon" : "fa fa-wpexplorer"
+		},
+		"3": {
+			"includes" : ["3"],
+			"description" : "I produce goods that will be futher processed",
+			"icon" : "fa fa-forward"
+		},
+		"4": {
+			"includes" : ["4"],
+			"description" : "I handle transport",
+			"icon" : "fa fa-truck"
+		},
+		"5": {
+			"includes" : ["5"],
+			"description" : "I have investors or multiple owners",
+			"icon" : "fa fa-handshake-o"
+		},
+		"6": {
+			"includes" : ["6"],
+			"description" : "I am liable for the financial loss of others",
+			"icon" : "fa fa-money"
+		},
+		"7": {
+			"includes" : ["7"],
+			"description" : "I own cars",
+			"icon" : "fa fa-car"
+		},
+		"8": {
+			"includes" : ["8"],
+			"description" : "I construct or build buildings",
+			"icon" : "fa fa-car"
+		},
+		"9": {
+			"includes" : ["9"],
+			"description" : "I do montage",
+			"icon" : "fa fa-wrench"
+		},
+		"10": {
+			"includes" : ["10"],
+			"description" : "I have high values of electronic equipment, wiring or data storage",
+			"icon" : "fa fa-desktop"
+		},
+		"11": {
+			"includes" : ["11"],
+			"description" : "I store customer data, or work digitally",
+			"icon" : "fa fa-floppy-o"
+		},
+		"12": {
+			"includes" : ["12"],
+			"description" : "I have machines vital for my business (excluding IT)",
+			"icon" : "fa fa-cogs"
+		},
+		"13": {
+			"includes" : ["13"],
+			"description" : "My emloyees work outside the office",
+			"icon" : "fa fa-car"
+		},
+		"14": {
+			"includes" : ["15"],
+			"description" : "My bysiness is prone to legal disputes",
+			"icon" : "fa fa-balance-scale"
+		}
+	},
+
+
+	"incurances" : {
+		"1": {
+			"always_included" : false,
+			"description" : "Property/building Insurance"
+		},
+		"2": {
+			"always_included" : false,
+			"description" : "Content Insurance"
+		},
+		"3": {
+			"always_included" : false,
+			"description" : "Product Liability Insurance"
+		},
+		"4": {
+			"always_included" : false,
+			"description" : "Transport Insurance"
+		},
+		"5": {
+			"always_included" : false,
+			"description" : "Directors and Officers (D&O) Insurance"
+		},
+		"6": {
+			"always_included" : false,
+			"description" : "Vermögensschaenhaftpflicht/Berufshaftpflicht"
+		},
+		"7": {
+			"always_included" : false,
+			"description" : "Car Insurance"
+		},
+		"8": {
+			"always_included" : false,
+			"description" : "Contracters Insurance"
+		},
+		"9": {
+			"always_included" : false,
+			"description" : "Montage Insurance"
+		},
+		"10": {
+			"always_included" : false,
+			"description" : "Electronic Eqipment Insurance"
+		},
+		"11": {
+			"always_included" : false,
+			"description" : "Cyber Insurance"
+		},
+		"12": {
+			"always_included" : false,
+			"description" : "Machine Insurance"
+		},
+		"13": {
+			"always_included" : false,
+			"description" : "Accident Insurance"
+		},
+		"14": {
+			"always_included" : true,
+			"description" : "Public Liability"
+		},
+		"15": {
+			"always_included" : false,
+			"description" : "Legal Expenses Insurance"
+		}
+	}
+
+}

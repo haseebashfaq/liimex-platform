@@ -1,0 +1,64 @@
+---
+name: claims_en
+url: /claims
+controller: ClaimController
+parent: my_en
+loginRequired: true
+---
+
+<!-- Page View -->
+<!-- <div class="grid-block large-6 center relative claims-page" style="margin: 1rem 0; box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border: 1px solid transparent; border-radius: 6px; padding:0; padding-top: 1rem; background: #fff;">
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb; padding: 0; margin: 0; line-height: 15pt;">
+		Claims
+		</p>		
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 color-gray center claims-page-heading">
+		<p class="sum-text center">Nothing to show here yet. Our engineers are hard at work integrating claims into our platform. In the meantime, if you have a claim please contact us and we'll get to work the old fashioned way</p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<button type="button" class="btn-violett"  ui-sref="overview_en"><b>Back to Overview Page</b></button>
+	</div>
+</div> -->
+
+<div class="grid-container forgot-password-container">
+	<div class="grid-block align-center">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow login-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin: 0;">
+				<div class="card-section left-card center">
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Claims</p>
+					<div class="grid-content large-12 medium-12 small-12" style="float: left; padding-bottom: 2rem;">
+						<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+							<!-- <p class="sum-text">This will an overview of the claims</p> -->
+							<h4>Nothing to show here yet. Our engineers are hard at work integrating claims into our platform. In the meantime, if you have a claim please contact us and we'll get to work the old fashioned way.</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

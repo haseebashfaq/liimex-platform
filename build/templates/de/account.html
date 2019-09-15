@@ -1,0 +1,258 @@
+
+<!-- Page View -->
+<div class="grid-block accountPage accounts-page">
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline"></h2>
+	</div>
+	<div class="grid-content large-6 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_company_modal">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Unternehmen</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(company.name)}}</p>
+						<p class="policy-color-gray light">Firmenname</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{company.type}}</p>
+						<p class="policy-color-gray light">Rechtsform</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{company.liimex_id}}</p>
+						<p class="policy-color-gray light">Liimex ID</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::company.phone}}</p>
+						<p class="policy-color-gray light">Telefonnummer</p>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12" ng-show="company.url">
+						<p class="color-liimex-blue account-text">{{company.url}}</p>
+						<p class="policy-color-gray light">Website</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-6 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form relative">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_address_modal">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Firmenanschrift</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(main_address.street)}}</p>
+						<p class="policy-color-gray light">Straße</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{main_address.zip}}, {{::genService.capitalize(main_address.city)}}</p>
+						<p class="policy-color-gray light">Postleitzahl, Stadt</p>
+					</div>
+					<!-- <div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(main_address.country)}}</p>
+						<p class="policy-color-gray light">Land</p>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_user_modal">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Ansprechpartner</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(user_account.first_name)}}</p>
+						<p class="policy-color-gray light">Vorname(n)</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(user_account.last_name)}}</p>
+						<p class="policy-color-gray light">Nachname</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text account-email">{{::genService.capitalize(user_account.email)}}</p>
+						<p class="policy-color-gray light">Email</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">Vollständig</p>
+						<p class="policy-color-gray light">Zugangsrechte</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<button type="button" class="btn-yellow" ng-click="ResetPassword()"><b>Reset Password</b></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline no-btm-margin">Angaben zum Unternehmen</h2>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading policy-page-heading-middle">
+		<h5 class="light color-gray subtitle">Unser Ziel ist es Sie individuell zu betreuen. Hierfür benötigen wir einige wenige Angaben und schon legen sich unsere Software und Experten für Sie ins Zeug.</h5>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editIndustry()">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Ihre Branchen</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12" ng-repeat="(index, industryCode) in industry_codes">
+						<p class="policy-color-gray light accounts-industry-category">{{genService.numToWordC(index+1)}} Kategorie</p>
+						<div class="grid-content large-12 medium-12 small-12" ng-repeat="(key, code) in industryCode">
+							<p class="color-liimex-blue account-text">{{code.name_de}}</p>
+							<p class="policy-color-gray light" ng-show="key==0">Industrie</p>
+							<p class="policy-color-gray light" ng-hide="key==0">Kategorie</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editActivity()">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Weitere Angaben</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-block large-12 medium-12 small-12 small-pad-left business-activities-block" ng-repeat="group in groups" ng-if="activity_in_group[group.group] === true">
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12 business-activities-question">
+								<p class="policy-color-gray account-text"><i>{{group.rev_name_de}}:</i></p>
+							</div>
+						</div>
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12" ng-repeat="activity in activities" ng-if="activity.group === group.group">
+								<p class="color-liimex-blue account-text">{{activity.name_de}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12" style="display: none;">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editFinancials()">
+							<b class="edit-text">Bearbeiten</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Wesentliche Finanzkennzahlen</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-block large-12 medium-12 small-12 small-pad-left">
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12">
+								<p class="policy-color-gray account-text"><i>Jahresumsatz:</i></p>
+							</div>
+						</div>
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12">
+								<p class="color-liimex-blue account-text"> €{{genService.getSepThousands(company.financials.turnover)}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading" ng-show="mandate.signed_document_url">
+		<h2 class="color-liimex-blue overview-headline no-btm-margin">Maklermandat</h2>
+	</div>
+	<!-- <div class="grid-content large-12 medium-12 small-12 policy-page-heading policy-page-heading-middle">
+		<h5 class="light color-gray subtitle"></h5>
+	</div> -->
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading" ng-show="mandate.signed_document_url">
+		<button type="button" class="btn-yellow" ng-click="DownloadMandate()"><b>Download</b></button>
+	</div>
+	<!-- <div class="grid-content large-12 medium-12 small-12" ng-show="mandate.signed_document_url">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-liimex-blue small-p pointer" ng-click="DownloadMandate()">Download</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+</div>
+
+<div ng-include="" src="'partials/de/modals/editcompany.html'"></div>
+<div ng-include="" src="'partials/de/modals/editaddress.html'"></div>
+<div ng-include="" src="'partials/de/modals/edituser.html'"></div>
+<div ng-include="" src="'partials/de/modals/reauth.html'"></div>
+
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

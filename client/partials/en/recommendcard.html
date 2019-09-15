@@ -1,0 +1,48 @@
+<!-- <div class="card corner bg-white shadow overview-recommendation-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 3rem;">
+	<div class="card-section {{(not_dismissed_offers[key] || not_disabled_policies[key]) && 'pending-recommendation'}} parent">
+		<div class="grid-content large-12 medium-12 small-12 center demand-why recommendcard-img">
+ 			<img src="assets/img/insurance_icons/{{insurance_icons[item.key] || insurance_icons['other']}}" style=" width: 70px; margin-bottom: 0.5rem;">
+		</div>
+		<div class="grid-content large-12 medium-12 small-12 recommendation-text-block">
+			<span class="info-span info-span-overview" ng-click="SelectInsuranceType(item.key)" zf-open="insurance_info">
+	   		<i class="fa fa-info-circle fa-small i-overview dark-hover" ng-popup="popup{{item.key}}"></i>
+	    </span>
+			<h6 class="demand-headline {{ item.essential !== true && 'small-recommended-card'}}">{{insurance_types[item.key].name_en}}</h6>
+			<div class="status-class">
+				<p class="recommendation-status-small">{{((in_active_policies[item.key] || accepted_offers[item.key]) && 'Offer Collected') || (in_pending_policies[item.key] && 'In Processing') || (requested_offers[item.key] && 'Offer Requested') || (pushed_offers[item.key] && 'Offer Available') || ''}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center recommendcard-status {{ item.essential !== true && 'recommendcard-status-available' }}">
+		<p class="" ng-show="item.score === 100">
+			<i class="fa fa-gavel" aria-hidden="true" ></i> Required By Law
+		</p>
+	</div>
+</div> -->
+
+
+
+<div class="card corner bg-white shadow login-card" style="margin: 0; box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; background: #fff;">
+	<div class="card-section left-card">
+		<!-- <p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">{{insurance_types[item.key].name_en}}</p> -->
+		<div class="grid-content large-12 medium-12 small-12 center">
+			
+			<img src="assets/img/insurance_icons/{{insurance_icons[item.key] || insurance_icons['other']}}" style=" width: 70px; margin-bottom: 0.5rem;">
+			<h4>{{insurance_types[item.key].name_en}}</h4>
+		</div>
+		<!-- <div class="grid-content large-6 medium-6 small-12" style="float: left;">
+			<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+				
+			</div>
+		</div> -->
+	</div>
+</div>
+
+
+
+
+<script type="text/javascript">
+	$(".info-span-overview").click(function(){
+		return false;
+	});
+</script>

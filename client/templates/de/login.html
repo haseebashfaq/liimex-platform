@@ -1,0 +1,56 @@
+---
+name: login_de
+url: /de/login
+title: Login
+controller: LoginController
+loginRequired: false
+logoutRequired: true
+---
+<div class="grid-container">
+	<!-- LOGIN FORM -->
+	<div class="grid-block align-center">
+		<div class="grid-content large-8 medium-8 small-12">
+			<div class="card corner bg-white shadow login-card">
+				<div class="card-section left-card">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message">Willkommen!</p>
+					<form class="login-form user-login" name="loginform">
+						<div class="grid-block large-12 medium-12 small-12 login-card-form-container">
+							<div class="grid-content large-6 login-card-input-outer">
+								<input class="form-input-fields" type="email" placeholder="Email-Adresse" ng-model="login.email" required/>
+							</div>
+							<div class="grid-content large-6 login-card-input-outer">
+								<input class="form-input-fields" type="password" placeholder="Passwort" id="password" ng-model="login.password" required/>
+							</div>
+							<div class="login-input-margin right-align">
+								<button type="button" class="button button-inline strange-margin" ui-sref="forgot_de"><p>Passwort vergessen...</p></button>
+							</div>
+							<div class="grid-content large-12 medium-12 large-12 actionbtn-outer center">
+								<div class="grid-content login-input-margin center login-card-signin-outer">
+									<button class="btn-yellow" type="submit" ng-click="Login(loginform)">Login</button>
+								</div>						
+								<div class="grid-content login-input-margin center login-card-signin-outer">
+									<button type="button" class="btn-yellow-inverse" ui-sref="signup_de">Registrieren!</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('login-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+	});	
+</script>

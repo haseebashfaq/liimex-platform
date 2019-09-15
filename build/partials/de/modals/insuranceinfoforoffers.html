@@ -1,0 +1,19 @@
+<zf-modal id="insurance_info_for_offers" class="medium-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<div class="frida-outer">
+					<div class="our-frida"></div>
+				</div>
+				<p class="color-gray frida-message frida-overview-moda">Warum {{insurance_types[offer.subject].name_de}}?</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal" ng-bind-html="InsuranceDescriptionBind(insurance_types[offer.subject].description_de)">
+				</p>
+			</div>
+			<div class="grid-content center">
+				<button type="button" class="button button-inverse" zf-close="">Schließen</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

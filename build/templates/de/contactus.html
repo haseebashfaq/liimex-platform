@@ -1,0 +1,112 @@
+<!--
+<div ng-show = "contact_working_hours">
+Hi so now you can basically contact us during the working hours
+</div> -->
+
+<div class="grid-container" ng-show = "is_past_working_hours()">
+	<!-- LOGIN FORM -->
+	<div class="grid-block align-center">
+		<div class="grid-content large-10 medium-8 small-12">
+			<div class="card corner bg-white shadow login-card">
+				<div class="card-section left-card">
+					<div class="grid-content color-blue-middle center contactus-frida">
+						<div class="frida-outer">
+							<div class="our-frida"></div>
+						</div>
+						<p class="color-gray frida-message frida-message-contact">Geben Sie uns noch eine Chance! Wir wollen helfen und geben niemals auf!</p>
+					</div>
+					<div class="contactus-info">
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Einer unser Experten wird sich persönlich um ihr Anliegen kümmern. Ein kurzer Anruf genügt.</p>
+	  						<h3 class="color-liimex-blue contactus-number-email">
+		  						<i class="fa fa-phone-square" aria-hidden="true"></i>
+		  						+49 40 60 59 09 180
+	  						</h3>
+						</div>
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Alternativ erreichen Sie uns auch ganz einfach per Email.</p>
+	  						<h3 class="color-liimex-blue contactus-number-email" style="text-transform: lowercase;">
+		  						<i class="fa fa-envelope" aria-hidden="true"></i>
+								hello@liimex.com
+							</h3>
+						</div>
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Wir sind von Mo - Fr von 9:00 bis 17:00 Uhr persönlich für sie da!</p>
+						</div>
+					</div>
+					
+					<!-- <div class="grid-content color-gray center contactus-details contactus-details-1">
+						<p class="">Einer unser Experten wird sich persönlich um ihr Anliegen kümmern. Ein kurzer Anruf genügt</p>
+  						<h3 class="color-liimex-blue contactus-number-email">+49 40 60 59 09 180</h3>
+					</div>
+					<div class="grid-content color-gray center contactus-details contactus-details-2">
+  						<p>Wir sind von Mo - Fr von 9:00 bis 17:00 Uhr persönlich für sie da!</p>
+  					</div>
+					<div class="grid-content color-gray center contactus-details-last">
+						<p class="">Alternativ erreichen Sie uns auch ganz einfach per Email.</p>
+  						<h3 class="color-liimex-blue contactus-number-email" style="text-transform: lowercase;">hello@liimex.com</h3>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="grid-container" ng-show = "!is_past_working_hours()">
+ 	<div class="grid-block align-center">
+		<div class="grid-content large-10 medium-8 small-12">
+			<div class="card corner bg-white shadow login-card">
+				<div class="card-section left-card">
+					<div class="grid-content color-blue-middle center contactus-frida">
+						<div class="frida-outer">
+							<div class="our-frida"></div>
+						</div>
+						<p class="color-gray frida-message frida-message-contact">Geben Sie uns noch eine Chance! Wir wollen helfen und geben niemals auf!</p>
+					</div>
+					<div class="contactus-info">
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Einer unser Experten wird sich persönlich um ihr Anliegen kümmern. Ein kurzer Anruf genügt.</p>
+	  						<h3 class="color-liimex-blue contactus-number-email">
+		  						<i class="fa fa-phone-square" aria-hidden="true"></i>
+		  						+49 40 60 59 09 180
+	  						</h3>
+						</div>
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Alternativ erreichen Sie uns auch ganz einfach per Email.</p>
+	  						<h3 class="color-liimex-blue contactus-number-email" style="text-transform: lowercase;">
+		  						<i class="fa fa-envelope" aria-hidden="true"></i>
+								hello@liimex.com
+							</h3>
+						</div>
+						<div class="grid-content large-12 medium-12 small-12 contactus-info-subsection">
+							<p class="">Wir sind von Mo - Fr von 9:00 bis 17:00 Uhr persönlich für sie da!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.navmenu-main').hide();
+	$('.navbar-hamburger-outer').hide();
+	$('.fixed-details-right').show();
+
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').show();
+		$('.outerlogoutright').show();
+	}
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('login-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').show();
+			$('.outerlogoutright').show();
+		}
+	});
+</script>

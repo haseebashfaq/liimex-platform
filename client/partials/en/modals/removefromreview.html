@@ -1,0 +1,19 @@
+<zf-modal id="remove_from_review_modal" class="upload-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-liimex-blue no-btm-padding small-modal-header">Are you sure?</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">By clicking on <b>remove</b> you will remove the policy from Liimex. Currently the policy is being digitized <b>free of charge</b>. If you uploaded this policy as a response to a recommendation, that recommendation will reapear until you <b>upload another policy</b>, or <b>ask for a quote.</b></p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button button-inverse" type="submit" zf-close="">Keep in review</button>
+			</div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button" type="submit" ng-click="RemovePolicy(selected_policy_key)" id="close_upload">Remove from review</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

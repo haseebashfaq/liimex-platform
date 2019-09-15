@@ -1,0 +1,58 @@
+<!-- Sidebar for Dashboard -->
+<div class="grid-container">
+	<div class="grid-block vertical">
+		<div class="card sidebar-card bg-white shadow">
+			<div class="card-section">
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'overview_en' && 'sidebar-fixed-color' || ''}}" ui-sref='overview_en'>
+					<ul>
+						<li type="none"><h5>Overview</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'policies_en' && 'sidebar-fixed-color' || ''}}" ui-sref='policies_en'>
+					<ul>
+						<li type="none"><h5>Policies</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'claims_en' && 'sidebar-fixed-color' || ''}}" ui-sref='claims_en'>
+					<ul>
+						<li type="none"><h5>Claims</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'account_en' && 'sidebar-fixed-color' || ''}}" ui-sref= 'account_en'>
+					<ul>
+						<li type="none"><h5>Account</h5></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="card sidebar-card bg-white shadow mobile-sidebar-nav">
+			<div class="card-section">
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'overview_en' && 'sidebar-fixed-color' || ''}}" ui-sref='overview_en'>
+					<ul>
+						<li type="none"><h5>Overview</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'policies_en' && 'sidebar-fixed-color' || ''}}" ui-sref='policies_en'>
+					<ul>
+						<li type="none"><h5>Policies</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'claims_en' && 'sidebar-fixed-color' || ''}}" ui-sref='claims_en'>
+					<ul>
+						<li type="none"><h5>Claims</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'account_en' && 'sidebar-fixed-color' || ''}}" ui-sref= 'account_en'>
+					<ul>
+						<li type="none"><h5>Account</h5></li>
+					</ul>
+				</div>
+				<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'login_en' && 'sidebar-fixed-color' || ''}}" ui-sref= 'login_en'>
+					<ul>
+						<li type="none" ng-click="Signout()"><h5>Logout</h5></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

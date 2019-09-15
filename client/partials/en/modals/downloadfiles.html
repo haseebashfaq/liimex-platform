@@ -1,0 +1,24 @@
+
+<!-- Download Files Modal -->
+<zf-modal id="download_files_modal" class="upload-modal">
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-liimex-blue no-btm-padding small-modal-header">Download files</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-gray insurance_type_modal">Click on the <b>Download</b> icon next to the file(s) you wish to download</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 file_in_queue" ng-repeat="(index, nothing) in blank_documents">
+					<p class="color-blue-dark "><i class="fa fa-cloud-download color-liimex-blue pointer" aria-hidden="true" ng-click="DownloadDocument(documents[index])"></i> <b>{{ documents[index].alias || documents[index].file || 'loading...'}}</b></p><p class="color-liimex-blue pointer light dark-hover" ng-click="DownloadDocument(documents[index])">{{documents[index].file && 'download' || '...'}}</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-12 medium-12 small-12">
+					<button class="button button-inverse" type="submit" zf-close="">Close</button>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 ">
+					<p class="color-gray small-print">Some files might have randomly generated names. Click on the <b>cloud</b> icon or the <b>download</b> button to download a file. If you need help with the meaning of these files, or should you want any files removed, feel free to contact us. You can always reach us in the chat.</p>
+				</div>
+			</div>
+	</div>
+</zf-modal>

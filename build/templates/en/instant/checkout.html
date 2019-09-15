@@ -1,0 +1,175 @@
+<!-- Page View -->
+<div class="grid-block instantproduct-main" ng-controller="InstantProductCheckoutController">
+	<div class="grid-content large-12 medium-12 small-12 instantproduct-heading">
+		<div class="frida-outer">
+			<div class="our-frida"></div>
+		</div>
+		<p class="color-gray frida-message">{{checkout_page.page_title_en || 'missing_title'}}</p>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 instantproduct-outer">
+		<div class="grid-block large-12 medium-12 small-12 plan-type">
+			<div class="grid-content large-12 medium-12 small-12 center">
+				<input type="radio" name="planType" class="instantproduct-radio" ng-value="'yearly'" ng-model="plantype" ng-click="CalculatePremium()"><span>Annual Payment ({{checkout.yearly_discount}}% discount)</span></input>
+				<input type="radio" name="planType" class="instantproduct-radio" ng-value="'monthly'" ng-model="plantype" ng-click="CalculatePremium()"><span>Monthly Payment</span></input>
+			</div>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12 checkout-plan-main">
+			<div class="grid-block large-12 medium-12 small-12 checkout-plan-heading">
+				<div class="grid-content large-4 medium-4 small-4">Insurance</div>
+				<div class="grid-content large-3 medium-3 small-3">Laufzeit</div>
+				<div class="grid-content large-3 medium-3 small-3">{{plantype=='yearly'?'Pramie/Jahr':'Pramie/Monat'}}</div>
+				<div class="grid-content large-2 medium-2 small-2 center">Löschen</div>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 checkout-plan-sub">
+				<div class="grid-content large-4 medium-4 small-4">{{chosen_comparison.title}}</div>
+				<div class="grid-content large-3 medium-3 small-3">{{checkout.validity_years}} year(s)</div>
+				<div class="grid-content large-3 medium-3 small-3">{{premium_comparison | euro}}</div>
+				<div class="grid-content large-2 medium-2 small-2 center"><!-- <i class="fa fa-times-circle" aria-hidden="true"></i> --></div>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 checkout-plan-sub" ng-show="chosen_additional.chosen_additional>=0">
+				<div class="grid-content large-4 medium-4 small-4">-</div>
+				<div class="grid-content large-3 medium-3 small-3">{{checkout.validity_years}} year(s)</div>
+				<div class="grid-content large-3 medium-3 small-3">{{premium_additional | euro}}</div>
+				<div class="grid-content large-2 medium-2 small-2 center"><i class="fa fa-times-circle remove-additional" aria-hidden="true" ng-click="RemoveAdditional()"></i></div>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 checkout-plan-sub">
+				<div class="grid-content large-7 medium-7 small-7 right-align checkout-plan-calculation">Total Sum of Net Premium</div>
+				<div class="grid-content large-5 medium-5 small-5 left-align checkout-plan-calculation">{{total_net_premium | euro}}</div>
+				<div class="grid-content large-7 medium-7 small-7 right-align checkout-plan-calculation">Insurance Tax 19%</div>
+				<div class="grid-content large-5 medium-5 small-5 left-align checkout-plan-calculation">{{tax_calculated | euro}}</div>
+				<div class="grid-content large-7 medium-7 small-7 right-align checkout-plan-calculation">Yearly Discount ({{plantype==='yearly' ? checkout.yearly_discount : 0}}%)</div>
+				<div class="grid-content large-5 medium-5 small-5 left-align checkout-plan-calculation">{{discount_value | euro}}</div>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 checkout-plan-sub">
+				<div class="grid-content large-7 medium-7 small-7 right-align checkout-plan-calculation">Total Payable Amount</div>
+				<div class="grid-content large-5 medium-5 small-5 left-align checkout-plan-calculation">{{total_payable | euro}}</div>
+			</div>
+		</div>
+		<!-- Info about policyholder -->
+		<form name="checkoutForm">
+			<div class="grid-block large-12 medium-12 small-12 manual-insurance-info-outer">
+				<div class="grid-content large-12 medium-12 small-12 center">
+					<h4>Policy holder information</h4>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<select class="form-input-fields checkout-dropdown" ng-model="checkout.company.type" ng-disabled="disable_fields.company.type">
+						<option value="" disabled selected style="display: none;">Legal Form</option>
+						<option value="AG">AG</option>
+						<option value="AG &#38 Co. KG">AG &#38 Co. KG</option>
+						<option value="e.V.">e.V.</option>
+						<option value="e.G.">e.G.</option>
+						<option value="GbR">GbR</option>
+						<option value="GmbH">GmbH</option>
+						<option value="GmbH &#38 Co. KG">GmbH &#38 Co. KG</option>
+						<option value="KG">KG</option>
+						<option value="KGaA">KGaA</option>
+						<option value="OHG">OHG</option>
+						<option value="UG">PartG</option>
+						<option value="UG">PartG mbH</option>
+						<option value="UG">PartG mbB</option>
+						<option value="Sonstige">Sonstige</option>
+						<option value="Stiftung bürgerlichen Rechts">Stiftung bürgerlichen Rechts</option>
+						<option value="Stiftungs GmbH">Stiftungs GmbH</option>
+						<option value="Stiftungs Verein">Stiftungs Verein</option>
+						<option value="Treuhandstiftung">Treuhandstiftung</option>
+						<option value="UG">UG</option>
+					</select>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="productCompanyName" class="form-input-fields" type="text" placeholder="Company Name" ng-model="checkout.company.name" ng-disabled="disable_fields.company.name" required/>
+				</div>
+
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="productCompanyName" class="form-input-fields" type="text" placeholder="Strasse and number" ng-model="checkout.address.street" ng-disabled="disable_fields.address.street" required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="productCompanyName" class="form-input-fields" type="text" placeholder="Zip" ng-model="checkout.address.zip" ng-disabled="disable_fields.address.zip" required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="productCompanyName" class="form-input-fields" type="text" placeholder="City" ng-model="checkout.address.city" ng-disabled="disable_fields.address.city" required/>
+				</div>
+
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="userFirstName" class="form-input-fields" type="text" placeholder="First Name" ng-model="user.first_name" disabled required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="userLastName" class="form-input-fields" type="text" placeholder="Last Name" ng-model="user.last_name" disabled required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="userEmail" class="form-input-fields" type="text" placeholder="Email Address" ng-model="user.email" disabled required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="userPhoneNumber" class="form-input-fields" type="text" placeholder="Phone Number (optional)" ng-model="checkout.company.phone" ng-disabled="disable_fields.company.phone"/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="accountHolderName" class="form-input-fields" type="text" placeholder="Account holder (if different)" ng-model="checkout.sepa.account_holder" required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="iban" class="form-input-fields" type="text" placeholder="IBAN" ng-model="checkout.sepa.iban" required/>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input name="bic" class="form-input-fields" type="text" placeholder="BIC" ng-model="checkout.sepa.bic" required/>
+				</div>
+				<div class="grid-block large-12 medium-12 small-12 checkout-checkbox-main">
+					<div class="grid-content large-1 medium-1 small-1">
+						<input name ="termsAndConditions" type="checkbox" id="termsAndConditions" class="filled-in" ng-model="termsAndConditions" required/>
+						<label for="termsAndConditions"></label>
+					</div>
+					<div class="grid-content large-11 medium-11 small-11 terms-conditions-outer">
+						<p class="color-gray">I accept the <span class="signup-terms-conditions" zf-open="instant_product_terms_and_conditions">Terms and Conditions</span></p>
+					</div>
+					<div class="grid-content large-1 medium-1 small-1">
+						<input name ="mandate" type="checkbox" id="mandate" class="filled-in" ng-model="mandate" required/>
+						<label for="mandate"></label>
+					</div>
+					<div class="grid-content large-11 medium-11 small-11 terms-conditions-outer">
+						<p class="color-gray">I have signed the <span class="signup-terms-conditions" zf-open="instantproduct_mandate_modal">Maklermandat</span></p>
+					</div>
+					<div class="grid-content large-1 medium-1 small-1">
+						<input name ="sepa" type="checkbox" id="sepa" class="filled-in" ng-model="sepa" required ng-disabled="!checkout.sepa.account_holder || !checkout.sepa.iban || !checkout.sepa.bic"/>
+						<label for="sepa"></label>
+					</div>
+					<div class="grid-content large-11 medium-11 small-11 terms-conditions-outer">
+						<p class="color-gray">I agree to the 
+							<span ng-show="checkout.sepa.account_holder && checkout.sepa.iban && checkout.sepa.bic">
+								<span class="signup-terms-conditions" zf-open="sepa_mandate_modal">SEPA</span>
+							</span>
+							<span ng-hide="checkout.sepa.account_holder && checkout.sepa.iban && checkout.sepa.bic">
+								<span class="signup-terms-conditions">SEPA</span>
+							</span>
+							conditions
+						</p>
+					</div>
+				</div>
+			</div>
+		</form>
+		<div class="grid-block large-12 medium-12 small-12 instantproduct-actions">
+			<div class="grid-content large-6 medium-6 small-12 right-align">
+				<button type="button" class="btn-yellow-inverse" ng-click="goBack()">Back</button>
+			</div>
+			<div class="grid-content large-6 medium-6 small-12 left-align">
+				<button class="btn-yellow" type="submit" ng-click="SaveCheckoutData()" ng-disabled="!checkoutForm.$valid">Checkout</button>
+			</div>
+		</div>
+	</div>
+	<div ng-include="" src="'partials/en/modals/sepamandate.html'"></div>
+	<div ng-include="" src="'partials/en/modals/signme.html'"></div>
+	<div ng-include="" src="'partials/en/modals/instantproductmandate.html'"></div>
+	<div ng-include="" src="'partials/en/modals/instantproducttermsandconditions.html'"></div>
+</div>
+<script type="text/javascript">
+	$('.navmenu-main').hide();
+	$('.navbar-hamburger-outer').hide();
+	$('.fixed-details-right').hide();
+	$('.outerlogoutright').hide();
+
+	$(window).on('resize', function(){	
+		$('.navbar-hamburger-outer').hide();
+		$('.navmenu-main').hide();
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.outerlogoutright').hide();
+			$('.navmenu-main').hide();
+		}
+	});
+</script>

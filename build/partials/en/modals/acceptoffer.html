@@ -1,0 +1,43 @@
+<zf-modal id="accept_offer_modal" class="upload-modal">
+	<!-- <div class="title-bar modal-title">
+	</div> -->
+	<div class="modal-contents">
+		<div class="grid-block force-wrap" id="accept_offer_modal_content" ng-hide="accept_offer_modal_accept_message">
+			<div class="grid-content large-12 medium-12 small-12 center">
+				<div class="frida-outer">
+					<div class="our-frida"></div>
+				</div>
+				<p class="color-gray frida-message frida-overview-moda">Please confirm</p>
+				<!-- <h5 class="color-blue-dark light account-title">Please confirm</h5> -->
+				<p class="color-gray light medium-p small-pad-left small-pad-right">By clicking accept you are accepting the purchase of this <b>{{insurance_types[offer.subject].name_en}}</b> from starting at <b>{{selected_offer.basic ? selected_offer.basic.start_date : selected_offer.start_date | date:'dd-MM-yyyy'}}</b> for a yearly premium of <b>{{(selected_offer.basic ? (selected_offer.basic.premium*(1+selected_offer.basic.insurance_tax*0.01)) : selected_offer.premium) | euro}}</b></p>
+			</div>
+			<div class="liimefix-small large-12 medium-12 small-12">
+			</div>
+			<div class="grid-content large-6 medium-6 small-6 center">
+				<button class="button button-inverse closeofferbtn" type="submit" zf-close="">Close</button>
+			</div>
+			<div class="grid-content large-6 medium-6 small-6 center">
+				<button class="button acceptofferbtn" type="submit" ng-click="AcceptOffer();">Accept</button>
+			</div>
+		</div>
+		<div class="grid-block force-wrap" ng-show="accept_offer_modal_accept_message">
+			<div class="grid-content large-12 medium-12 small-12 center">
+				<div class="frida-outer">
+					<div class="our-frida"></div>
+				</div>
+				<p class="color-gray frida-message frida-overview-moda">Great! You are covered!</b></p>
+
+				<p class="color-gray light medium-p small-pad-left small-pad-right"><!-- By clicking accept you are accepting the purchase of this <b>{{insurance_types[offer.subject].name_en}}</b> from starting at <b>{{genService.getDateObj(selected_offer.start_date) | date:'yyyy-MM-dd'}}</b> for a yearly premium of <b>€{{genService.getSepThousands(selected_offer.premium)}}</b> -->
+
+				Your {{insurance_types[offer.subject].name_en}} is active from {{selected_offer.basic ? genService.getDateObj(selected_offer.basic.start_date) : genService.getDateObj(selected_offer.start_date) | date:'dd-MM-yyyy'}} and will appear on the platform under <b class="go-to-link" ui-sref="policies_en">Policies</b>, once we have received the final contract from the insurance carrier.<br>
+				If you have any question, please <b class="go-to-link" ng-click="RedirectToNewTab('generic_contactus_en')">Contact us</b>.
+				</p>
+			</div>
+			<div class="liimefix-small large-12 medium-12 small-12">
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 center">
+				<button class="btn-yellow backofferbtn" type="submit" ui-sref="overview_en">Back to Overview</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

@@ -1,0 +1,10 @@
+{
+ 	"root":"users/",
+  "model": {
+		"company"     : true,
+    "email"       : true,
+    "first_name"  : true,
+    "last_name"   : true,
+    "timestamp"   : true
+  }
+}

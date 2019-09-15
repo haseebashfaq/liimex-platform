@@ -1,0 +1,34 @@
+<!-- Upload File Modal -->
+<zf-modal id="upload_policy_modal" class="upload-modal">
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message frida-overview-moda">Upload your policy here</p>
+					<!-- <p class="color-liimex-blue no-btm-padding small-modal-header">Upload your policy here</p> -->
+				</div>
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-gray insurance_type_modal">When you upload a policy, it will be added to your Policies as a "pending" policy. Once our experts have approved it, it will appear as "active" with detailed information. Please only upload <b>PDF</b>s</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 drop-box" ngf-drop ngf-select ng-change="FileChanged(files[0])" ng-model="files" ngf-drag-over-class="'dragover'" ngf-multiple="false" multiple="true" ngf-max-files="20" ngf-allow-dir="true" accept="application/pdf" ngf-pattern="'application/pdf'">
+					<h4 class="color-blue-dark in-drop-box" ng-hide="files[0]"><b>Click</b> here or <b>Drag</b> a .PDF onto this field <br>Files will appear underneath</h4>
+					<h4 class="color-blue-dark in-drop-box" ng-show="files[0]"><b>Click</b> or <b>Drag</b> to add more files or press the <b>Upload</b> button</h4>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 file_in_queue no-pad-left" ng-repeat="(key,file) in files_to_upload">
+					<p class="color-blue-dark "><i class="fa fa-times pointer color-liimex-blue" aria-hidden="true" ng-click="RemoveFromUploads(key, files); files = null"></i> <b>{{file.name}}</b></p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button button-inverse" type="submit" zf-close="">Close</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button" type="submit" ng-click="PerformUpload(files_to_upload); files = null" id="close_upload" ng-disabled="disableUploadBtn">Upload</button>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 ">
+					<p class="color-gray small-print">You can only add <b>1</b> file at a time. You can upload a maximum of <b>20</b> files. If you need to hand us more files simply email us. By pressing <b>upload</b> you upload the list of files shown above.</p>
+				</div>
+			</div>
+	</div>
+</zf-modal>

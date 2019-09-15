@@ -1,0 +1,29 @@
+<!-- Upload File Modal -->
+<zf-modal id="get_quote_any_modal" class="upload-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-liimex-blue no-btm-padding small-modal-header">Angebot einholen</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">Wählen Sie für welche Versicherung Sie ein Angebot erhalten möchten. Falls Sie unsicher sind, welche Versicherung Sie benötigen, schauen Sie einfach in Ihre <b class="dark-hover pointer" ui-sref="overview_en">Empfehlungen</b>. Natürlich können Sie uns auch jederzeit anrufen.</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<select name="typeselector" ng-model="new_offer.subject" required class="color-liimex-blue">
+					<option value="" disabled selected style="display: none;">Versicherung auswählen</option>
+					<option ng-repeat="(key, type) in insurance_types" value="{{key}}"  >{{type.name_de}}</option>
+				</select>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 small-top-margin">
+				<p class="color-gray insurance_type_modal">Mit Ihrer Bestätigung machen wir uns auf die Suche nach der passenden Versicherung für Sie - natürlich <b>kostenfrei</b> und <b>ohne Verpflichtungen</b>.</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button button-inverse" type="submit" zf-close="">Jetzt nicht</button>
+			</div>
+			<div class="grid-content center large-6 medium-6 small-6">
+				<button class="button" type="submit" ng-click="GetQuoteFromDropdown()" id="close_upload" ng-disabled="disableGetQuoteBtn || !new_offer.subject">Angebot einholen</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

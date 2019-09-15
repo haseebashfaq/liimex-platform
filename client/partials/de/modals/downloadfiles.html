@@ -1,0 +1,24 @@
+
+<!-- Download Files Modal -->
+<zf-modal id="download_files_modal" class="upload-modal">
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-liimex-blue no-btm-padding small-modal-header">Dateien herunterladen</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-gray insurance_type_modal">Klicken Sie auf das <b>Download</b> Symbol unter dem jeweiligen Dokument um es herunterzuladen</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 file_in_queue" ng-repeat="(index, nothing) in blank_documents">
+					<p class="color-blue-dark "><i class="fa fa-cloud-download color-liimex-blue pointer" aria-hidden="true" ng-click="DownloadDocument(documents[index])"></i> <b>{{ documents[index].alias || documents[index].file || 'loading...'}}</b></p><p class="color-liimex-blue pointer light dark-hover" ng-click="DownloadDocument(documents[index])">{{documents[index].file && 'download' || '...'}}</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-12 medium-12 small-12">
+					<button class="button button-inverse" type="submit" zf-close="">Schließen</button>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 ">
+					<p class="color-gray small-print">Manche Dateinamen können zufällig generierte Bezeichnungen tragen. Klicken Sie einfach auf das Cloud-Symbol oder das Download-Symbol um eine Datei herunterzuladen. Sollten Sie Hilfe benötigen oder Fragen haben, stehen wir Ihnen über die Chat-Funktion gerne zur Seite. Wir freuen uns auf Sie!</p>
+				</div>
+			</div>
+	</div>
+</zf-modal>

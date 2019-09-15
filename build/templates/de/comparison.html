@@ -1,0 +1,117 @@
+<!-- Page View -->
+<div class="grid-block offer-comparison-page" ng-show="insurance_types" ng-if="offer.display_version!=2">
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<h2 class="color-liimex-blue overview-headline" zf-open="insurance_info_for_offers">
+			<i class="fa fa-info-circle fa-small policy-info-icon">
+		    </i>{{insurance_types[offer.subject].name_de}}
+		</h2>
+		<h4 class="color-blue-dark">Hier finden Sie eine Übersicht bestehender Angebote</h4>
+	</div>
+	<div style="margin:5rem 0; display: none;"></div>
+	<div class="grid-block large-12 medium-12 small-12 comparison-box-outer align-center">
+		<div class="grid-content large-4 medium-4 small-12 comparison-box comparison-plan" ng-repeat="(key, value) in offer.comparisons" style="/*border: 2px solid #969696; border-radius: 10px; padding: 1rem;*/">
+			<div class="comparison-box-heading {{offer.preferred === key && 'comparison-our-recommendation'}}">
+				<i class="fa fa-check-circle" aria-hidden="true" ng-show="{{offer.preferred === key}}"></i>
+				{{offer.preferred === key && 'Unsere Empfehlung' || 'Alternative'}}
+			</div>
+			<div class="comparison-container {{offer.preferred === key && 'comparison-our-recommendation'}}">
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">{{carriers[value.carrier].name}}</h2>
+					<h4 class="comparision-feature-name">Versicherer</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">€{{genService.getSepThousands(value.premium)}}</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverPremium=true;" ng-mouseleave="showPopoverPremium=false;">
+						Jährlich Prämie
+						<i class="fa fa-info-circle fa-small dark-hover" ng-popup-toggle="popup{{value.created_at}}">
+							<ng-modal id="popup{{value.created_at}}" class="comparison-info-modal" ng-show="showPopoverPremium">
+								{{langService.inline_help.premium.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">€{{genService.getSepThousands(value.sum_insured)}}</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverSumInsured=true;" ng-mouseleave="showPopoverSumInsured=false;">
+						Versicherungssumme
+						<i class="fa fa-info-circle fa-small dark-hover" ng-popup-toggle="popup{{value.created_at}}">
+							<ng-modal id="popup{{value.created_at}}" class="comparison-info-modal" ng-show="showPopoverSumInsured">
+								{{langService.inline_help.sum_insured.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">
+					{{value.deductible && genService.getDeductableType(value.deductible) ? genService.getDeductableType(value.deductible) : '-'}}
+					</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverDeductable=true;" ng-mouseleave="showPopoverDeductable=false;">
+						Selbstbehalt
+						<i class="fa fa-info-circle fa-small dark-hover" ng-popup-toggle="popup{{value.created_at}}">
+							<ng-modal id="popup{{value.created_at}}" class="comparison-info-modal" ng-show="showPopoverDeductable">
+								{{langService.inline_help.deductable.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific comparison-custom-main" ng-repeat="(row_key, row_value) in value.custom_fields">
+					<span ng-show="custom_fields[row_key].type === 'choice' && value.custom_fields[row_key] === true">
+						<h2 class="comparision-feature-main comparision-feature-main-custom">
+							<img class="comparison-check-sign" src="assets/img/checkmark_blue.svg" alt="">
+						</h2>
+						<h4 class="comparision-feature-name">
+							{{custom_fields[row_key].title_de}}
+						</h4>
+					</span>
+					<span ng-show="custom_fields[row_key].type === 'text'">
+						<h2 class="comparision-feature-main comparision-feature-main-custom">
+							{{value.custom_fields[row_key]}}
+						</h2>
+						<h4 class="comparision-feature-name">
+							{{custom_fields[row_key].title_de}}
+						</h4>
+					</span>
+					<span ng-show="custom_fields[row_key].type === 'date'">
+						<h2 class="comparision-feature-main comparision-feature-main-custom">
+							{{genService.getDateObj(value.custom_fields[row_key]) | date:'dd-MM-yyyy'}}
+						</h2>
+						<h4 class="comparision-feature-name">
+							{{custom_fields[row_key].title_de}}
+						</h4>
+					</span>
+					<span ng-show="custom_fields[row_key].type === 'currency'">
+						<h2 class="comparision-feature-main comparision-feature-main-custom">
+							€{{genService.getSepThousands(row_value)}}
+						</h2>
+						<h4 class="comparision-feature-name">
+							{{custom_fields[row_key].title_de}}
+						</h4>
+					</span>
+				</div>
+				<div class="comparison-box-specific comparison-note" ng-bind-html="transformToHtml(value.note)"></div>
+				<div class="comparison-box-specific comparison-box-download">
+					<p ng-show="!!value.documents" class="light color-liimex-blue pointer p-button dark-hover comparison-download-available" zf-open="download_files_modal" ng-click="PrepareDownloads(value)">
+						<i class="fa fa-download" aria-hidden="true"></i>
+						Download-Angebot
+					</p>
+					<p ng-hide="!!value.documents" class="light color-gray p-button comparison-download-unavailable">Download nicht verfügbar</p>
+				</div>
+				<div class="comparison-box-specific no-border-bottom">
+					<button type="button" zf-open="accept_offer_modal" class="{{offer.preferred === key && 'btn-yellow' || 'btn-yellow-inverse'}}" ng-click="SelectOffer(value, key)"><b>Angebot auswählen</b></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 dismiss-offer-outer">
+		<div class="grid-content large-12 medium-12 small-12 center">
+			<button type="button" class="btn-yellow-inverse" zf-open="dismiss_offer_modal">Angebot ablehnen
+		</div>
+	</div>
+</div>
+
+<div ng-if="offer.display_version==2" ng-include="" src="'templates/de/comparison_v2.html'"></div>
+
+<div ng-include="" src="'partials/de/modals/dismissoffer.html'"></div>
+<div ng-include="" src="'partials/de/modals/acceptoffer.html'"></div>
+<div ng-include="" src="'partials/de/modals/downloadfiles.html'"></div>
+<div ng-include="" src="'partials/de/modals/insuranceinfoforoffers.html'"></div>

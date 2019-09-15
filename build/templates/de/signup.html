@@ -1,0 +1,116 @@
+<div class="grid-container signup-page">
+	<div class="grid-block align-center force-wrap">
+		<div class="grid-content large-10 medium-10 small-12">
+			<div class="card corner bg-white shadow signup-card">
+				<div class="card-section left-card login-input-margin">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message">Hej! Ich bin Frida. Ich kümmere mich um Ihre Versicherungen. Bereit?</p>
+					<form class="signup-form flex-form user-signup" name="signupform">
+						<div class="grid-content large-12 medium-12 small-12 signup-section-text-outer">
+							<p class="color-gray signup-section-text">Firmendetails</p>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.compName.$error.required && !signupform.compName.$pristine && signupform.compName.$touched}" type="text" name="compName" placeholder="Firmenname" ng-model="signup.company.name" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<select name="typeselector" ng-model="signup.company.type" required  onchange="this.className='selected_select'"  ng-class="{ 'form-validation-error' : signupform.typeselector.$error.required && !signupform.typeselector.$pristine && signupform.typeselector.$touched}">
+								<option value="" disabled selected style="display: none;">Rechtsform</option>
+								<option value="AG">AG</option>
+								<option value="AG &#38 Co. KG">AG &#38 Co. KG</option>
+								<option value="e.V.">e.V.</option>
+								<option value="e.G.">e.G.</option>
+								<option value="GbR">GbR</option>
+								<option value="GmbH">GmbH</option>
+								<option value="GmbH &#38 Co. KG">GmbH &#38 Co. KG</option>
+								<option value="KG">KG</option>
+								<option value="KGaA">KGaA</option>
+								<option value="OHG">OHG</option>
+								<option value="UG">PartG</option>
+								<option value="UG">PartG mbH</option>
+								<option value="UG">PartG mbB</option>
+								<option value="Sonstige">Sonstige</option>
+								<option value="Stiftung bürgerlichen Rechts">Stiftung bürgerlichen Rechts</option>
+								<option value="Stiftungs GmbH">Stiftungs GmbH</option>
+								<option value="Stiftungs Verein">Stiftungs Verein</option>
+								<option value="Treuhandstiftung">Treuhandstiftung</option>
+								<option value="UG">UG</option>
+							</select>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="compAddress" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.compAddress.$error.required && !signupform.compAddress.$pristine && signupform.compAddress.$touched}" type="text" placeholder="Straße, Nummer" ng-model="signup.address.street" required  />
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="compCity" ng-class="{ 'form-validation-error' :
+							signupform.compCity.$error.required &&
+							!signupform.compCity.$pristine &&
+							signupform.compCity.$touched}" class="form-input-fields" type="text" placeholder="Stadt" ng-model="signup.address.city" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="compZipCode" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.compZipCode.$error.pattern && !signupform.compZipCode.$pristine && signupform.compZipCode.$touched}" type="text" placeholder="PLZ" ng-model="signup.address.zip"  ng-pattern= "/^[0-9]{3,6}$/" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="compPhoneNum" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.compPhoneNum.$error.pattern && !signupform.compPhoneNum.$pristine && signupform.compPhoneNum.$touched}" type="text" placeholder="Telefon" ng-model="signup.company.phone"  ng-pattern= "/^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?[0-9 -]+[0-9]$/" required />
+						</div>
+						<!-- <div class="grid-content large-6 medium-6 small-12">
+							<select class="selected_select" ng-model="signup.address.country" required >
+								<option value="Deutschland" selected="selected" style="display: none;">Deutschland</option>
+							</select>
+						</div> -->
+						<div class="grid-content large-12 medium-12 small-12"></div>
+						
+						<div class="grid-content large-12 medium-12 small-12 signup-section-text-outer">
+							<p class="color-gray signup-section-text">Persönliche Details</p>
+						</div>
+
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="userFirstName" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.userFirstName.$error.pattern && !signupform.userFirstName.$pristine && signupform.userFirstName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" type="text" placeholder="Vorname" ng-model="signup.user.first_name" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="userLastName" ng-class="{ 'form-validation-error' : signupform.userLastName.$error.pattern  && !signupform.userLastName.$pristine && signupform.userLastName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" class="form-input-fields" type="text" placeholder="Nachname" ng-model="signup.user.last_name" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input name="userEmail" class="form-input-fields" ng-class="{ 'form-validation-error' :   signupform.userEmail.$error.email && !signupform.userEmail.$pristine && signupform.userEmail.$touched}" type="email" placeholder="Email" ng-model="signup.user.email" required/>
+						</div>
+						<div class="grid-content large-6 medium-6 small-12">
+							<input class="form-input-fields" type="password" placeholder="Passwort" ng-model="signup.user.password" required/>
+						</div>
+						<div class="grid-content large-1 medium-1 small-1">
+							<input name ="termsAndConditions" type="checkbox" id="test5" class="filled-in"  ng-model="termsAndConditions" required/>
+							<label for="test5"></label>
+						</div>
+						<div class="grid-content large-11 medium-11 small-11 terms-conditions-outer">
+							<p class="color-gray">Hiermit bestätigen Sie die <span class="signup-terms-conditions" zf-open="terms_and_conditions">Allgemeinen Geschäftsbedingungen</span></p>
+						</div>
+						<!-- <div class="grid-content large-12 medium-12 small-12">
+							<p ng-show="signupform.termsAndConditions.$error.required" class="centered-text form-validation-error-msg">Bitte bestätigen Sie unsere Allgemeinen Geschäftsbedingungen</p>
+						</div> -->
+						<div class="liimefix-small">
+						</div>
+						<div class="grid-content center large-6 medium-6 small-12">
+							<button type="button" class="btn-yellow-inverse" ui-sref="login_de">Zurück</button>
+						</div>
+						<div class="grid-content center large-6 medium-6 small-12">
+							<button class="btn-yellow" type="submit" ng-click="Signup(signupform)" ng-disabled="disableNxtBtn">Nächste</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-include="" src="'partials/de/modals/termsandconditions.html'"></div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('signup-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+	});
+</script>

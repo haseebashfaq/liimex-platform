@@ -1,0 +1,69 @@
+<!-- Page View -->
+<div class="grid-block policy-page" ng-show="currentState === 'policies_de'">
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline" ng-hide="show_total">Policen</h2>
+		<!-- <h4 class="color-blue-dark">Hier finden Sie eine Übersicht über Ihre Policen</h4> -->
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 policy-box" ng-repeat="(key, policy) in policies | orderBy:'-policy.policy.status':true" ng-if="policy.policy.status === 'active'">
+		<div ng-if="policy.policy.display_version==2" ng-include="" src="'partials/de/policycard_v2.html'"></div>
+		<div ng-if="policy.policy.display_version!=2" ng-include="" src="'partials/de/policycard.html'"></div>	
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center total-sum-main" ng-show="show_total">
+		<p class="sum-text">Summe aller Prämien (p.a.): <b class="color-blue-dark">€{{genService.getSepThousands(total_premium)}}</b></p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center policy-page-heading" ng-hide="show_total">
+		<!-- <p class="sum-text completely-centered-text">Sie haben noch keine Versicherungen. Gehen Sie zur <b ui-sref="overview_de">Übersicht</b> um Empfehlungen einzusehen. Sie können bestehende Policen auch einfach hier hochladen.</p> -->
+		<h4 class="color-blue-dark">Sie haben noch keine Versicherungen.</h4>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 color-gray center claims-page-heading" ng-hide="show_total">
+		<p class="sum-text completely-centered-text">Gehen Sie zur Übersicht um Empfehlungen einzusehen. Sie können bestehende Policen auch einfach dort hochladen.</p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading" ng-hide="show_total">
+		<button type="button" class="btn-yellow-inverse"  ui-sref="overview_de"><b>Zurück zur Übersicht</b></button>
+	</div>
+</div>
+<div ng-include="" src="'partials/de/modals/insuranceinfo.html'"></div>
+<div ng-include="" src="'partials/de/modals/uploadfile.html'"></div>
+<div ng-include="" src="'partials/de/modals/removefromreview.html'"></div>
+<div ng-include="" src="'partials/de/modals/cancelpolicy.html'"></div>
+<div ng-include="" src="'partials/de/modals/getquoteany.html'"></div>
+<div ng-include="" src="'partials/de/modals/signreminder.html'"></div>
+<div ng-include="" src="'partials/de/modals/downloadfiles.html'"></div>
+<div ng-include="" src="'partials/de/modals/successoffer.html'"></div>
+
+<style type="text/css">
+	@media only screen and (max-width: 479px) and (min-width: 320px) {
+		.grid-block.ng-scope .grid-content.large-12.dash-content {
+			padding: 6.5rem 0 5% 0 !important;
+		}
+	}
+
+	@media only screen and (max-width: 319px) {
+		.grid-block.ng-scope .grid-content.large-12.dash-content {
+			padding: 6.5rem 0 5% 0 !important;
+		}
+	}
+</style>
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

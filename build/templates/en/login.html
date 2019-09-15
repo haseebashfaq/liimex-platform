@@ -1,0 +1,60 @@
+<div class="grid-container">
+	<!-- LOGIN FORM -->
+	<div class="grid-block large-12 align-center">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow login-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 12rem;">
+				<div class="card-section left-card">
+					<!-- <div class="frida-outer">
+						<div class="our-frida"></div>
+					</div> -->
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Sign in to Liimex!</p>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left;">
+						<form class="login-form user-login" name="loginform">
+							<div class="grid-block large-12 medium-12 small-12 login-card-form-container">
+								<div class="grid-content large-12 login-card-input-outer">
+									<input class="form-input-fields" type="email" placeholder="Email Address" ng-model="login.email" required/>
+								</div>
+								<div class="grid-content large-12 login-card-input-outer">
+									<input class="form-input-fields" type="password" placeholder="Password" id="password" ng-model="login.password" required/>
+								</div>
+								<div class="login-input-margin right-align">
+									<button type="button" class="button button-inline strange-margin" ui-sref="forgot_en"><p><b>Forgot Password?</b></p></button>
+								</div>
+								<div class="grid-content large-12 medium-12 large-12 actionbtn-outer center">
+									<div class="grid-content login-input-margin center login-card-signin-outer">
+										<button type="submit" class="btn-violett" ng-click="Login(loginform)">Sign In</button>
+									</div>
+									<div class="grid-content login-input-margin center login-card-signin-outer">
+										<button type="button" class="btn-violett-inverse" ui-sref="signup_en">Create Account</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left;">
+						<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+							<!-- <h4>What's next?</h4> -->
+							<h4><!-- <i class="fa fa-info-circle policy-info-icon"></i> -->You will be logged in to Liimex's online platform to book your insurance.</h4>
+							<h4><!-- <i class="fa fa-info-circle policy-info-icon"></i> -->You should either be the admin or employee of a company.</h4>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('login-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+	});	
+</script>

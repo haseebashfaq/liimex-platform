@@ -1,0 +1,35 @@
+<!-- Upload File Modal -->
+<zf-modal id="upload_policy_modal" class="upload-modal">
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message frida-overview-moda">Laden Sie Ihre Verträge hier hoch</p>
+					<!-- <p class="color-liimex-blue no-btm-padding small-modal-header">Laden Sie Ihre Richtlinien hier hoch</p> -->
+				</div>
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-gray insurance_type_modal">Wenn Sie eine neue Police hochladen, erscheint sie zunächst als "in Bearbeitung". Sobald unsere Experten die Datei freigeben, erscheint sie als "aktiv". Bitte laden Sie nur <b>PDFs</b> hoch.
+					</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 drop-box" ngf-drop ngf-select ng-change="FileChanged(files[0])" ng-model="files" ngf-drag-over-class="'dragover'" ngf-multiple="false" multiple="true" ngf-max-files="20" ngf-allow-dir="true" accept="application/pdf" ngf-pattern="'application/pdf'">
+					<h4 class="color-blue-dark in-drop-box" ng-hide="files[0]">Hier klicken oder <b>PDF</b> per Drag-and-Drop in dieses Feld ziehen.</h4>
+					<h4 class="color-blue-dark in-drop-box" ng-show="files[0]">Hier klicken oder <b>PDF</b> per Drag-and-Drop in dieses Feld ziehen.</h4>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 file_in_queue no-pad-left" ng-repeat="(key,file) in files_to_upload">
+					<p class="color-blue-dark "><i class="fa fa-times pointer color-liimex-blue" aria-hidden="true" ng-click="RemoveFromUploads(key, files); files = null"></i> <b>{{file.name}}</b></p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button button-inverse" type="submit" zf-close="">Schließen</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button" type="submit" ng-click="PerformUpload(files_to_upload); files = null" id="close_upload" ng-disabled="disableUploadBtn">Hochladen</button>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 ">
+					<p class="color-gray small-print">Sie können bis zu <b>20</b> Dateien hochladen. Bitte wählen Sie die Dateien nacheinander im Uploader aus. Falls Sie mehr als zwanzig Dateien hochladen möchten schicken Sie uns bitte eine Email. Wenn Sie auf Hochladen klicken, werden die oben aufgeführten Dateien hochgeladen.</p>
+				</div>
+			</div>
+	</div>
+</zf-modal>

@@ -1,0 +1,42 @@
+---
+name: mandatesigned_en
+url: /mandatesigned
+parent: my_en
+title: MandateSigned
+controller: MandateController
+loginRequired: true
+---
+<div class="grid-container">
+	<!-- LOGIN FORM -->
+	<div class="grid-block align-center">
+		<div class="grid-content large-12 medium-12 small-12">
+			<!-- <div class="card corner bg-white shadow"> -->
+			<div>
+				<div class="card-section left-card">
+	        <!-- <div class="grid-content color-blue-middle center">
+	          <h2 class="medium_title no-btm-padding">Thank you!</h2>
+	      </div> -->
+					<!-- <div class="grid-content color-blue-middle center">
+						<img class="img-thanks" src="assets/img/monogram_color.svg" alt="">
+					</div> -->
+				<div class="frida-outer">
+					<div class="our-frida"></div>
+				</div>
+				<p class="color-gray frida-message frida-message-contact">Thank you for signing the mandate!</p>
+				<div class="grid-content color-blue-middle center lil-padding">
+					<p class="color-gray small-p">Now that you have signed the mandate, we're at your service! Press the button below to be taken to your overview.</p>
+				</div>
+				<div class="grid-content color-blue-middle center lil-padding" ng-hide="mandate.signed_document_url">
+					<p class="color-gray small-p"><i>Preparing your mandate for download</i></p>
+				</div>
+				<div class="grid-content color-blue-middle center lil-padding" ng-show="mandate.signed_document_url">
+					<p class="color-gray small-p">If you would like to download your mandate, you can do so <b class="pointer" ng-click="DownloadMandate()">here</b> or under your <b ui-sref="account_en">Account</b></p>
+				</div>
+				<div class="grid-content center">
+					<button class="btn-yellow-inverse no-side-margins" ui-sref="overview_en">Go to Overview</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

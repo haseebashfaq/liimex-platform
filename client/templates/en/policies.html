@@ -1,0 +1,83 @@
+---
+name: policies_en
+url: /policies
+controller: PolicyController
+parent: my_en
+loginRequired: true
+---
+<!-- Page View -->
+<div class="grid-block policy-page" ng-show="currentState === 'policies_en'">
+
+	<!-- <div class="grid-content large-12 medium-12 small-12" align="center" style="margin: 1rem 0"> -->
+		<!-- <div class="grid-block large-12 medium-12 small-12 center" style="background: #fff; margin: 0; padding: 1rem;">
+			<h2 class="overview-headline no-btm-margin" style="margin-top: 0; width: 100%; font-weight: 300 !important;">Welcome to Policies Page</h2>
+			<p class="overview-headline" style="font-size: 14pt; width: 100%; margin-bottom: 1rem; font-weight: 300 !important;">This is some text supporting the heading of Policies Page</p>
+		</div> -->
+	<!-- </div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline" ng-hide="show_total">Policies</h2>
+		<h4 class="color-blue-dark">This is an overview of your Policies</h4>
+	</div> -->
+	<div class="grid-content large-12 medium-12 small-12 policy-box" ng-repeat="(key, policy) in policies | orderBy:'-policy.policy.status':true" ng-if="policy.policy.status === 'active'">
+		<div ng-if="policy.policy.display_version==2" ng-include="" src="'partials/en/policycard_v2.html'"></div>
+		<div ng-if="policy.policy.display_version!=2" ng-include="" src="'partials/en/policycard.html'"></div>	
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center total-sum-main" ng-show="show_total">
+		<p class="sum-text">Yearly sum of all current policies: <b class="color-blue-dark">€{{genService.getSepThousands(total_premium)}}</b></p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center policy-page-heading" ng-hide="show_total">
+		<!-- <p class="sum-text completely-centered-text">You do not have any policies here yet. Go to <b ui-sref="process_en">Process page</b> to get your recommended policies. You can also upload them directly from here.</p> -->
+		<h4 class="color-blue-dark">You do not have any policies here yet.</h4>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 color-gray center claims-page-heading" ng-hide="show_total">
+		<p class="sum-text completely-centered-text">Go to Overview page to get your recommended policies. You can also upload them directly from there.</p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading" ng-hide="show_total">
+		<button type="button" class="btn-yellow-inverse"  ui-sref="overview_en"><b>Back to Overview Page</b></button>
+	</div>
+</div>
+<div ng-include="" src="'partials/en/modals/insuranceinfo.html'"></div>
+<div ng-include="" src="'partials/en/modals/uploadfile.html'"></div>
+<div ng-include="" src="'partials/en/modals/removefromreview.html'"></div>
+<div ng-include="" src="'partials/en/modals/cancelpolicy.html'"></div>
+<div ng-include="" src="'partials/en/modals/getquoteany.html'"></div>
+<div ng-include="" src="'partials/en/modals/signreminder.html'"></div>
+<div ng-include="" src="'partials/en/modals/downloadfiles.html'"></div>
+<div ng-include="" src="'partials/en/modals/successoffer.html'"></div>
+
+<style type="text/css">
+	@media only screen and (max-width: 479px) and (min-width: 320px) {
+		.grid-block.ng-scope .grid-content.large-12.dash-content {
+			padding: 6.5rem 0 5% 0 !important;
+		}
+	}
+
+	@media only screen and (max-width: 319px) {
+		.grid-block.ng-scope .grid-content.large-12.dash-content {
+			padding: 6.5rem 0 5% 0 !important;
+		}
+	}
+</style>
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

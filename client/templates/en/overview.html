@@ -1,0 +1,146 @@
+---
+name: overview_en
+name_no_lang: overview
+url: /overview
+title: Overview
+parent: my_en
+controller: OverviewController
+loginRequired: true
+---
+
+<!-- Page View -->
+<div class="grid-block overview-grid-block" ng-show="currentState === 'overview_en'">
+	<div class="overview-banner">
+		<div class="overview-banner-overlay center">
+			<!-- <div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray frida-message frida-overview-moda frida-overview-banner-text">Let's get you started!</p>
+			</div> -->
+			<div class="grid-block large-8 medium-12 small-12 overview-banner-section" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 3rem; background: #fff;">
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Let's get you started!</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12">
+					<div class="grid-content large-12 medium-12 small-12 overview-banner-heading">
+						<h6 class="overview-banner-text demand-headline">Get your existing policies checked, easy and without obligations.</h6>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12 center">
+						<button type="button" class="btn-violett overview-upload-policy" zf-open="upload_policy_modal"><b><i class="fa fa-upload" aria-hidden="true"></i> UPLOAD POLICIES</b></button>
+					</div>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12">
+					<div class="grid-content large-12 medium-12 small-12 overview-banner-heading">
+						<h6 class="overview-banner-text demand-headline">Get better coverage for your business in a few easy steps.</h6>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12 center">
+						<button type="button" class="btn-violett overview-upload-policy" ng-click="GetQuote(demand.essential)"><b><i class="fa fa-get-pocket" aria-hidden="true"></i> REQUEST OFFER</b></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="overview-view">
+		<div class="grid-block large-12 medium-12 small-12">
+		</div>
+		<!-- <div class="grid-block large-12 medium-12 small-12 overview-section align-center" ng-show="num_offers_pushed > 0">
+			<div class="grid-content large-12 medium-12 small-12 overview-heading-section">
+				<p class="color-gray frida-message frida-overview-moda overview-offers-heading">These are our current offers for you</p>
+			</div>
+			<div class="grid-content large-12 medium-6 small-12 offer-card-outer" ng-repeat="(key, item) in pushed_offers" ng-show="item.additional !== true">
+				<div ng-include="" src="'partials/en/offercard.html'"></div>
+			</div>
+		</div> -->
+		<div class="grid-block large-12 medium-12 small-12 overview-section">
+			<div class="grid-content large-12 medium-12 small-12 mandate-btn" ng-show="mandate.status !== 'signed'">
+				<button type="button" class="btn-violett" ui-sref="signmandate_en"><b>SIGN BROKER MANDATE</b></button>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12">
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 overview-subsection-recommendation2 align-center" style="margin: 2rem 0 !important;">
+				<div class="grid-content large-12 medium-12 small-12 overview-heading-section">
+					<p class="color-gray frida-message frida-overview-moda">The must-have coverage for your company</p>
+				</div>
+				<h6 ng-show="HaveAllEssentialPolicies()" class="color-gray"><i class="fa fa-check-circle" aria-hidden="true"></i> Looks like you already have the most important insurances for your business</h6>
+				<div class="grid-content large-4 medium-6 small-12 insurance-box" ng-repeat="(key, item) in demand.essential | orderBy:'score':true" ng-click="GetQuote([item])" ng-if="!in_active_policies[item.key]">
+					<div ng-include="" src="'partials/en/recommendcard.html'"></div>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 center demand-btn">
+					<div class="liimefix-small"></div>
+					<button type="button" class="btn-violett" ng-click="GetQuote(demand.essential)"><b><i class="fa fa-get-pocket" aria-hidden="true"></i> GET QUOTE</b></button>
+				</div>
+			</div>
+			<div class="grid-block large-12 medium-12 small-12 overview-subsection-recommendation align-center" style="margin: 2rem 0 !important;">
+				<div class="grid-content large-12 medium-12 small-12 overview-heading-section">
+					<p class="color-gray frida-message frida-overview-moda">The nice-to-have coverage for your company</p>
+				</div>
+				<h6 ng-show="HaveAllAdditionalPolicies()" class="color-gray"><i class="fa fa-check-circle" aria-hidden="true"></i> Looks like you already have your additionally recommended insurances</h6>
+				<div class="grid-content large-3 medium-4 small-12 insurance-box" ng-repeat="(key, item) in demand.additional"  ng-click="GetQuote([item])" ng-if="!in_active_policies[item.key]">
+					<div ng-include="" src="'partials/en/recommendcard.html'"></div>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 center demand-btn">
+					<div class="liimefix-small"></div>
+					<button type="button" class="btn-violett" ng-click="GetQuote(demand.additional)"><b><i class="fa fa-get-pocket" aria-hidden="true"></i> GET QUOTE</b></button>
+				</div>
+			</div>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12 our-rep overview-section center">
+			<div class="grid-content large-12 medium-12 small-12 align-center insurance-expert">
+				<h2 class="color-liimex-blue overview-headline">Talk to our experts</h2>
+				<!-- <h6><i class="fa fa-user-circle-o" aria-hidden="true"></i>Insurance Expert</h6> -->
+				<h6><i class="fa fa-phone-square" aria-hidden="true"></i>+49 40-60 59 09 180</h6>
+			</div>
+		</div>
+	</div>
+	<div class="footer-top large-12 medium-12 small-12">
+		<div class="grid-content large-3 medium-12 small-12 footer-top-heading">
+			<h2 class="overview-headline">Activities:</h2>
+		</div>
+		<div class="grid-content large-3 medium-12 small-12 footer-top-activities">
+			<p class="demand-headline">Collecting Offers</p>
+			<h4 class="demand-headline overview-activity-value">{{num_offers_collecting}}</h4>
+		</div>
+		<div class="grid-content large-3 medium-12 small-12 footer-top-activities">
+			<p class="demand-headline">Current Offers</p>
+			<h4 class="demand-headline overview-activity-value">{{num_offers_pushed}}</h4>
+		</div>
+		<div class="grid-content large-3 medium-12 small-12 footer-top-activities">
+			<p class="demand-headline">Processing policies</p>
+			<h4 class="demand-headline overview-activity-value">{{num_pending_policies}}</h4>
+		</div>
+	</div>
+</div>
+<div ng-include="" src="'partials/en/modals/insuranceinfo.html'"></div>
+<div ng-include="" src="'partials/en/modals/getquote.html'"></div>
+<div ng-include="" src="'partials/en/modals/uploadpolicy.html'"></div>
+<div ng-include="" src="'partials/en/modals/signreminder.html'"></div>
+<div ng-include="" src="'partials/en/modals/successpolicy.html'"></div>
+<div ng-include="" src="'partials/en/modals/successoffer.html'"></div>
+<style type="text/css">
+	.grid-block.ng-scope .grid-content.large-12.dash-content {
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 6rem;
+	}
+</style>
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

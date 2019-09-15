@@ -1,0 +1,54 @@
+<!-- Page View -->
+<div class="grid-block instantproduct-main" ng-controller="InstantProductUserController">
+	<div class="grid-content large-12 medium-12 small-12 instantproduct-heading">
+		<div class="frida-outer">
+			<div class="our-frida"></div>
+		</div>
+		<p class="color-gray frida-message">{{page_data.user.page_title_en || 'missing_title'}}</p>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 instantproduct-comparison-outer user-main">
+		<div class="grid-block large-6 medium-6 small-12 comparison-box-outer">
+			<form class="signup-form flex-form center login-form" name="loginform">
+				<div class="large-12 medium-12 small-12 login-form-heading">
+					<h4>Already a user? Sign in please</h4>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userEmail" class="form-input-fields" ng-class="{ 'form-validation-error' :   loginform.userEmail.$error.email && !loginform.userEmail.$pristine && loginform.userEmail.$touched}" type="email" placeholder="Email Address" ng-model="signin.email" required>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userPassword" class="form-input-fields" ng-class="{ 'form-validation-error' :   loginform.userEmail.$error.email && !loginform.userEmail.$pristine && loginform.userEmail.$touched}" type="password" placeholder="Password" ng-model="signin.password" required>
+				</div>
+				<div class="large-12 medium-12 small-12 signin-outer">
+					<button class="button acceptofferbtn" type="submit" ng-click="Login(loginform)" ng-disabled="!loginform.$valid">Sign in</button>
+				</div>
+			</form>
+		</div>
+		<div class="grid-block large-6 medium-6 small-12 comparison-box-outer">
+			<form class="signup-form flex-form center signupForm" name="signupform">
+				<div class="large-12 medium-12 small-12 login-form-heading">
+					<h4>New here?</h4>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userFirstName" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.userFirstName.$error.pattern && !signupform.userFirstName.$pristine && signupform.userFirstName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" type="text" placeholder="First Name" ng-model="user.first_name" required/>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userLastName" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.userLastName.$error.pattern  && !signupform.userLastName.$pristine && signupform.userLastName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" type="text" placeholder="Last Name" ng-model="user.last_name" required/>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userEmail" class="form-input-fields" ng-class="{ 'form-validation-error' :   signupform.userEmail.$error.email && !signupform.userEmail.$pristine && signupform.userEmail.$touched}" type="email" placeholder="Email Address" ng-model="user.email" required/>
+				</div>
+				<div class="large-12 medium-12 small-12">
+					<input name="userPhoneNumber" class="form-input-fields" ng-class="{ 'form-validation-error' : signupform.userPhoneNumber.$error.pattern && !signupform.userPhoneNumber.$pristine && signupform.userPhoneNumber.$touched}" type="text" placeholder="Phone Number (optional)" ng-model="user.phone"  ng-pattern= "/^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?[0-9 -]+[0-9]$/" />
+				</div>
+				<div class="large-12 medium-12 small-12 signin-outer">
+					<button class="button" type="submit" ng-click="SaveUser()" ng-disabled="!signupform.$valid">Sign up</button>
+				</div>
+			</form>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12 instantproduct-actions">
+			<div class="grid-content large-12 medium-12 small-12 center">
+				<button type="button" class="btn-yellow-inverse" ng-click="goBack()">Back</button>
+			</div>
+		</div>
+	</div>
+</div>

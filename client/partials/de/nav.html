@@ -1,0 +1,89 @@
+<!-- Navigation Elements -->
+
+<!-- Full Size Nav Bar -->
+<!-- <nav>
+	<ul class="primary condense menu-bar custom-nav">
+		<li><img src="assets/img/x-logo-white.png" class="nav-logo-left" alt=""><a ui-sref="login" ng-hide="currentUser"><strong>Liimex Backoffice</strong></a></li>
+	</ul>
+</nav> -->
+
+<nav class="invisible_nav" ng-hide="hide_navigation">
+	<div class="nav-wrapper invisible_nav">
+		<div class="fixed-card card nav-corner bg-white shadow">
+			<!-- Place contact header here -->
+
+			<div class="grid-content large-12 header-contact" ng-class="developmentEnvironment ? 'dev-env-warning' : ''">
+				<p class="warning-text">Die aktuelle Website ist nicht die Produktionsumgebung</p>
+				<p><i class="fa fa-phone" aria-hidden="true"></i><span class="header-phone-text">Fragen zur Versicherung: </span><strong class="header-contact-number">+49 40-60 59 09 180</strong></p>
+			</div>
+
+			<div class="card-section">
+				<div class="grid-content nav-content logo-main">
+					<img src="assets/img/logo_full_color.svg" alt="#" ui-sref="overview_de">
+				</div>
+				<div class="grid-content nav-content logo-main navbar-hamburger-outer">
+					<i class="fa fa-bars fa-2x navbar-hamburger" aria-hidden="true"></i>
+				</div>
+				<div class="navmenu-main">
+					<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'overview_de' && 'sidebar-fixed-color' || ''}}" ui-sref="overview_de">
+						<ol>
+							<li type="none"><h5>Übersicht</h5></li>
+						</ol>
+					</div>
+					<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'policies_de' && 'sidebar-fixed-color' || ''}}" ui-sref="policies_de">
+						<ol>
+							<li type="none"><h5>Policen</h5></li>
+						</ol>
+					</div>
+					<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'claims_de' && 'sidebar-fixed-color' || ''}}" ui-sref="claims_de">
+						<ol>
+							<li type="none"><h5>Schäden</h5></li>
+						</ol>
+					</div>
+					<div class="grid-content sidebar-item color-blue-middle sidebar-item {{currentState === 'account_de' && 'sidebar-fixed-color' || ''}}" ui-sref="account_de">
+						<ol>
+							<li type="none"><h5>Kundenkonto</h5></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="outerlogoutright">
+			<div class="fixed-details-right transparent-bg card" ng-if="currentUser">
+				<div class="card-section">
+					<div class="grid-block">
+						<div class="grid-content nav-content innerlogoutright">
+							<!-- <h6 class="details-right-margin"><b>{{company.name}}</b></h6>
+							<h6 class="details-right-margin">{{user.email}}</h6> -->
+							<!-- <i class="fa fa-bars fa-2x logout-icon-right" aria-hidden="true"></i> -->
+							<button type="button" class="logoutbtn logout-initial" ng-click="Signout()">Logout</button>
+						</div>
+				 	</div>
+				 	<!-- <div class="modal-contents ng-scope navbar-logout-inner">
+						<div class="grid-block force-wrap">
+							<div class="grid-content large-12 medium-12 small-12 right-align first-logout-btn">
+								<button type="button" class="button button-inverse logoutbtn" ng-click="Signout()">Logout</button>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<div class="navbar-logout-modal" ng-include="" src="'partials/de/modals/logoutmodal.html'"></div>
+
+<script type="text/javascript">
+	$(window).on('resize', function(){
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+		}
+
+		if($(window).width()>600) {
+	    	$('.navbar-hamburger-outer').css('cssText','padding-top: 0 !important');
+	  	} else {
+	    	$('.navbar-hamburger-outer').css('cssText','padding-top: 0.8rem !important');
+	  	}
+	});
+</script>

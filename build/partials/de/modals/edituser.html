@@ -1,0 +1,38 @@
+<!-- Upload File Modal -->
+<zf-modal id="edit_user_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+		<!-- <h2 class="color-liimex-blue no-btm-padding">Edit Your Company here</h2> -->
+	</div>
+	<div class="modal-contents">
+		<form name="editUserForm">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12 center">
+					<h5 class="color-gray light account-title account-modal-title">Ändern Sie Ihre Angaben</h5>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type="text" autofocus class="color-liimex-blue account-text center" ng-model="user_account.first_name" autofocus="" name="userFirstName" ng-class="{ 'form-validation-error' : editUserForm.userFirstName.$error.pattern && !editUserForm.userFirstName.$pristine && editUserForm.userFirstName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+					<p class="color-gray light centered-text">Vorname(n)</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="user_account.last_name" name="userLastName" ng-class="{ 'form-validation-error' : editUserForm.userLastName.$error.pattern  && !editUserForm.userLastName.$pristine && editUserForm.userLastName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+					<p class="color-gray light centered-text">Nachname</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type="email" class="color-liimex-blue account-text center" ng-model="user_account.email" name="userEmail" ng-class="{ 'form-validation-error' :   editUserForm.userEmail.$error.email && !editUserForm.userEmail.$pristine && editUserForm.userEmail.$touched}" required></input>
+					<p class="color-gray light centered-text">Email</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<p class="color-blue-light account-text centered-text">Full</p>
+					<p class="color-gray light centered-text">Zugangsrechte</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button button-inverse" type="submit" zf-close="">Schließen</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button" type="submit" ng-click="SaveUserData(editUserForm)">Speichern</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</zf-modal>

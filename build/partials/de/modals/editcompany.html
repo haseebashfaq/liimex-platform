@@ -1,0 +1,38 @@
+<!-- Upload File Modal -->
+<zf-modal id="edit_company_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+		<!-- <h2 class="color-liimex-blue no-btm-padding">Edit Your Company here</h2> -->
+	</div>
+	<div class="modal-contents">
+		<form name="editCompForm" >
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12 center">
+					<h5 class="color-gray light account-title account-modal-title">Firma ändern</h5>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type="text" autofocus class="color-liimex-blue account-text center" ng-model="company.name" ng-class="{ 'form-validation-error' : editCompForm.compName.$error.required && !editCompForm.compName.$pristine && editCompForm.compName.$touched}" type="text" name="compName" required></input>
+					<p class="color-gray light centered-text">Firmenname</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="company.phone" name="compPhoneNum" ng-class="{ 'form-validation-error' : editCompForm.compPhoneNum.$error.pattern && !editCompForm.compPhoneNum.$pristine && editCompForm.compPhoneNum.$touched}" ng-pattern= "/^(\+?(\d{1}|\d{2}|\d{3})[- ]?)?[0-9 -]+[0-9]$/" required></input>
+					<p class="color-gray light centered-text">Telefonnummer</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<p class="color-blue-light account-text centered-text">{{company.type}}</p>
+					<p class="color-gray light centered-text">Rechtsform (kontaktieren Sie uns für eine Änderung)</p>
+				</div>
+				<!-- <div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="company.url"></input>
+					<p class="color-gray light centered-text">Website</p>
+				</div> -->
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button button-inverse" type="submit" zf-close="">Schließen</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button" type="submit" ng-click="SaveCompany(editCompForm)">Speichern</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</zf-modal>

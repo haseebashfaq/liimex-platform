@@ -1,0 +1,23 @@
+<zf-modal id="cancel_policy_modal" class="upload-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-liimex-blue no-btm-padding small-modal-header">Delete Policy From Liimex?</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">Insurance: <b>{{insurance_types[selected_policy.subject].name_en}}</b></p>
+				<p class="color-gray insurance_type_modal"><b></b>Carrier: <b>{{selected_policy.basic ? carriers[selected_policy.basic.carrier].name : carriers[selected_policy.carrier].name}}</b></p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">Are you sure that you want to delete your policy from liimex? By deleting it you are removing it from liimex, but not cancelling your policy. If you wish to cancel this policy please send us an email with your wish to cancel and the <b>policy number</b>.</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button button-inverse" type="submit" zf-close="">Keep Policy</button>
+			</div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button" type="submit" ng-click="CancelPolicy(selected_policy_key)" id="close_upload">Delete Policy</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

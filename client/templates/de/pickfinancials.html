@@ -1,0 +1,73 @@
+---
+name: pickfinancials_de
+url: /de/pickfinancials/:isEdit
+title: PickFinancials
+controller: FinancialsController
+loginRequired: true
+forceRequired: true
+---
+<div class="grid-container pickfinancials-page">
+	<div class="grid-block align-center force-wrap">
+		<div class="grid-content large-8 medium-8 small-12">
+			<div class="card corner bg-white shadow signup-card">
+				<div class="card-section left-card login-input-margin">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message">Super. Nun müssen wir die Größe Ihres Unternehmens einschätzen.</p>
+					<form class="signup-form flex-form" name="financialsForm">
+						<div class="grid-content large-12 medium-12 small-12">
+							
+						</div>
+						<div class="grid-content small-btm-margin large-12 medium-12 small-12 pickfinancials-outer">
+							<input class="form-input-fields financials-input" type="text" autocomplete="off" ng-model="financials.turnover" placeholder="Jahresumsatz" required="true" required awnum num-thousand="true" num-sep="," num-int="10" num-prepend="&#x20AC"/>
+						</div>
+						<div class="grid-content color-blue-middle center lil-padding">
+							<p class="color-gray small-p center">Eine ungefähre Schätzung reicht.<br>in Euro (€)</p>
+						</div>
+						<div class="liimefix-small large-12 medium-12 small-12">
+						</div>
+						<div class="grid-content center large-6 medium-12 small-12">
+							<button class="btn-yellow-inverse"  ng-click="Back()" >Zurück</button>
+						</div>
+						<div class="grid-content center large-6 medium-12 small-12">
+							<button class="btn-yellow" type="submit" ng-click="SubmitFinancials(financialsForm)">Weiter</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="" src="'partials/de/modals/termsandconditions.html'"></div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+	$('.fixed-details-right').show();
+
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').show();
+		$('.outerlogoutright').show();
+
+		$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+		$('.logout-initial').css('cssText', 'margin: 0');
+	}
+	
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('signup-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').show();
+			$('.outerlogoutright').show();
+
+			$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+			$('.logout-initial').css('cssText', 'margin: 0');
+		} else {
+			$('.logout-initial').css('cssText', 'margin: 0 2rem 0.1rem');
+		}
+	});	
+</script>

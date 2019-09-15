@@ -1,0 +1,218 @@
+<!-- Page View -->
+<div class="grid-block offer-comparison-page offer-comparison-page_v2" ng-show="insurance_types">
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<h2 class="color-liimex-blue overview-headline" zf-open="insurance_info_for_offers">
+			<i class="fa fa-info-circle fa-small policy-info-icon">
+		    </i>{{insurance_types[offer_v2.subject].name_de}}
+    </h2>
+		<h4 class="color-blue-dark">Hier finden Sie eine Übersicht bestehender Angebote</h4>
+	</div>
+	<div style="margin:5rem 0; display: none;"></div>
+	<div class="grid-block large-12 medium-12 small-12 comparison-box-outer align-center">
+		<div class="grid-content large-4 medium-4 small-12 comparison-box comparison-plan" ng-repeat="(key, value) in offer_v2.comparisons" style="/*border: 2px solid #969696; border-radius: 10px; padding: 1rem;*/">
+			<div class="comparison-box-heading {{offer_v2.preferred === key && 'comparison-our-recommendation'}}">
+				<i class="fa fa-check-circle" aria-hidden="true" ng-show="{{offer_v2.preferred === key}}"></i>
+				{{offer_v2.preferred === key && 'Unsere Empfehlung' || 'Alternative'}}
+			</div>
+			<div class="comparison-container {{offer_v2.preferred === key && 'comparison-our-recommendation'}}">
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main carrier-compact">{{carriers[value.basic.carrier].name}}</h2>
+					<h4 class="comparision-feature-name">Versicherer</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">
+						{{(value.basic.premium * (1+value.basic.insurance_tax*0.01)) | euro}}
+					</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverPremium=true;" ng-mouseleave="showPopoverPremium=false;">
+						Jährlich Prämie
+						<i class="fa fa-info-circle fa-small dark-hover">
+							<ng-modal class="comparison-info-modal" ng-show="showPopoverPremium">
+								{{langService.inline_help.premium.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">
+						{{value.insurance_types[comparisonInsuranceId].general.sum_insured | euro:value.insurance_types[comparisonInsuranceId].general.unlimited_sum_insured}}
+					</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverGeneralSumInsured=true;" ng-mouseleave="showPopoverGeneralSumInsured=false;">
+						Versicherungssumme
+						<i class="fa fa-info-circle fa-small dark-hover">
+							<ng-modal class="comparison-info-modal" ng-show="showPopoverGeneralSumInsured">
+								{{langService.inline_help.sum_insured.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific">
+					<h2 class="comparision-feature-main">
+						{{value.insurance_types[comparisonInsuranceId].general | deductible}}
+					</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverGeneralDeductible=true;" ng-mouseleave="showPopoverGeneralDeductible=false;">
+						Selbstbehalt
+						<i class="fa fa-info-circle fa-small dark-hover">
+							<ng-modal class="comparison-info-modal" ng-show="showPopoverGeneralDeductible">
+								{{langService.inline_help.deductable.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific" ng-hide="show_details">
+					<h2 class="comparision-feature-main">
+						{{value.insurance_types[comparisonInsuranceId].general.maximisation | maximisation}}
+					</h2>
+					<h4 class="comparision-feature-name" ng-click="showPopoverGeneralMaximisation=true;" ng-mouseleave="showPopoverGeneralMaximisation=false;">
+						Maximierung
+						<i class="fa fa-info-circle fa-small dark-hover">
+							<ng-modal class="comparison-info-modal" ng-show="showPopoverGeneralMaximisation">
+								{{langService.inline_help.maximisation.de}}
+							</ng-modal>
+						</i>
+					</h4>
+				</div>
+				<div class="comparison-box-specific comparison-box-highlights">
+					<div ng-show="IsHighlight()">
+						<div class="comparison-box-heading additional_highlight">
+							Highlights
+						</div>
+						<div class="border-bottom" ng-repeat="(specific_key,specific_value) in sorted_general_specific_criteria[key] | orderBy:'key'" ng-show="IsDisplayComparisonCriteria(specific_value.key,offer_v2.subject)">
+							<h4 class="highlight-comparision-feature-name {{specific_value.value.included === true && 'offer-comparison-heading-blue' || ''}}" ng-click="showPopoverHighlight1=true;" ng-mouseleave="showPopoverHighlight1=false;">
+								<i class="fa {{specific_value.value.included === true && 'fa-check' || 'fa-times'}}" aria-hidden="true"></i> {{specificComparisonData[specific_value.key].name_de}}
+								<i class="fa fa-info-circle fa-small dark-hover">
+									<ng-modal class="comparison-info-modal" ng-show="showPopoverHighlight1">
+										{{specificComparisonData[specific_value.key].explanation_text_de}}
+									</ng-modal>
+								</i>
+							</h4>
+							<div class="not-included-highlights" ng-if="specific_value.value.included===false" ng-hide="show_details">
+								<h4 class="gray-heading">Nicht inkludiert</h4>
+							</div>
+							<div ng-if="specific_value.value.included===true">
+								<div ng-hide="show_details">
+									<div class="sublimit-equal-height" ng-if="!specific_value.value.sublimit">
+									</div>
+									<div ng-if="specific_value.value.sublimit">
+										<h2 class="comparision-feature-main">
+											{{specific_value.value.sublimit | euro}}
+										</h2>
+										<h4 class="comparision-feature-name" ng-click="showPopoverHighlightSublimit=true;" ng-mouseleave="showPopoverHighlightSublimit=false;">
+											Sublimit
+											<i class="fa fa-info-circle fa-small dark-hover">
+												<ng-modal class="comparison-info-modal" ng-show="showPopoverHighlightSublimit">
+													{{langService.inline_help.sublimit.de}}
+												</ng-modal>
+											</i>
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-repeat="item in additional_insurance_modules_list" ng-if="IsDisplay(item.key)===true">
+						<div class="comparison-box-heading additional_highlight">
+							Zusatzbaustein
+						</div>
+						<h2 class="comparision-feature-main additional-general-heading" ng-click="showPopoverAdditionalInfo=true" ng-mouseleave="showPopoverAdditionalInfo=false">
+							<i class="fa {{value.insurance_types[item.key].general && 'fa-check' || 'fa-times'}}" aria-hidden="true"></i> {{insurance_types[item.key].name_de}}
+							<i class="fa fa-info-circle fa-small dark-hover">
+								<ng-modal class="comparison-info-modal" ng-show="showPopoverAdditionalInfo" ng-bind-html="InsuranceDescriptionBind(insurance_types[item.key].description_de)">
+								</ng-modal>
+							</i>
+						</h2>
+						<div class="additional-general" ng-hide="show_details">
+							<h2 class="comparision-feature-main">
+								{{value.insurance_types[item.key].general.sum_insured | euro:value.insurance_types[item.key].general.unlimited_sum_insured}}
+							</h2>
+							<h4 class="comparision-feature-name" ng-click="showPopoverPremium=true;" ng-mouseleave="showPopoverPremium=false;">
+								Versicherungssumme
+								<i class="fa fa-info-circle fa-small dark-hover">
+									<ng-modal class="comparison-info-modal" ng-show="showPopoverPremium">
+										{{langService.inline_help.sum_insured.de}}
+									</ng-modal>
+								</i>
+							</h4>
+							<h2 class="comparision-feature-main">
+								{{value.insurance_types[item.key].general | deductible}}
+							</h2>
+							<h4 class="comparision-feature-name" ng-click="showAdditionalGeneralDeductible=true;" ng-mouseleave="showAdditionalGeneralDeductible=false;">
+								Selbstbehalt
+								<i class="fa fa-info-circle fa-small dark-hover">
+									<ng-modal class="comparison-info-modal" ng-show="showAdditionalGeneralDeductible">
+										{{langService.inline_help.deductable.de}}
+									</ng-modal>
+								</i>
+							</h4>
+							<h2 class="comparision-feature-main">
+								{{value.insurance_types[item.key].general.maximisation | maximisation}}
+							</h2>
+							<h4 class="comparision-feature-name" ng-click="showAdditionalGeneralMaximisation=true;" ng-mouseleave="showAdditionalGeneralMaximisation=false;">
+								Maximierung
+								<i class="fa fa-info-circle fa-small dark-hover">
+									<ng-modal class="comparison-info-modal" ng-show="showAdditionalGeneralMaximisation">
+										{{langService.inline_help.maximisation.de}}
+									</ng-modal>
+								</i>
+							</h4>
+						</div>
+						<div class="border-bottom" ng-repeat="(specific_key,specific_value) in value.insurance_types[item.key].specific" ng-show="IsDisplayComparisonCriteria(specific_key,item.key)">
+							<h4 class="highlight-comparision-feature-name {{specific_value.included === true && 'offer-comparison-heading-blue' || ''}}" ng-click="showPopoverHighlightSublimit=true;" ng-mouseleave="showPopoverHighlightSublimit=false;">
+								<i class="fa {{specific_value.included === true && 'fa-check' || 'fa-times'}}" aria-hidden="true"></i> {{specificComparisonData[specific_key].name_de}}
+								<i class="fa fa-info-circle fa-small dark-hover">
+									<ng-modal class="comparison-info-modal" ng-show="showPopoverHighlightSublimit">
+										{{specificComparisonData[specific_key].explanation_text_de}}
+									</ng-modal>
+								</i>
+							</h4>
+							<div class="not-included-highlights" ng-if="specific_value.included===false" ng-hide="show_details">
+								<h4 class="gray-heading">Nicht inkludiert</h4>
+							</div>
+							<div ng-if="specific_value.included===true">
+								<div ng-hide="show_details">
+									<div class="sublimit-equal-height" ng-if="!specific_value.sublimit">
+									</div>
+									<div ng-if="specific_value.sublimit">
+										<h2 class="comparision-feature-main">
+											{{specific_value.sublimit | euro}}
+										</h2>
+										<h4 class="comparision-feature-name" ng-click="showPopoverSumInsured=true;" ng-mouseleave="showPopoverSumInsured=false;">
+											Sublimit
+											<i class="fa fa-info-circle fa-small dark-hover">
+												<ng-modal class="comparison-info-modal" ng-show="showPopoverSumInsured">
+													{{langService.inline_help.sublimit.de}}
+												</ng-modal>
+											</i>
+										</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="comparison-box-specific comparison-note" ng-bind-html="transformToHtml(value.basic.note)" ng-if="value.basic.note" ng-hide="show_details"></div>
+					<div class="comparison-show-details">
+						<h4 class="highlight-comparision-feature-name" ng-click="IsShowDetails()">
+							<i class="fa fa-chevron-down" aria-hidden="true" ng-show="show_details"></i>
+							<i class="fa fa-chevron-up" aria-hidden="true" ng-show="!show_details"></i>
+							{{show_details && 'Mehr Info' || 'Weniger Info'}}
+						</h4>
+					</div>
+				</div>
+				<div class="comparison-box-specific comparison-box-download">
+					<p ng-show="!!value.documents" class="light color-liimex-blue pointer p-button dark-hover comparison-download-available" zf-open="download_files_modal" ng-click="PrepareDownloads(value)">
+						<i class="fa fa-download" aria-hidden="true"></i>
+						Download-Angebot
+					</p>
+					<p ng-hide="!!value.documents" class="light color-gray p-button comparison-download-unavailable">Download nicht verfügbar</p>
+				</div>
+				<div class="comparison-box-specific comparison-box-button">
+					<button type="button" zf-open="accept_offer_modal" class="{{offer_v2.preferred === key && 'btn-yellow' || 'btn-yellow-inverse'}}" ng-click="SelectOffer(value, key)"><b>Angebot auswählen</b></button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 dismiss-offer-outer">
+		<div class="grid-content large-12 medium-12 small-12 center">
+			<button type="button" class="btn-yellow-inverse" zf-open="dismiss_offer_modal">Angebot ablehnen
+		</div>
+	</div>
+</div>

@@ -1,0 +1,35 @@
+<!-- Page View -->
+<div class="grid-block instantproduct-main" ng-controller="ThankyouController">
+	<div class="grid-content large-12 medium-12 small-12 instantproduct-heading">
+		<div class="frida-outer">
+			<div class="our-frida"></div>
+		</div>
+		<p class="color-gray frida-message">{{page_data.page_title_en || 'missing title'}}</p>
+		<div><i class="fa fa-hand-peace-o" aria-hidden="true" style="font-size: 38pt; color: #4a4a4a !important"></i></div>
+		<h6 class="demand-headline process-thankyou-detailtext" style="font-size: 16pt; color: #4a4a4a !important">{{page_data.thankyou.message_en || 'missing message'}}</h6>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 instantproduct-actions">
+		<div class="grid-content large-6 medium-6 small-12 right-align">
+			<button type="button" class="btn-yellow-inverse">Go to Website</button>
+		</div>
+		<div class="grid-content large-6 medium-6 small-12 left-align">
+			<button type="button" class="btn-yellow-inverse" ui-sref="login_en">Login to Platform</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.navmenu-main').hide();
+	$('.navbar-hamburger-outer').hide();
+	$('.fixed-details-right').hide();
+	$('.outerlogoutright').hide();
+
+	$(window).on('resize', function(){	
+		$('.navbar-hamburger-outer').hide();
+		$('.navmenu-main').hide();
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.outerlogoutright').hide();
+			$('.navmenu-main').hide();
+		}
+	});
+</script>

@@ -1,0 +1,19 @@
+---
+name: signmandate_en
+url: /signmandate
+controller: MandateController
+parent: my_en
+loginRequired: true
+---
+
+<!-- Page View -->
+<div class="grid-block relative mandate-page">
+	<div class="grid-content large-12 medium-12 small-12 mandate-page-header">
+		<h2 class="color-liimex-blue overview-headline">Mandate</h2>
+		<h4 class="color-blue-dark">Before we can start working with you, we need you to sign our broker mandate.</h4>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div ng-include="" src="'partials/en/mandate.html'"></div>
+	</div>
+</div>
+<div ng-include="" src="'partials/en/modals/signme.html'"></div>

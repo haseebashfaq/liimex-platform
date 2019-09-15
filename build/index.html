@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" ng-app="application">
+  <header></header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Liimex Platform</title>
+    <link href="./assets/css/app.css" rel="stylesheet" type="text/css">
+    <script src="./assets/js/foundation.js"></script>
+    <script src="./assets/js/templates.js"></script>
+    <script src="./assets/js/routes.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <base href="/">
+    <script>
+  // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  // (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  // m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  // })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  // ga('create', 'UA-84062630-2', 'auto');
+  // ga('send', 'pageview');
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:564391,hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+  </head>
+  <body>
+    <div class="grid-frame vertical" ng-show="authenticating === false || !authenticating" style="height:0;">
+      <div class="grid-content shrink nav-pad new-margin">
+        <div ng-show="langPreference === 'de'" ng-include="" src="'partials/de/nav.html'"  class="fixed-navheight"></div>
+        <div ng-hide="langPreference === 'de'" ng-include="" src="'partials/en/nav.html'"  class="fixed-navheight"></div>
+        <div ng-include="" src="'templates/notifications.html'"></div>
+      </div>
+    </div>
+    <div ui-view class="grid-content" style="min-height:100%; background: #f1f5f7; padding: 0;">
+          <!-- View Area -->
+    </div>
+    <div footer-custom>
+    </div>
+    <div class="grid-frame vertical" ng-show="authenticating === true" style="height:100%">
+      <div class="grid-content shrink nav-pad">
+        <div ng-include="" src="'templates/waitauth.html'"></div>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+  <script>
+    window.fcSettings = {
+      token: "32875de7-d02c-4787-9f7f-0680de683c95",
+      host: "https://wchat.freshchat.com"
+    };
+  </script>
+  <script src="https://wchat.freshchat.com/js/widget.js" async></script>
+  <!-- <script type='text/javascript'>var fc_JS=document.createElement('script');fc_JS.type='text/javascript';fc_JS.src='https://assets1.freshchat.io/production/assets/widget.js?t='+Date.now();(document.body?document.body:document.getElementsByTagName('head')[0]).appendChild(fc_JS); window._fcWidgetCode='1MPXQX375V';window._fcURL='https://liimex.freshchat.io';</script> -->
+  <footer>
+  </footer>
+</html>

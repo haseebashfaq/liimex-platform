@@ -1,0 +1,8 @@
+<!-- Can Handle Maximum 2 Answers -->
+<div class="grid-content large-6 medium-6 small-6">
+	<h6>{{data.text_en}}</h6>
+</div>
+<div class="grid-content large-6 medium-6 small-6 question-answer right-align">
+	<input type="radio" name="{{''|uuid}}" class="instantproduct-radio" ng-value="data.answer_values[0]" ng-model="ngModel"><span>{{data.answers_en[0]}}</span></input>
+	<input type="radio" name="{{''|uuid}}" class="instantproduct-radio" ng-value="data.answer_values[1]" ng-model="ngModel"><span>{{data.answers_en[1]}}</span></input>
+</div>

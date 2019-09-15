@@ -1,0 +1,52 @@
+---
+name: instant_en
+url: /en/instant?product_id&process_id&page&new
+title: Instant
+controller: InstantController
+loginRequired: false
+name_no_lang: instant_start
+---
+<div ng-if="(page_data.login_required && isLoggedIn) ||  !page_data.login_required">
+	<div ng-switch="page_type" class="instant-product">
+		<div ng-switch-when="questions">
+			<div ng-include="" src="'templates/en/instant/questions.html'"></div>
+		</div>
+		<div ng-switch-when="comparisons">
+			<div ng-include="" src="'templates/en/instant/comparisons.html'"></div>
+		</div>
+		<div ng-switch-when="additionals">
+			<div ng-include="" src="'templates/en/instant/additionals.html'"></div>
+		</div>
+		<div ng-switch-when="checkout">
+			<div ng-include="" src="'templates/en/instant/checkout.html'"></div>
+		</div>
+		<div ng-switch-when="retry">
+			<div ng-include="" src="'templates/en/instant/retry.html'"></div>
+		</div>
+		<div ng-switch-when="thankyou">
+			<div ng-include="" src="'templates/en/instant/thankyou.html'"></div>
+		</div>
+		<div ng-switch-default>
+			<div class="grid-block preload-centered">
+				<div ng-include="" src="'partials/preload.html'"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-if="page_data.login_required && !isLoggedIn" ng-include="" src="'templates/en/instant/signin.html'" ></div>
+<script type="text/javascript">
+	$('.navmenu-main').hide();
+	$('.navbar-hamburger-outer').hide();
+	$('.fixed-details-right').hide();
+	$('.outerlogoutright').hide();
+	
+	$(window).on('resize', function(){
+		$('.navbar-hamburger-outer').hide();
+		$('.navmenu-main').hide();
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.outerlogoutright').hide();
+			$('.navmenu-main').hide();
+		}
+	});
+</script>

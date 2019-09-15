@@ -1,0 +1,27 @@
+<div class="card corner bg-white shadow overview-recommendation-card">
+	<div class="card-section {{(not_dismissed_offers[key] || not_disabled_policies[key]) && 'pending-recommendation'}} parent">
+		<div class="grid-content large-12 medium-12 small-12 center demand-why recommendcard-img">
+ 			<!-- <div class="recommendation-icons" style="background-image:url(assets/img/insurance_icons/{{insurance_icons[item.key] || insurance_icons['other']}}); background-repeat: no-repeat; background-size: contain; background-position: center; height: 70px; margin-bottom: 0.5rem;"></div> -->
+ 			<img src="assets/img/insurance_icons/{{insurance_icons[item.key] || insurance_icons['other']}}" style=" width: 70px; margin-bottom: 0.5rem;">
+		</div>
+		<div class="grid-content large-12 medium-12 small-12 recommendation-text-block">
+			<span class="info-span info-span-overview" ng-click="SelectInsuranceType(item.key)" zf-open="insurance_info">
+	   		<i class="fa fa-info-circle fa-small i-overview dark-hover" ng-popup="popup{{item.key}}"></i>
+	    </span>
+			<h6 class="demand-headline {{ item.essential !== true && 'small-recommended-card'}}">{{insurance_types[item.key].name_de}}</h6>
+			<div class="status-class">
+				<p class="recommendation-status-small">{{((in_active_policies[item.key] || accepted_offers[item.key]) && 'Angebot angenommen') || (in_pending_policies[item.key] && 'In Bearbeitung') || (requested_offers[item.key] && 'Angebot angefordert') || (pushed_offers[item.key] && 'Angebot verfügbar')}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 center recommendcard-status {{ item.essential !== true && 'recommendcard-status-available' }}">
+		<p class="" ng-show="item.score === 100">
+			<i class="fa fa-gavel" aria-hidden="true" ></i> Gesetzlich vorgeschrieben
+		</p>
+	</div>
+</div>
+<script type="text/javascript">
+	$(".info-span-overview").click(function(){
+		return false;
+	});
+</script>

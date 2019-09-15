@@ -1,0 +1,48 @@
+---
+name: forgot_de
+url: /de/forgot
+title: Forgot
+controller: LoginController
+loginRequired: false
+---
+<div class="grid-container forgot-password-container">
+	<div class="grid-block align-center">
+		<div class="grid-content large-8 medium-8 small-12">
+			<div class="card corner bg-white shadow login-card">
+				<div class="card-section left-card">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message">Keine Sorge. Geben Sie unten einfach Ihre Email ein.</p>
+					<form class="login-form forgot-password-form" name="forgotform">
+						<div class="grid-content large-12 login-card-input-outer">
+							<input class="form-input-fields" type="email" placeholder="Email-Adresse" ng-model="forgot.email" required/>
+						</div>
+						<div class="liimefix-small">
+						</div>
+						<div class="grid-content large-12 medium-12 large-12 actionbtn-outer">
+							<div class="grid-content login-input-margin center">
+								<button class="btn-yellow" type="submit" ng-click="ResetPassword(forgotform)">Passwort wiederherstellen</button>
+							</div>
+							<div class="grid-content login-input-margin center">
+								<button type="button" class="btn-yellow-inverse" ui-sref="login_de">Passwort beibehalten</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('login-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+	});	
+</script>

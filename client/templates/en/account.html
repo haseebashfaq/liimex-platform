@@ -1,0 +1,562 @@
+---
+name: account_en
+url: /account
+parent: my_en
+controller: AccountController
+loginRequired: true
+---
+
+<!-- Page View -->
+<div class="grid-block accountPage accounts-page">
+	<!-- <div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline"></h2>
+	</div>
+ -->
+	<!-- <div class="grid-content large-12 medium-12 small-12" align="center" style="margin: 1rem 0">
+		<div class="grid-block large-12 medium-12 small-12 center" style="background: #fff; margin: 0; padding: 1rem;">
+			<h2 class="overview-headline no-btm-margin" style="margin-top: 0; width: 100%; font-weight: 300 !important;">Welcome to Accounts Page</h2>
+			<p class="overview-headline" style="font-size: 14pt; width: 100%; margin-bottom: 1rem; font-weight: 300 !important;">This is some text supporting the heading of Accounts Page</p>
+		</div>
+	</div> -->
+	<div class="grid-block large-12 medium-12 small-12" style="margin: 1rem 0;">
+	<div class="grid-container large-7">
+		<div class="grid-block align-center force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<div class="card corner bg-white shadow signup-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 3rem;">
+					<div class="card-section left-card login-input-margin">
+						<!-- <div class="frida-outer">
+							<div class="our-frida"></div>
+						</div> -->
+						<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Your Account Information</p>
+
+						<div style="border-bottom: 1px solid #ebebeb;">
+							<!-- <div class="large-3">User</div>
+							<div class="large-3">Company</div> -->
+							<table class="account-sections">
+								<tr>
+									<td class="{{is_active['company'] && 'section_active'}}" ng-click="AccountSection('company')">Company</td>
+									<td class="{{is_active['user'] && 'section_active'}}" ng-click="AccountSection('user')">User</td>
+									<td class="{{is_active['address'] && 'section_active'}}" ng-click="AccountSection('address')">Address</td>
+									<td class="{{is_active['industry'] && 'section_active'}}" ng-click="AccountSection('industry')">Industry</td>
+									<td class="{{is_active['activity'] && 'section_active'}}" ng-click="AccountSection('activity')">Activity</td>
+									<td class="{{is_active['mandate'] && 'section_active'}}" ng-click="AccountSection('mandate')">Mandate</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="grid-content large-12 medium-12 small-12" ng-show="is_active['company']" style="padding-bottom: 2rem;">
+							<table>
+								<tr>
+									<td class="light w30">Company Name</td>
+									<td class="w70">{{::genService.capitalize(company.name)}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Type</td>
+									<td class="w70">{{company.type}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Liimex ID</td>
+									<td class="w70">{{company.liimex_id}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Phone</td>
+									<td class="w70">{{::company.phone}}</td>
+								</tr>
+							</table>
+							<button class="btn-violett" style="margin-top: 2rem;" zf-open="edit_company_modal"><i class="fa fa-pencil" aria-hidden="true" style="margin-right: 0.15rem;"></i> Edit</button>
+						</div>
+
+						<div class="grid-content large-12 medium-12 small-12" ng-show="is_active['user']" style="padding-bottom: 2rem;">
+							<table>
+								<!-- <tr style="border-bottom: 1px solid #96969657;">
+									<td class="light w40" ng-click="showUser('me', key)" style="cursor: pointer; padding-bottom: 0.75rem; padding-left: 0.25rem; padding-top: 0;">You</td>
+									<td class="light w30" ng-click="showUser('other', key)" style="cursor: pointer; border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem; padding-top: 0;" ng-repeat="(key,value) in other_user">{{value.first_name}}</td>
+								</tr> -->
+								<tr>
+									<td class="light w30">First Name</td>
+									<td class="w70">{{show_me ? (genService.capitalize(user_account.first_name)) : (genService.capitalize(otherUserObj.first_name))}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Last Name</td>
+									<td class="w70">{{show_me ? (genService.capitalize(user_account.last_name)) : (genService.capitalize(otherUserObj.last_name))}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Email</td>
+									<td class="w70">{{show_me ? (user_account.email) : otherUserObj.email}}</td>
+								</tr>
+							</table>
+							<button class="btn-violett" style="margin-top: 2rem; margin-right: 1rem;" zf-open="edit_user_modal"><i class="fa fa-pencil" aria-hidden="true" style="margin-right: 0.15rem;"></i> Edit</button>
+							<button class="btn-violett" style="margin-top: 2rem;"><i class="fa fa-plus" aria-hidden="true"></i> Add User</button>
+						</div>
+
+						<div class="grid-content large-12 medium-12 small-12" ng-show="is_active['address']" style="padding-bottom: 2rem;">
+							<table>
+								<tr>
+									<td class="light w30">Main Address</td>
+									<td class="w70">{{::genService.capitalize(main_address.street)}}, {{main_address.zip}} {{::genService.capitalize(main_address.city)}}</td>
+								</tr>
+								<tr>
+									<td class="light w30">Address - Warehouse</td>
+									<td class="w70">Hafencity 114 a, 20455 Hamburg</td>
+								</tr>
+							</table>
+							<button class="btn-violett" style="margin-top: 2rem;" zf-open="edit_address_modal"><i class="fa fa-pencil" aria-hidden="true" style="margin-right: 0.15rem;"></i> Edit</button>
+						</div>
+
+						<div class="grid-content large-12 medium-12 small-12" ng-show="is_active['industry']" style="padding-bottom: 2rem;">
+							<div class="grid-content large-12 medium-12 small-12" ng-repeat="(index, industryCode) in industry_codes" style="padding: 1rem 0;">
+								<div class="large-12 medium-12 small-12" style="padding-bottom: 0.75rem; padding-left: 0.25rem;">
+									{{genService.numToWordC(index+1)}} Category
+								</div>
+								<table>
+									<tr ng-repeat="(key, code) in industryCode">
+										<td class="light w30" ng-show="key==0">Main Industry</td>
+										<td class="light w30" ng-hide="key==0">Sub Category</td>
+										<td class="w70">{{code.name_en}}</td>
+									</tr>
+								</table>
+								<button class="btn-violett" style="margin-top: 2rem;" ng-click="editIndustry()"><i class="fa fa-pencil" aria-hidden="true" style="margin-right: 0.15rem;"></i> Edit</button>
+							</div>
+						</div>
+
+						<div class="grid-content large-12 medium-12 small-12" ng-show="is_active['activity']" style="padding-bottom: 2rem;">
+								<table>
+									<tr ng-repeat="group in groups" ng-if="activity_in_group[group.group] === true">
+										<td class="light w30">
+											{{group.rev_name_en}}:
+										</td>
+										<td class="w70">
+											<div class="grid-content large-12 medium-12 small-12 small-padding" ng-repeat="activity in activities" ng-if="activity.group === group.group">
+												{{activity.name_en}}
+											</div>
+										</td>
+									</tr>
+								</table>
+								<button class="btn-violett" style="margin-top: 2rem;" ng-click="editActivity()"><i class="fa fa-pencil" aria-hidden="true" style="margin-right: 0.15rem;"></i> Edit</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="grid-container large-5">
+	<div class="grid-block align-center force-wrap">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow signup-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 3rem;">
+				<div class="card-section left-card login-input-margin">
+					<!-- <div class="frida-outer">
+						<div class="our-frida"></div>
+					</div> -->
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Checklist Information</p>
+
+					<div class="grid-content large-12 medium-6 small-12" style="float: left; padding-bottom: 2rem;">
+						<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+							<h4 style="padding-bottom: 1rem;">Please check if your personal data is updated.</h4>
+							<h4 style="padding-bottom: 1rem;">Make sure you have selected all the right industry codes for your company.</h4>
+							<h4 style="padding-bottom: 1rem;">Have a look at your activity answers. Our algorithm is mainly based on this. Make sure to select the right ones to get the most relevant insurances.</h4>
+							<h4 style="padding-bottom: 1rem;">Have you signed the Maklermandat yet? If not, please do so, if yes, you can download it.</h4>
+							<button class="btn-violett" ng-if="!mandate.signed_document_url">Sign Mandate</button>
+							<button class="btn-violett" ng-if="mandate.signed_document_url" ng-click="DownloadMandate()" style="margin-bottom: 0; margin: 0.5rem 0;"><b><i class="fa fa-download" aria-hidden="true" style="margin-right: 0.15rem;"></i> Download</b></button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
+</div>
+
+		<!-- <div class="grid-content large-4 medium-12 small-12" style="margin: 0">
+			<div class="grid-content large-12 medium-12 small-12" style="background: #ebebeb; font-weight: 500; padding: 1rem; color: #4a4a4a;">
+				Company Information
+				<i class="fa fa-pencil" aria-hidden="true" zf-open="edit_company_modal" style="float: right;"></i>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12" style="background: white; padding: 1rem; min-height: 83%; border: 2px solid #ebebeb">
+				<table>
+				<tr>
+					<td class="light w30">Company Name</td>
+					<td class="w70">{{::genService.capitalize(company.name)}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Type</td>
+					<td class="w70">{{company.type}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Liimex ID</td>
+					<td class="w70">{{company.liimex_id}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Phone</td>
+					<td class="w70">{{::company.phone}}</td>
+				</tr>
+				</table>
+			</div>
+		</div> -->
+		<!-- <div class="grid-content large-4 medium-12 small-12" style="margin: 0">
+			<div class="grid-content large-12 medium-12 small-12" style="background: #ebebeb; font-weight: 500; padding: 1rem; color: #4a4a4a;">
+				User Information
+				<i class="fa fa-pencil" aria-hidden="true" zf-open="edit_user_modal" style="float: right;"></i>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12" ng-show="true" style="background: white; padding: 1rem; min-height: 83%; border: 2px solid #ebebeb">
+				<table>
+				<tr style="border-bottom: 1px solid #96969657;">
+					<td class="light w40" ng-click="showUser('me', key)" style="cursor: pointer; padding-bottom: 0.75rem; padding-left: 0.25rem; padding-top: 0;">You</td>
+					<td class="light w30" ng-click="showUser('other', key)" style="cursor: pointer; border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem; padding-top: 0;" ng-repeat="(key,value) in other_user">{{value.first_name}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">First Name</td>
+					<td class="w70">{{show_me ? (genService.capitalize(user_account.first_name)) : (genService.capitalize(otherUserObj.first_name))}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Last Name</td>
+					<td class="w70">{{show_me ? (genService.capitalize(user_account.last_name)) : (genService.capitalize(otherUserObj.last_name))}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Email</td>
+					<td class="w70">{{show_me ? (user_account.email) : otherUserObj.email}}</td>
+				</tr>
+				</table>
+			</div> -->
+
+			<!-- <div class="grid-content large-12 medium-12 small-12" ng-show="show_other" style="background: white; padding: 1rem;">
+				<table>
+				<tr>
+					<td class="light w40" ng-click="showUser('me')" style="cursor: pointer; border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem;">You</td>
+					<td class="light w40" ng-click="showUser('other')" style="cursor: pointer; border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem;" ng-repeat="(key, value) in other_user">{{value.first_name}}</td>
+				</tr>
+				</table>
+				<table ng-repeat="(key, value) in other_user">
+				<tr>
+					<td class="light w30">First Name</td>
+					<td class="w70">{{::genService.capitalize(value.first_name)}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Last Name</td>
+					<td class="w70">{{::genService.capitalize(value.last_name)}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Email</td>
+					<td class="w70">{{::value.email}}</td>
+				</tr>
+				</table>
+			</div> -->
+
+
+		<!-- <div class="grid-content large-4 medium-12 small-12" style="margin: 0">
+			<div class="grid-content large-12 medium-12 small-12" zf-open="edit_address_modal" style="background: #ebebeb; font-weight: 500; padding: 1rem; color: #4a4a4a;">Address</div>
+			<div class="grid-content large-12 medium-12 small-12" style="background: white; padding: 1rem; min-height: 83%; border: 2px solid #ebebeb">
+				<table>
+				<tr>
+					<td class="light w30">Main Address</td>
+					<td class="w70">{{::genService.capitalize(main_address.street)}}, {{main_address.zip}} {{::genService.capitalize(main_address.city)}}</td>
+				</tr>
+				<tr>
+					<td class="light w30">Address - Warehouse</td>
+					<td class="w70">Hafencity 114 a, 20455 Hamburg</td>
+				</tr>
+				</table>
+			</div>
+		</div> -->
+	
+	<!-- <div class="grid-content large-12 medium-12 small-12"  style="margin: 1rem 0">
+		<div class="grid-content large-12 medium-12 small-12" style="background: #ebebeb; padding: 1rem; color: #4a4a4a;">
+			Your Industry
+			<i class="fa fa-pencil" aria-hidden="true" ng-click="editIndustry()" style="float: right; cursor: pointer;"></i>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12" style="background: #fff; margin: 0; border: 2px solid #ebebeb">
+			<div class="grid-content large-4 medium-12 small-12" ng-repeat="(index, industryCode) in industry_codes" style="background: white; padding: 1rem;">
+			<div class="large-12 medium-12 small-12" style="border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem;">
+				{{genService.numToWordC(index+1)}} Category
+			</div>
+				<table>
+				<tr ng-repeat="(key, code) in industryCode">
+					<td class="light w30" ng-show="key==0">Main Industry</td>
+					<td class="light w30" ng-hide="key==0">Sub Category</td>
+					<td class="w70">{{code.name_en}}</td>
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12"  style="margin: 1rem 0">
+		<div class="grid-content large-12 medium-12 small-12" style="background: #ebebeb; font-weight: 500; padding: 1rem; color: #4a4a4a;">
+			Business Activities
+			<i class="fa fa-pencil" aria-hidden="true" ng-click="editActivity()" style="float: right; cursor: pointer;"></i>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12" style="background: #fff; margin: 0; border: 2px solid #ebebeb">
+			<div class="grid-content {{($index+1)==2 || ($index+1)==5?'large-3':'large-2'}} medium-12 small-12" ng-repeat="group in groups" ng-if="activity_in_group[group.group] === true" style="background: white; padding: 1rem;">
+			<div class="large-12 medium-12 small-12 light" style="border-bottom: 1px solid #96969657; padding-bottom: 0.75rem; padding-left: 0.25rem;">
+				{{group.rev_name_en}}
+			</div>
+				<table>
+				<tr ng-repeat="activity in activities" ng-if="activity.group === group.group">
+					<td class="w100">{{activity.name_en}}</td>
+				</tr>
+				</table>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="grid-content large-6 medium-6 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_company_modal">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Your Company</h5>
+					</div>
+				</div>
+
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(company.name)}}</p>
+						<p class="policy-color-gray light">Comany Name</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{company.type}}</p>
+						<p class="policy-color-gray light">Type</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{company.liimex_id}}</p>
+						<p class="policy-color-gray light">Liimex ID</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::company.phone}}</p>
+						<p class="policy-color-gray light">Phone</p>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12" ng-show="company.url">
+						<p class="color-liimex-blue account-text">{{::company.url}}</p>
+						<p class="policy-color-gray light">Website</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-6 medium-6 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form relative">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_address_modal">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Main Address</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(main_address.street)}}</p>
+						<p class="policy-color-gray light">Street Address</p>
+					</div>
+					<div class="grid-content large-6 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{main_address.zip}}, {{::genService.capitalize(main_address.city)}}</p>
+						<p class="policy-color-gray light">Zip, City</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" zf-open="edit_user_modal">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Personal Details</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(user_account.first_name)}}</p>
+						<p class="policy-color-gray light">First Name</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">{{::genService.capitalize(user_account.last_name)}}</p>
+						<p class="policy-color-gray light">Last Name</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text account-email">{{::genService.capitalize(user_account.email)}}</p>
+						<p class="policy-color-gray light">Email</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<p class="color-liimex-blue account-text">Full</p>
+						<p class="policy-color-gray light">Access</p>
+					</div>
+					<div class="grid-content large-3 medium-6 small-12">
+						<button type="button" class="btn-yellow" ng-click="ResetPassword()"><b>Reset Password</b></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading">
+		<h2 class="color-liimex-blue overview-headline no-btm-margin">Company Information</h2>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 policy-page-heading policy-page-heading-middle">
+		<h5 class="light color-gray subtitle">We take pride in tailoring your policies to your needs. To do that we need some general information about your company so our algorithms can get to work crunching numbers</h5>
+	</div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editIndustry()">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Your Industry</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12" ng-repeat="(index, industryCode) in industry_codes">
+						<p class="policy-color-gray light accounts-industry-category">{{genService.numToWordC(index+1)}} Category</p>
+						<div class="grid-content large-12 medium-12 small-12" ng-repeat="(key, code) in industryCode">
+							<p class="color-liimex-blue account-text">{{code.name_en}}</p>
+							<p class="policy-color-gray light" ng-show="key==0">main industry</p>
+							<p class="policy-color-gray light" ng-hide="key==0">subcategory</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editActivity()">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Business Activities</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-block large-12 medium-12 small-12 small-pad-left business-activities-block"  ng-repeat="group in groups" ng-if="activity_in_group[group.group] === true">
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12 business-activities-question">
+								<p class="policy-color-gray account-text"><i>{{group.rev_name_en}}:</i></p>
+							</div>
+						</div>
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12" ng-repeat="activity in activities" ng-if="activity.group === group.group">
+								<p class="color-liimex-blue account-text">{{activity.name_en}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12" style="display: none;">
+		<div class="card corner bg-white shadow accounts-shadow-card">
+			<div class="card-section account-padding flex-form">
+				<div class="heading-dark grid-content large-12 medium-12 small-12">
+					<div class="grid-content large-12 medium-12 small-12">
+						<button class="button button-inline upper-right edit-btn" type="button" name="button" ng-click="editFinancials()">
+							<b class="edit-text">Edit</b>
+							<i class="fa fa-pencil-square-o edit-icon" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="grid-content large-12 medium-12 small-12">
+						<h5 class="policy-color-gray light account-title">Key Financials</h5>
+					</div>
+				</div>
+				<div class="account-content grid-content large-12 medium-12 small-12">
+					<div class="grid-block large-12 medium-12 small-12 small-pad-left">
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12">
+								<p class="policy-color-gray account-text"><i>Yearly Turnover:</i></p>
+							</div>
+						</div>
+						<div class="grid-block large-6 medium-6 small-12">
+							<div class="grid-content large-12 medium-12 small-12">
+								<p class="color-liimex-blue account-text">€{{genService.getSepThousands(company.financials.turnover)}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- <div class="grid-content large-12 medium-12 small-12"  style="margin: 1rem 0">
+		<div class="grid-block large-12 medium-12 small-12" style="background: #fff; margin: 0; padding: 1rem;">
+		
+			<div class="grid-content large-6 medium-12 small-12 policy-page-heading" ng-show="mandate.signed_document_url" style="text-align: right;">
+				<h2 class="overview-headline no-btm-margin" style="margin-top: 0; font-size: 14pt !important;">Get the Broker Mandate</h2>		
+			</div>
+			<div class="grid-content large-6 medium-6 small-12 left-align policy-page-heading" ng-show="mandate.signed_document_url" style="text-align: left;">
+				<button type="button" class="btn-blue" ng-click="DownloadMandate()" style="margin-bottom: 0; margin: 0.5rem 0;"><b>Download</b></button>
+			</div>
+
+			<div class="grid-content large-6 medium-12 small-12 left-align policy-page-heading" style="text-align: right;">
+				<h2 class="overview-headline no-btm-margin" style="margin-top: 0; font-size: 14pt !important;">Request New Password</h2>		
+			</div>
+			<div class="grid-content large-6 medium-6 small-12 policy-page-heading" style="text-align: left;">
+				<button type="button" class="btn-blue" ng-click="ResetPassword()" style="margin-bottom: 0; margin: 0.5rem 0;"><b>Change Password</b></button>
+			</div>
+			
+		</div>
+	</div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12" ng-show="mandate.signed_document_url">
+		<div class="card corner bg-white shadow">
+			<div class="card-section account-padding flex-form">
+				<div class="grid-content large-12 medium-12 small-12">
+					<p class="color-liimex-blue small-p pointer" ng-click="DownloadMandate()">Download</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+
+<div ng-include="" src="'partials/en/modals/editcompany.html'"></div>
+<div ng-include="" src="'partials/en/modals/editaddress.html'"></div>
+<div ng-include="" src="'partials/en/modals/edituser.html'"></div>
+<div ng-include="" src="'partials/en/modals/reauth.html'"></div>
+<!-- <div ng-include="" src="'partials/en/modals/mandate.html'"></div> -->
+
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

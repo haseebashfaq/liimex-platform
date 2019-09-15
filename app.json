@@ -1,0 +1,35 @@
+{
+  "name": "platform",
+  "scripts": {
+  },
+  "env": {
+    "apiKey": {
+      "required": true
+    },
+    "authDomain": {
+      "required": true
+    },
+    "backofficeUrl": {
+      "required": true
+    },
+    "databaseURL": {
+      "required": true
+    },
+    "messagingSenderId": {
+      "required": true
+    },
+    "storageBucket": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

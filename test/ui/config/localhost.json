@@ -1,0 +1,10 @@
+{
+  "url": "http://localhost:3000/",
+  "testUsers": [{
+    "username": "t10@g.com",
+    "password": "123456"
+  }, {
+    "username": "t10@g.com",
+    "password": "123456"
+  }]
+}

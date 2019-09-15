@@ -1,0 +1,43 @@
+
+<!-- Page View -->
+<div class="grid-block relative claims-page">
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<h2 class="color-liimex-blue overview-headline">Schadensfälle</h2>
+		<h4 class="color-blue-dark">Hier finden Sie zukünftig eine Übersicht über alle Schadensfälle</h4>
+	</div>
+	<!-- <div class="grid-content large-3 medium-6 small-6 vertical-mid-div">
+		<button type="button" class="button button-inverse vertical-mid-elm"  zf-open="upload_file_modal"><b>Upload Existing Claim</b></button>
+	</div> -->
+	<!-- <div class="grid-content large-12 medium-12 small-12" ng-repeat="(key, claims) in claims | orderBy:'-claim.claim.status':true">
+	</div> -->
+	<div class="grid-content large-12 medium-12 small-12 color-gray center claims-page-heading">
+		<p class="sum-text center">Hier gibt es noch nichts sehen. Unser Team arbeitet hart daran, auch den Schadenprozess in unsere Website zu integrieren. In der Zwischenzeit stehen wir Ihnen bei Schadensmeldungen natürlich persönlich zur Seite. Wir freuen uns auf Ihren Anruf!</p>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12 claims-page-heading">
+		<button type="button" class="btn-yellow-inverse"  ui-sref="overview_de"><b>Zurück zur Übersicht</b></button>
+	</div>
+</div>
+
+<script type="text/javascript">
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').hide();
+		$('.navbar-hamburger-outer').show();
+	}
+
+	if($(window).width()>767) {
+		$('.navmenu-main').show();
+		$('.fixed-details-right').show();
+	}
+
+	$(window).resize(function(){
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.navbar-hamburger-outer').show();
+		}
+
+		if($(window).width()>767) {
+			$('.navmenu-main').show();
+			$('.fixed-details-right').show();
+		}
+	});
+</script>

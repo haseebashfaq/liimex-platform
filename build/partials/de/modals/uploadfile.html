@@ -1,0 +1,21 @@
+<!-- Upload File Modal -->
+<zf-modal id="upload_file_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+		<h2 class="color-liimex-blue no-btm-padding">Datei hochladen</h2>
+	</div>
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12 drop-box" ngf-drop ngf-select ng-model="files" ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-max-files="1" ngf-allow-dir="true" accept="application/pdf" ngf-pattern="'application/pdf'">
+					<h4 class="color-blue-dark in-drop-box" ng-hide="files[0]">Hier <b>klicken</b> oder PDF per <b>Drag-and-Drop</b> in dieses Feld ziehen.</h4>
+					<h4 class="color-blue-dark in-drop-box" ng-show="files[0]">Diese Datei hochladen? <br><b>{{files[0].name}}</b></h4>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button button-inverse" type="submit" zf-close="">Schließen</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="button" type="submit" ng-click="PerformUpload(files[0]); files = null" id="close_upload">Hochladen</button>
+				</div>
+			</div>
+	</div>
+</zf-modal>

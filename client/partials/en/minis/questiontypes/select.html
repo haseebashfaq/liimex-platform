@@ -1,0 +1,8 @@
+<div class="grid-content large-6 medium-6 small-6">
+	<h6>{{data.text_en}}</h6>
+</div>
+<div class="grid-content large-6 medium-6 small-6 question-answer right-align" style="margin:0px;">
+	<select class="form-input-fields instantproduct-dropdown" ng-options="value as data.answers_en[index] for (index, value) in data.answer_values" ng-model="ngModel">
+		<!-- <option value="" selected="selected" disabled="true"></option> -->
+	</select>
+</div>

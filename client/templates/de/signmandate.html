@@ -1,0 +1,19 @@
+---
+name: signmandate_de
+url: /signmandate
+controller: MandateController
+parent: my_de
+loginRequired: true
+---
+
+<!-- Page View -->
+<div class="grid-block relative mandate-page">
+	<div class="grid-content large-12 medium-12 small-12 mandate-page-header">
+		<h2 class="color-liimex-blue overview-headline">Maklermandat</h2>
+		<h4 class="color-blue-dark">Damit wir für Sie tätig werden können, benötigen wir ein Maklermandat.</h4>
+	</div>
+	<div class="grid-content large-12 medium-12 small-12">
+		<div ng-include="" src="'partials/de/mandate.html'"></div>
+	</div>
+</div>
+<div ng-include="" src="'partials/de/modals/signme.html'"></div>

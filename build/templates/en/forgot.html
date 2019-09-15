@@ -1,0 +1,53 @@
+<div class="grid-container forgot-password-container">
+	<div class="grid-block align-center">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow login-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 12rem;">
+				<div class="card-section left-card">
+					<!-- <div class="frida-outer">
+						<div class="our-frida"></div>
+					</div> -->
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Forgot Password?</p>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left;">
+						<form class="login-form user-login" name="forgotform">
+							<div class="grid-block large-12 medium-12 small-12 login-card-form-container">
+								<div class="grid-content large-12 login-card-input-outer">
+									<input class="form-input-fields" type="email" placeholder="Email Address" ng-model="forgot.email" required/>
+								</div>
+								<div class="liimefix-small">
+								</div>
+								<div class="grid-content large-12 medium-12 large-12 actionbtn-outer">
+									<div class="grid-content login-input-margin center">
+										<button class="btn-violett" type="submit" ng-click="ResetPassword(forgotform)">Reset Password</button>
+									</div>
+									<div class="grid-content login-input-margin center">
+										<button type="button" class="btn-violett-inverse" ui-sref="login_en">I remember my password</button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left;">
+						<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+							<h4>No worries! Simply type in your email address.</h4>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('login-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+	});	
+</script>

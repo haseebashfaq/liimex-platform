@@ -1,0 +1,288 @@
+
+<!-- Page View -->
+<div id="process-page">
+	<div class="grid-block">
+		<div class="cancel-process" ng-click="cancelProcess()">
+            <h6 class="color-liimex-blue cancel-process-text">Cancel</h6>
+        </div>
+        <div id="msform">
+        	<!-- progressbar -->
+        	<ul id="progressbar">
+        		<li class="active">Choose Coverage</li>
+        		<li ng-class="">General Questions</li>
+        		<!-- <li> -->
+        		<div class="frida-process"></div>
+        		<!-- </li> -->
+        		<li ng-class="">Specific Questions</li>
+        		<li ng-class="currentView ==  'checkOut' ? 'active':''">Checkout</li>
+        	</ul>
+        	<!-- fieldsets -->
+
+        	<fieldset id="fieldset1" class="fieldset-active" >
+        		<div class="fieldset-container">
+        			<p class="color-gray center frida-message">Choose Coverage</p>
+        			<div class="grid-block large-12 medium-12 small-12">
+						<div class="grid-content large-12 medium-12 small-12 required-coverage" ng-repeat="(key, type) in weighted_insurance_types.essential">
+        					<div class="card-section">
+        						<div class="grid-block large-12 medium-12 small-12 coverage-main">
+        							<div class="grid-content large-10 medium-10 small-10 demand-content">
+        								<img class="processpage-insurance-icons" src="assets/img/insurance_icons/{{insurance_icons[type.key] || insurance_icons['other']}}" style=" width: 30px; float: left;">
+                                        <h6 class="demand-headline">
+                                            {{type.type.name_en}}
+                                            <span class="info-span info-span-overview" ng-click="SelectInsuranceType(type.key)" zf-open="insurance_info">
+                                                <i class="fa fa-info-circle fa-small i-overview dark-hover" ng-popup="popup{{key}}"></i>
+                                            </span>
+                                        </h6>
+                                        
+        							</div>
+        							<div class="grid-content large-2 medium-2 small-2 center insurance-selector-main process1-selector">
+        								<input name="checkboxCheckThis" type="checkbox" id="insuranceSelectorCheckbox{{type.key}}" class="filled-in checkboxCheckThis" ng-model="insurance_types[type.key].selected">
+        								<label for="insuranceSelectorCheckbox{{type.key}}" class="insuranceSelectorLabel"></label>
+        							</div>
+        						</div>
+        					</div>
+						</div>
+					</div>
+					<div class="grid-block large-12 medium-12 small-12">
+						<div class="grid-content large-12 medium-12 small-12 additional-coverage" ng-repeat="(key, type) in weighted_insurance_types.additional">
+							<div class="card-section">
+								<div class="grid-block large-12 medium-12 small-12 coverage-main">
+									<div class="grid-content large-10 medium-10 small-10 demand-content">
+										<img class="processpage-insurance-icons" src="assets/img/insurance_icons/{{insurance_icons[type.key] || insurance_icons['other']}}" style=" width: 30px; float: left;">
+                                        <h6 class="demand-headline">
+                                            {{type.type.name_en}}
+                                            <span class="info-span info-span-overview" ng-click="SelectInsuranceType(type.key)" zf-open="insurance_info">
+                                                <i class="fa fa-info-circle fa-small i-overview dark-hover" ng-popup="popup{{key}}"></i>
+                                            </span>
+                                        </h6>
+									</div>
+									<div class="grid-content large-2 medium-2 small-2 center insurance-selector-main process1-selector">
+										<input name="checkboxCheckThis" type="checkbox" id="insuranceSelectorCheckbox{{type.key}}" class="filled-in checkboxCheckThis" ng-model="insurance_types[type.key].selected">
+										<label for="insuranceSelectorCheckbox{{type.key}}" class="insuranceSelectorLabel"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+        			</div>
+                    <div class="insurance-display-icon" ng-click="show_other_insurance_types = !show_other_insurance_types">
+                        <span>
+                            <i class="fa fa-chevron-circle-up" aria-hidden="true" ng-show="show_other_insurance_types"></i>
+                            <i class="fa fa-chevron-circle-down" aria-hidden="true" ng-show="!show_other_insurance_types"></i>
+                            {{!show_other_insurance_types && 'Show All' || 'Show Recommended Only'}}
+                        </span>
+                    </div>
+					<div class="grid-block large-12 medium-12 small-12" ng-show="show_other_insurance_types">
+						<div class="grid-content large-12 medium-12 small-12 others-coverage" ng-repeat="(key, type) in weighted_insurance_types.others">
+							<div class="card-section">
+								<div class="grid-block large-12 medium-12 small-12 coverage-main">
+									<div class="grid-content large-10 medium-10 small-10 demand-content">
+										<img class="processpage-insurance-icons" src="assets/img/insurance_icons/{{insurance_icons[type.key] || insurance_icons['other']}}" style=" width: 30px; float: left;">
+                                        <h6 class="demand-headline">
+                                            {{type.type.name_en}}
+                                            <span class="info-span info-span-overview" ng-click="SelectInsuranceType(type.key)" zf-open="insurance_info">
+                                                <i class="fa fa-info-circle fa-small i-overview dark-hover" ng-popup="popup{{key}}"></i>
+                                            </span>
+                                        </h6>
+									</div>
+									<div class="grid-content large-2 medium-2 small-2 center insurance-selector-main process1-selector">
+										<input name="checkboxCheckThis" type="checkbox" id="insuranceSelectorCheckbox{{type.key}}" class="filled-in checkboxCheckThis" ng-model="insurance_types[type.key].selected">
+										<label for="insuranceSelectorCheckbox{{type.key}}" class="insuranceSelectorLabel"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+        			</div>
+        		</div>
+                <div class="spare-height"></div>
+                <div class="coverage-validation-error" ng-show = "showInsuranceTypeError">
+                    <p>Please select atleast one insurance type</p>
+                </div>
+        		<input type="submit" name="next" class="btn-yellow" value="Next" ng-click="getQsForSelectedInsurances()"/>
+        	</fieldset>
+        </div>
+    </div>
+</div>
+
+<div ng-include="" src="'partials/en/modals/insuranceinfo.html'"></div>
+
+<style type="text/css">
+	.grid-block.ng-scope .grid-content.large-12.dash-content {
+		padding: 0 2rem !important;
+		width: 100%;
+	}
+
+    @media only screen and (max-width: 479px){
+        .grid-block.ng-scope .grid-content.large-12.dash-content {
+            padding: 0 !important;
+        }
+    }
+</style>
+
+<script type="text/javascript">
+
+    // $("fieldset").load(function(){
+    //     $('html, body').animate({scrollTop: '0px'}, 0);
+    // });
+
+
+    $(".button").click(function(){
+        if($('#fieldset1 input[name="checkboxCheckThis"]:checked').length > 0) {
+            $('html, body').animate({scrollTop: '0px'}, 0);
+        }
+    });
+
+	var year = $(".year");
+	for (i=2022;i>=1950;i--){
+		year.append($('<option value="'+i+'"></option>').val(i).html(i))
+	}
+
+	var day = $(".day");
+	for (i=1;i<=31;i++){
+		$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+	}
+
+	var month = $(".month");
+	var monthArray = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	for (i=1;i<=12;i++){
+		month.append($('<option value="'+i+'"></option>').val(i).html(monthArray[i]))
+	}
+
+	$(document).on('change','.month',function(){
+
+		var leapYear = (($(".year option:selected").val() % 4 == 0) && ($(".year option:selected").val() % 100 != 0)) || ($(".year option:selected").val() % 400 == 0);
+
+		if($(".month option:selected").val()=='1') {
+			//$('.day option').remove();
+            //$('.day').append($('<option selected="" disabled=""></option>').html(''))
+			// for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='2') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+			// for (i=1;i<=28;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='2' && leapYear==true) {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=29;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='3') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='4') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=30;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='5') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='6') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=30;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='7') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='8') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='9') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=30;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='10') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='11') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=30;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+
+		if($(".month option:selected").val()=='12') {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=31;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		}
+	});
+
+	$(document).on('change','.year',function(){
+		var leapYear = (($(".year option:selected").val() % 4 == 0) && ($(".year option:selected").val() % 100 != 0)) || ($(".year option:selected").val() % 400 == 0);
+		if($(".month option:selected").val()=='2' && leapYear==true) {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=29;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		} else if($(".month option:selected").val()=='2' && leapYear==false) {
+			// $('.day option').remove();
+   //          $('.day').append($('<option disabled="" selected=""></option>').html(''))
+   //          for (i=1;i<=28;i++){
+			// 	$('.day').append($('<option value="'+i+'"></option>').val(i).html(i))
+			// }
+		} else {}
+	});
+
+  </script>
+  <script>
+  	$(function() {
+        $(document).on("click","#finishprocess",function(){
+
+            $(".cancel-process").hide();
+            $("#msform").hide();
+            $(".thankyou-process").show();
+
+        });
+	});
+</script>

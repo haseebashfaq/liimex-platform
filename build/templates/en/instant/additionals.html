@@ -1,0 +1,92 @@
+<!-- Page View -->
+<div class="grid-block instantproduct-main" ng-controller="InstantProductAdditionalController">
+	<div class="grid-content large-12 medium-12 small-12 instantproduct-heading">
+		<div class="frida-outer">
+			<div class="our-frida"></div>
+		</div>
+		<p class="color-gray frida-message">{{page_data.page_title_en || 'missing_title'}}</p>
+	</div>
+	<div class="grid-block large-12 medium-12 small-12 instantproduct-comparison-outer">
+		<!-- There will be ng-repeat here -->
+		<div class="grid-block large-12 medium-12 small-12 comparison-box-outer align-center">
+			<div class="grid-content large-4 medium-4 small-12 comparison-box comparison-plan" ng-repeat="(additional_key,additional_value) in page_data.additionals">
+				<div class="comparison-box-heading {{page_data.chosen_additional == additional_key && 'comparison-our-recommendation'}}">
+					{{page_data.chosen_additional === additional_key ? 'Chosen: '+additional_value.title : additional_value.title}}
+					<i class="fa fa-times-circle remove-additional" aria-hidden="true" ng-if="page_data.chosen_additional===additional_key" ng-click="SaveProduct(null, null, false)"></i>
+				</div>
+				<div class="comparison-container">
+					<div class="comparison-box-specific">
+						<h4 class="comparision-feature-name">from <span class="product-price">{{additional_value.premium_monthly | euro}}</span>/month</h4>
+						<div class="comparison-box-specific comparison-box-button">
+							<button type="button" class="btn-yellow" ng-click="SaveProduct(additional_key, additional_value.premium_monthly, false)" ng-disabled="page_data.chosen_additional === additional_key">
+								<b>{{page_data.chosen_additional === additional_key ? 'Added' : 'Add'}}</b>
+							</button>
+						</div>
+					</div>
+					<div style="display: block;">
+						<div class="comparison-box-specific" ng-if="additional_value.coverage_days">
+							<h2 class="comparision-feature-main">
+								{{additional_value.coverage_days | days}}
+							</h2>
+							<h4 class="comparision-feature-name">
+								Coverage Period
+							</h4>
+						</div>
+						<div class="comparison-box-specific" ng-repeat="(criteria_key, criteria_value) in additional_value.criteria | orderBy:'order'">
+							<h2 class="comparision-feature-main">
+								{{criteria_value.amount}}
+							</h2>
+							<h4 class="comparision-feature-name">
+								{{criteria_value.text_en}}
+							</h4>
+						</div>
+						<div class="comparison-box-specific" ng-if="comparison_value.notes_html">
+							<h2 class="comparision-feature-main product-comparison-notes" ng-show="transformToHtml(additional_value.notes_html)" ng-bind-html="transformed_html">
+							</h2>
+						</div>
+						<div class="comparison-box-specific comparison-box-download" ng-repeat="(download_key,download_value) in additional_value.documents" ng-if="download_value" ng-hide="true">
+							<p ng-show="!!download_value" class="light color-liimex-blue pointer p-button dark-hover comparison-download-available" zf-open="download_files_modal" ng-click="PrepareDownloads(download_value)">
+								<i class="fa fa-download" aria-hidden="true"></i>
+								Download File
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="grid-block large-12 medium-12 small-12 instantproduct-actions">
+			<div class="grid-content large-12 medium-12 small-12 center instantproduct-contactus">
+				<p class="instantproduct-contactus-text">Not the one you are looking for?</p>
+				<h3 class="color-liimex-blue contactus-number-email" ui-sref="contactus_en">
+					<i class="fa fa-phone-square" aria-hidden="true"></i>
+					Let's talk and find one for you
+				</h3>
+			</div>
+			<div class="grid-content large-6 medium-6 small-12 right-align">
+				<button type="button" class="btn-yellow-inverse" ng-click="goBack()">Back</button>
+			</div>
+			<div class="grid-content large-6 medium-6 small-6 left-align" ng-if="!show_next">
+				<button type="button" class="btn-yellow" ng-click="SaveProduct(page_data.chosen_additional, page_data.chosen_premium, true)">Skip Additional Protection</button>
+			</div>
+			<div class="grid-content large-6 medium-6 small-12 left-align" ng-if="show_next">
+				<button class="btn-yellow" type="button" ng-click="SaveProduct(page_data.chosen_additional, page_data.chosen_premium, true)">Next</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('.navmenu-main').hide();
+	$('.navbar-hamburger-outer').hide();
+	$('.fixed-details-right').hide();
+	$('.outerlogoutright').hide();
+
+	$(window).on('resize', function(){
+		$('.navbar-hamburger-outer').hide();
+		$('.navmenu-main').hide();
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').hide();
+			$('.outerlogoutright').hide();
+			$('.navmenu-main').hide();
+		}
+	});
+</script>

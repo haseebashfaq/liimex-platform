@@ -1,0 +1,13 @@
+<file-upload  class="grid-block large-12 confirmatory-upload-section" ng-model="ngModel">
+  <div class="grid-content large-9 medium-9 small-9">
+    <h6 class="vertical-center">{{data.text_en || 'text_missing'}}
+      <i class="fa fa-check-circle" aria-hidden="true" ng-show="isUploadDone || data.answer && !showUploader"></i>
+    </h6>
+  </div>
+  <div class="grid-content large-3 medium-3 small-3 demand-content upload-browse" ngf-drop="" ngf-select="" ng-model="file" ng-change="FileChanged(file)" ngf-drag-over-class="dragover" ngf-multiple="false" ngf-max-files="1" ngf-allow-dir="true" accept="application/pdf" ngf-pattern="application/pdf" ng-hide="showUploader">
+    <h6>Browse</h6>
+  </div >
+  <div ng-show="showUploader" class="grid-content large-3 medium-3 small-3 upload-browse">
+    <h6>Uploading...</h6>
+  </div>
+</file-upload >

@@ -1,0 +1,35 @@
+{
+ 	"root":"statistics/",
+  "model": {
+		"general" : {
+			"data" : {
+				"end_of_year" : {
+					"placeholder" : "dd/mm",
+					"title" : "End of accounting year",
+					"type" : "text",
+					"value" : ""
+				},
+				"expected" : {
+					"placeholder" : "10000",
+					"title" : "Expected turnover this year",
+					"type" : "number",
+					"value" : ""
+				},
+				"last" : {
+					"placeholder" : "5000",
+					"title" : "Turnover last year",
+					"type" : "number",
+					"value" : ""
+				},
+				"employees" : {
+					"placeholder" : "11",
+					"title" : "Number of Employees",
+					"type" : "number",
+					"value" : ""
+				}
+			},
+			"description" : "This information is general to all users of Liimex. We use it to crunch numbers to optimise your insurance policies",
+			"title" : "General Information"
+    }
+  }
+}

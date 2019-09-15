@@ -1,0 +1,63 @@
+<!-- Upload File Modal -->
+<zf-modal id="edit_user_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+		Update User
+	</div>
+	<div class="modal-contents">
+		<form name="editUserForm">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12">
+					<table>
+						<tr>
+							<td class="light w30">First Name</td>
+							<td class="w70">
+								<input type="text" autofocus class="form-input-fields no-btm-margin" ng-model="user_account.first_name" autofocus="" name="userFirstName" ng-class="{ 'form-validation-error' : editUserForm.userFirstName.$error.pattern && !editUserForm.userFirstName.$pristine && editUserForm.userFirstName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="light w30">Last Name</td>
+							<td class="w70">
+								<input type='text' class="form-input-fields no-btm-margin" ng-model="user_account.last_name" name="userLastName" ng-class="{ 'form-validation-error' : editUserForm.userLastName.$error.pattern  && !editUserForm.userLastName.$pristine && editUserForm.userLastName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="light w30">Email</td>
+							<td class="w70">
+								<input type="email" class="form-input-fields no-btm-margin" ng-model="user_account.email" name="userEmail" ng-class="{ 'form-validation-error' :   editUserForm.userEmail.$error.email && !editUserForm.userEmail.$pristine && editUserForm.userEmail.$touched}" required></input>
+							</td>
+						</tr>
+						<tr>
+							<td class="light w30">Password</td>
+							<td class="w70">
+								<button type="button" class="button-inline" ng-click="ResetPassword()"><p><b>Request New Password</b></p></button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- <div class="grid-content large-6 medium-6 small-12 center">
+					<input type="text" autofocus class="color-liimex-blue account-text center" ng-model="user_account.first_name" autofocus="" name="userFirstName" ng-class="{ 'form-validation-error' : editUserForm.userFirstName.$error.pattern && !editUserForm.userFirstName.$pristine && editUserForm.userFirstName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+					<p class="color-gray light centered-text">First Name</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type='text' class="color-liimex-blue account-text center" ng-model="user_account.last_name" name="userLastName" ng-class="{ 'form-validation-error' : editUserForm.userLastName.$error.pattern  && !editUserForm.userLastName.$pristine && editUserForm.userLastName.$touched}" ng-pattern="/^[^0-9[\]:;|=+*?<>/\\,]+$/" required></input>
+					<p class="color-gray light centered-text">Last Name</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<input type="email" class="color-liimex-blue account-text center" ng-model="user_account.email" name="userEmail" ng-class="{ 'form-validation-error' :   editUserForm.userEmail.$error.email && !editUserForm.userEmail.$pristine && editUserForm.userEmail.$touched}" required></input>
+					<p class="color-gray light centered-text">Email</p>
+				</div>
+				<div class="grid-content large-6 medium-6 small-12 center">
+					<p class="color-blue-light account-text centered-text">Full</p>
+					<p class="color-gray light centered-text">Access</p>
+				</div> -->
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="btn-violett-inverse" type="submit" zf-close="">Close</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-6 ">
+					<button class="btn-violett" type="submit" ng-click="SaveUserData(editUserForm)">Save</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</zf-modal>

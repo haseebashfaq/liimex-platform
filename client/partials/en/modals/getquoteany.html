@@ -1,0 +1,29 @@
+<!-- Upload File Modal -->
+<zf-modal id="get_quote_any_modal" class="upload-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-liimex-blue no-btm-padding small-modal-header">Get Quote</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">Please use the <b>drop-down</b> menu below, to pick the insurance you wish to get an offer for. If you are in doubt about which insurances you need, take a look at your <b class="dark-hover pointer" ui-sref="overview_en">Recommendations</b>. You're always welcome to contact us as well.</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<select name="typeselector" ng-model="new_offer.subject" required class="color-liimex-blue">
+					<option value="" disabled selected style="display: none;">Please pick an insurance</option>
+					<option ng-repeat="(key, type) in insurance_types" value="{{key}}"  >{{type.name_en}}</option>
+				</select>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 small-top-margin">
+				<p class="color-gray insurance_type_modal">By confirming this action you will send us on a mission to find you the right insurance. This is of course <b>free</b> and you will not be boud to any offers we collect</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+			<div class="grid-content center large-6 medium-6 small-6">
+				<button class="button button-inverse" type="submit" zf-close="">Not yet</button>
+			</div>
+			<div class="grid-content center large-6 medium-6 small-6">
+				<button class="button" type="submit" ng-click="GetQuoteFromDropdown()" id="close_upload" ng-disabled="disableGetQuoteBtn || !new_offer.subject">Get Quote</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

@@ -1,0 +1,67 @@
+<div class="grid-container pickactivity-page">
+	<div class="grid-block align-center force-wrap">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow signup-card">
+				<div class="card-section left-card login-input-margin">
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message frida-message-pick-activity">Lassen Sie uns Ihren Bedarf ermitteln.<br>{{groups[current_question_group].name_de}}</p>
+					<form class="signup-form flex-form" name="industryform">
+						<div class="grid-content large-12 medium-12 small-12 activity-title">
+							<p class="color-gray center">Noch {{num_questions}} {{num_questions > 1 && 'Fragen' || 'Frage'}}</p>
+						</div>
+						<div class="grid-content large-4 medium-6 small-12" ng-repeat="activity in questions_to_display" ng-show="activity.activity.group === groups[current_question_group].group && !activity.activity.disabled">
+							<div class="activity-card activity-card-selector {{picked_activities.has(activity.key) && 'picked' || ''}}" ng-click="Pick(activity.key)" type="button">
+								<p>{{activity.activity.name_de}}</p>
+							</div>
+						</div>
+						<div class="liimefix-small large-12 medium-12 small-12">
+						</div>
+						<div class="grid-content center large-6 medium-12 small-12">
+							<button class="btn-yellow-inverse" type="submit" ng-click="Back(); num_questions=num_questions+1" >Zurück</button>
+						</div>
+						<div class="grid-content center large-6 medium-12 small-12" ng-hide="current_question_group >= maxsize">
+							<button class="btn-yellow" type="submit" ng-click="Next(); num_questions=num_questions-1">Weiter</button>
+						</div>
+						<div class="grid-content center large-6 medium-12 small-12"ng-show="current_question_group >= maxsize">
+							<button class="btn-yellow" type="submit" ng-click="Finish();" ng-disabled="disableFinishBtn">Abschicken</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="" src="'partials/de/modals/termsandconditions.html'"></div>
+
+<script type="text/javascript">
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+	$('.fixed-details-right').show();
+
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').show();
+		$('.outerlogoutright').show();
+
+		$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+		$('.logout-initial').css('cssText', 'margin: 0');
+	}
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('signup-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').show();
+			$('.outerlogoutright').show();
+
+			$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+			$('.logout-initial').css('cssText', 'margin: 0');
+		} else {
+			$('.logout-initial').css('cssText', 'margin: 0 2rem 0.1rem');
+		}
+	});	
+</script>

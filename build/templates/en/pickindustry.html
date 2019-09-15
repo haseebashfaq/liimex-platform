@@ -1,0 +1,151 @@
+<div class="grid-container large-5 pickindustry-page">
+	<div class="grid-block align-center force-wrap">
+		<div class="grid-content large-12 medium-12 small-12">
+			<div class="card corner bg-white shadow signup-card" style="box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border-radius: 6px; margin-top: 12rem;">
+				<div class="card-section left-card login-input-margin">
+					<!-- <div class="frida-outer">
+						<div class="our-frida"></div>
+					</div> -->
+					<p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb">Pick Industry</p>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left; padding-bottom: 2rem;">
+						<form class="signup-form flex-form" name="industryform">
+							<!-- <div class="pickindustry-heading" ng-hide="showIndustrySelectorPage">
+								<p class="color-gray center frida-message">First, please type in your industry below so we can get to know you.</p>
+							</div>
+							<div class="pickindustry-heading" ng-show="showIndustrySelectorPage">
+								<p class="color-gray center frida-message">Don't worry! Let's try a different approach.</p>
+							</div> -->
+							<div class="grid-content large-12 medium-12 small-12 center" ng-repeat="i in [1,2,3] | limitTo:cat_limit">
+								<div ng-if="!showIndustrySelectorPage">
+									<input rows="1" class="form-input-fields no-btm-margin pick_industry_input" type="text" autocomplete="off" ng-model="searches[i]" placeholder="Begin typing..." required id="search{{i}}" onkeydown="CheckCategories()" onkeyup="CheckCategories()" ng-change="changeSearchText(searches[i])"/>
+									<div class="industry-bg">
+										<div class="">
+											<div ng-repeat="code in searchResults |  limitTo: 6" class="industry_hover industry-cat-margin" ng-click="Pick(code.code, i, code);">
+												<p class="color-liimex-blue no-btm-margin searchable" id="searchable">{{code.code.name_en}}</p>
+												<p class="color-gray industry-sub-font">{{code.parent.name_en}} > {{code.secondParent.name_en}}</p>
+											</div>
+										</div>
+									</div>
+									<p class="pick-valid-industry" ng-show="is_valid[i] === false">Please pick valid industry</p>
+								</div>
+								<div ng-if="showIndustrySelectorPage" style="margin-bottom: 2rem;">
+	<!-- 								<p class="color-gray frida-message">Don't worry! Let's try a different approach.</p>
+	 -->								<div class="grid-content large-12 medium-12 small-12">
+										<select ng-model="picked_levels[i][1]" required class="form-input-fields" ng-change="RefreshModel(i, [2,3,4])">
+											<option value="" disabled selected="selected" style="display: none;">Please pick a main industry</option>
+											<option ng-repeat="code in industries | sortcodes:{key:1}" value="{{code.code.code}}">{{code.code.name_en}}</option>
+										</select>
+									</div>
+									<div class="grid-content large-12 medium-12 small-12">
+										<select ng-disabled="!picked_levels[i][1]" ng-model="picked_levels[i][2]" required class="form-input-fields {{!picked_levels[i][1] && 'pickindustry-disable'}}" ng-change="RefreshModel(i, [3,4])">
+											<option value="" disabled selected="selected" style="display: none;">Please pick a subcategory</option>
+											<option ng-repeat="code in industries | sortcodes:{key:2, parent:picked_levels[i][1]}" value="{{code.code.code}}">{{code.code.name_en}}</option>
+										</select>
+									</div>
+									<div class="grid-content large-12 medium-12 small-12">
+										<select ng-disabled="!picked_levels[i][2]" ng-if="!(picked_levels[i][2] && !industry_set.has(picked_levels[i][2].concat('.1')))" ng-model="picked_levels[i][3]" ng-required="industry_set.has(picked_levels[i][2].concat('.1'))" class="form-input-fields {{!picked_levels[i][2] && 'pickindustry-disable'}}" ng-change="RefreshModel(i, [4])">
+											<option value="" disabled selected="selected" style="display: none;">Please pick a second subcategory</option>
+											<option ng-repeat="code in industries | sortcodes:{key:3, parent:picked_levels[i][2]}" value="{{code.code.code}}">{{code.code.name_en}}</option>
+										</select>
+									</div>
+									<div class="grid-content large-12 medium-12 small-12">
+										<select ng-disabled="!picked_levels[i][3]" ng-if="!(!picked_levels[i][3] || !industry_set.has(picked_levels[i][3].concat('.1')))" ng-model="picked_levels[i][4]" ng-required="industry_set.has(picked_levels[i][3].concat('.1'))" class="form-input-fields {{!picked_levels[i][3] && 'pickindustry-disable'}}">
+											<option value="" disabled selected="selected" style="display: none;">Please pick a third subcategory</option>
+											<option ng-repeat="code in industries | sortcodes:{key:4, parent:picked_levels[i][3]}" value="{{code.code.code}}">{{code.code.name_en}}</option>
+										</select>
+									</div>
+								</div>
+								<div class="right-align large-12 medium-12 small-12 no-btm-margin no-btm-padding" ng-if="i>1 && i===cat_limit">
+									<button type="button" class="button button-inline no-left-margin no-padding-right no-btm-margin no-btm-padding" ng-click="RemoveCat()">
+										<p class="right-align" style="color: red"><b><i class="fa fa-minus-circle" aria-hidden="true"></i> Remove</b></p>
+									</button>
+								</div>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12 pickindustry-addmore" ng-hide="cat_limit>2">
+								<button type="button" class="button button-inline no-left-margin" ng-click="cat_limit = cat_limit+1">
+									<p><b><i class="fa fa-plus-circle" aria-hidden="true"></i> Add another category</b></p>
+								</button>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12" ng-hide="showIndustrySelectorPage">
+								<button type="button" class="button button-inline" ng-click="toogleShowIndustrySelector(true)">
+									<p ><b>Can't find your Industry?</b></p>
+								</button>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12" ng-show="showIndustrySelectorPage">
+								<button type="button" class="button button-inline" ng-click="openContactus()">
+									<p ><b>Frida, I still cannot find my industry!</b></p>
+								</button>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12" ng-show="isEditMode && !showIndustrySelectorPage">
+								<button class="btn-violett-inverse" ng-click="Back()" >Previous</button>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12" ng-show="showIndustrySelectorPage">
+								<button class="btn-violett-inverse" ng-click="toogleShowIndustrySelector(false)" >Previous</button>
+							</div>
+							<div class="grid-content center large-12 medium-12 small-12" ng-class="showIndustrySelectorPage || isEditMode?'large-12 medium-12 small-12': 'large-12 medium-12 small-12'">
+								<button class="btn-violett" ng-disabled="!industryform.$valid" ng-click="SubmitCategories(industryform)">Next</button>
+							</div>
+						</form>
+					</div>
+
+					<div class="grid-content large-6 medium-6 small-12" style="float: left; padding-bottom: 2rem;">
+						<div class="grid-content large-12 medium-12 small-12 login-card-form-container">
+							<h4>Enter the official information of the company you are registering.</h4>
+							<h4>You can change your industry anytime after completing your profile.</h4>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div ng-include="" src="'partials/en/modals/termsandconditions.html'"></div>
+
+<script type="text/javascript">
+
+	// $(window).load(function(){
+		$(document).on("input","input",function() {
+			var term = $(this).val();
+			$(".searchable").unmark();
+			if (term) {
+				$(".searchable").mark(term, {
+					done: function() {
+						// $(".searchable").not(":has(mark)");
+					}
+				});
+			}
+		});
+	// });
+
+	$('.navbar-hamburger-outer').hide();
+	$('.navmenu-main').hide();
+	$('.fixed-details-right').show();
+
+	if($(window).width()>319 && $(window).width()<768) {
+		$('.fixed-details-right').show();
+		$('.outerlogoutright').show();
+
+		$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+		$('.logout-initial').css('cssText', 'margin: 0');
+	}
+
+	$(window).on('resize', function(){
+		if($('.card.corner').hasClass('signup-card')) {
+			$('.navbar-hamburger-outer').hide();
+			$('.navmenu-main').hide();
+		}
+
+		if($(window).width()>319 && $(window).width()<768) {
+			$('.fixed-details-right').show();
+			$('.outerlogoutright').show();
+
+			$('.invisible_nav .fixed-details-right').css('cssText', 'background: transparent !important');
+			$('.logout-initial').css('cssText', 'margin: 0');
+		} else {
+			$('.logout-initial').css('cssText', 'margin: 0 2rem 0.1rem');
+		}
+	});
+
+</script>

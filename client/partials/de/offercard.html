@@ -1,0 +1,16 @@
+<div class="card corner bg-white shadow offercard-page {{GetSubInsuranceType(item)?'yestrue':'no-border-bottom'}}">
+	<div class="card-section">
+		<div class="grid-content large-2 offer-icon"><img src="assets/img/insurance_icons/{{insurance_icons[key] || insurance_icons['other']}}">
+		</div>
+		<div class="grid-content large-7 medium-9 small-12 demand-content offer-name">
+			<h6 class="demand-headline">{{insurance_types[key].name_de}}</h6>
+		</div>
+		<div class="grid-content large-3 medium-3 small-12 demand-content viewoffer-btn" ui-sref="comparison_de({offer_id:pushed_offers[key].key})">
+			<h6>zum Angebot</h6>
+		</div>
+	</div>
+</div>
+<div ng-repeat="(sub_insurance_key, sub_insurance_item) in GetSubInsuranceType(item)" class="offer-additional-modules" ng-if="sub_insurance_key && sub_insurance_key !== key">
+	<img src="assets/img/insurance_icons/{{insurance_icons[sub_insurance_key] || insurance_icons['other']}}" class="additional-modules-img">
+	{{insurance_types[sub_insurance_key].name_de}}
+</div>

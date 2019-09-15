@@ -1,0 +1,23 @@
+<!-- Page View -->
+<div class="grid-block preload-centered"  ng-show="child_loading">
+	<div ng-include="" src="'partials/preload.html'"></div>
+</div>
+
+	<div class="grid-block instantproduct-main"  ng-controller="IPQController" ng-hide="child_loading">
+		<div class="grid-content large-12 medium-12 small-12 instantproduct-heading">
+			<div class="frida-outer">
+				<div class="our-frida"></div>
+			</div>
+			<p class="color-gray frida-message">{{page_data.questions.page_title_en || 'missing_title'}}</p>
+		</div>
+		<form name="instant_form" class="grid-block large-12 medium-12 small-12 instantproduct-outer">
+			<question form="instant_form" ng-repeat="element in display_questions | orderBy:'item.order'" ng-if="{answer:questions[element.item.parent].answer, condition:element.item.parent_condition, value:element.item.parent_value} | questionTrigger" class="large-{{element.item.large || 12}} medium-{{element.item.medium || 12}} small-{{element.item.small || 12}} flex-form" data="element.item" ng-model="questions[element.key].answer" ng-required="element.item.required" key="element.key"></question>
+		</form>
+		<div class="grid-content large-12 medium-12 small-12 centered-text">
+			<button class="btn-yellow-inverse button-margin" type="button" ng-show="show_prev" ng-click="goBack()">Back</button>
+			<button class="btn-yellow button-margin" type="submit" ng-disabled="!instant_form.$valid" ng-click="submitAnswers()">Next</button>
+		</div>
+		<div class="grid-content large-12 medium-12 small-12 center disclaimer">
+			<p class="instantproduct-contactus-text">You are not entering a contractual relationship yet and our data connection is securely encrypted</p>
+		</div>
+	</div>

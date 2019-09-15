@@ -1,0 +1,6 @@
+{
+  "browserName": "chrome",
+  "browserstack.user": "siddiq4",
+  "browserstack.key": "HDBGVmfQJVu75Gk2UdFH",
+  "browserstack.local": "true"
+}

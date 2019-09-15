@@ -1,0 +1,32 @@
+<!-- Upload File Modal -->
+<zf-modal id="sign_mandate_modal" class="upload-modal">
+	<div class="title-bar modal-title">
+	</div>
+	<div class="modal-contents">
+			<div class="grid-block force-wrap">
+				<div class="grid-content large-12 medium-12 small-12 center">
+					<!-- <h5 class="color-blue-dark light account-title">Use the mouse to write your signature in the field below</h5> -->
+					<div class="frida-outer">
+						<div class="our-frida"></div>
+					</div>
+					<p class="color-gray frida-message frida-overview-moda">Use the mouse to write your signature in the field below</p>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 center min-height-12 sign-area">
+					<signature-pad accept="accept" dataurl="dataurl"  clear="clear" height="220" width="550"></signature-pad>
+					<svg height="210" width="80%" class="sign-line">
+					  <line x1="0" y1="150" x2="500" y2="150" style="stroke:rgb(120,120,120);stroke-width:2" />
+					</svg>
+				</div>
+				<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+				<div class="grid-content large-3 medium-3 small-12 center">
+					<button class="button button-inverse" type="submit" id="mandate_close" zf-close="">Close</button>
+				</div>
+				<div class="grid-content center large-6 medium-6 small-12 ">
+					<button class="btn-yellow" type="submit" ng-click="signature = accept(); Done();">Confirm Signature</button>
+				</div>
+				<div class="grid-content large-3 medium-3 small-12 center">
+					<button class="button button-inverse" type="submit" ng-click="clear()">Clear</button>
+				</div>
+			</div>
+	</div>
+</zf-modal>

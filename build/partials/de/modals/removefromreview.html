@@ -1,0 +1,19 @@
+<zf-modal id="remove_from_review_modal" class="upload-modal">
+	<div class="modal-contents">
+		<div class="grid-block force-wrap">
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-liimex-blue no-btm-padding small-modal-header">Sind Sie sich sicher?</p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12">
+				<p class="color-gray insurance_type_modal">Indem Sie auf <b>Entfernen</b> drücken, wird die Police aus der Ansicht gelöscht. Derzeit wird die Police <b>kostenfrei</b> für Sie digitalisiert. Sofern Ihnen eine solche Versicherung von uns empfohlen wurde, wird eine entsprechende Empfehlung erscheinen bis Sie eine <b>Police hochladen</b> oder ein <b>Angebot einholen.</b></p>
+			</div>
+			<div class="grid-content large-12 medium-12 small-12 upload-btn"></div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button button-inverse" type="submit" zf-close="">Überprüfung durchführen</button>
+			</div>
+			<div class="grid-content center large-6 medium-6 small-6 ">
+				<button class="button" type="submit" ng-click="RemovePolicy(selected_policy_key)" id="close_upload">Überprüfung stoppen</button>
+			</div>
+		</div>
+	</div>
+</zf-modal>

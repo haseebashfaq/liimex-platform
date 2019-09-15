@@ -1,0 +1,118 @@
+<!-- Policy Card -->
+<div class="card corner bg-white shadow policy-card policy-card-main" ng-if="policy.policy.status === 'active'">
+  <div class="grid-block top-padding btm-padding policy-policy-box" ng-if="policy.policy.status === 'active'">
+    <div class="grid-block large-12 medium-12 small-12 policy-policy-box-header">
+      <div class="grid-content large-12 medium-12 small-12 color-liimex-blue relative policy-policy-box-header-inner">
+        <div class="grid-content large-12 medium-12 small-12 demand-content offer-name">
+          <h6 class="demand-headline insurance-policy-subject-name">{{insurance_types[policy.policy.subject].name_en}}<span class="insurance-policy-subject-carrier"> - {{carriers[policy.policy.carrier].name}}</span></h6>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-card-data-block">
+      <div class="grid-block large-6 medium-6 small-12 force-wrap policy-section-left">
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main">Start Date</p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-items-main-blue">{{genService.getDateObj(policy.policy.start_date) | date: 'dd-MM-yyyy'}}</p>
+          </div>
+        </div>
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main">Renewal Date</p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-items-main-blue">{{genService.getDateObj(policy.policy.end_date) | date: 'dd-MM-yyyy'}}</p>
+          </div>
+        </div>
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main">Policy Number</p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-items-main-blue">{{policy.policy.policy_number}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid-block large-6 medium-6 small-12 force-wrap policy-section-right">
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main" ng-click="showPopover7=true;" ng-mouseleave="showPopover7=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="popup7">
+                <ng-popup id="popup7" class="padding ngPopup ngPopup-policy ngPopup-policy-v1" ng-show="showPopover7">
+                  {{langService.inline_help.premium.en}}
+                </ng-popup>
+              </i>Premium
+            </p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-amount"><b>€{{genService.getSepThousands(policy.policy.premium)}}</b></p>
+          </div>
+        </div>
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main" ng-click="showPopover8=true;" ng-mouseleave="showPopover8=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="popup8">
+                <ng-popup id="popup8" class="padding ngPopup ngPopup-policy ngPopup-policy-v1" ng-show="showPopover8">
+                  {{langService.inline_help.deductable.en}}
+                </ng-popup>
+              </i>Deductible
+            </p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-amount"><b>{{genService.getDeductableType(policy.policy.deductable)}}</b></p>
+          </div>
+        </div>
+        <div class="grid-block large-12 medium-12 small-12 force-wrap">
+          <div class="grid-content large-8 medium-8 small-6 relative policy-color-gray">
+            <p class="text-policy-detail de-relative policy-items-main" ng-click="showPopover9=true;" ng-mouseleave="showPopover9=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="popup9">
+                <ng-popup id="popup9" class="padding ngPopup ngPopup-policy ngPopup-policy-v1" ng-show="showPopover9">
+                  {{langService.inline_help.sum_insured.en}}
+                </ng-popup>
+              </i>Sum Insured
+            </p>
+          </div>
+          <div class="grid-content large-4 medium-4 small-6 relative color-liimex-blue">
+            <p class="text-policy-detail de-relative policy-amount"><b>€{{genService.getSepThousands(policy.policy.sum_insured)}}</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="custom-fields-divider" ng-hide="show_details"></div>
+    <div ng-repeat="(key, criteria) in policy.policy.custom_fields" class="grid-block large-6 medium-12 small-12 force-wrap policy-custom-field" ng-hide="show_details">
+      <div class="grid-content large-8 medium-6 small-6 relative policy-color-gray">
+        <p class="text-policy-detail de-relative">{{custom_fields[key].title_en}}</p>
+      </div>
+      <div ng-if="custom_fields[key].type === 'text'" class="grid-content large-4 medium-6 small-6 relative color-liimex-blue">
+        <p class="text-policy-detail de-relative">{{criteria}}</p>
+      </div>
+      <div ng-if="custom_fields[key].type === 'date'" class="grid-content large-4 medium-6 small-6 relative color-liimex-blue">
+        <p class="text-policy-detail de-relative">{{genService.getDateObj(criteria)| date: 'yyyy-MM-dd'}}</p>
+      </div>
+      <div ng-if="custom_fields[key].type === 'currency'" class="grid-content large-4 medium-6 small-6 relative color-liimex-blue">
+        <p class="text-policy-detail de-relative">€{{genService.getSepThousands(criteria)}}</p>
+      </div>
+      <div ng-if="custom_fields[key].type === 'choice'" class="grid-content large-4 medium-6 small-6 relative color-liimex-blue">
+        <p class="text-policy-detail de-relative">{{genService.prettyBool(criteria)}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="grid-block large-12 medium-12 small-12 policy-card-action-block align-center">
+    <div class="grid-content large-4 medium-4 small-12" ng-show="!!policy.policy.custom_fields">
+      <p class="text-policy-detail de-relative pointer dark-hover policy-action" ng-click="show_details = !show_details">
+        <i class="fa fa-chevron-circle-down policy-card-action-icon" aria-hidden="true" ng-show="show_details"></i>
+        <i class="fa fa-chevron-circle-up policy-card-action-icon" aria-hidden="true" ng-show="!show_details"></i>{{show_details && 'Show' || 'Hide'}} details
+      </p>
+    </div>
+    <div class="grid-content large-4 medium-4 small-12">
+      <p ng-show="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="download_files_modal" ng-click="PrepareDownloads(policy.policy)" style="text-align: center;"><i class="fa fa-download" aria-hidden="true" style="margin-right: 10px;"></i>Download Files
+      </p>
+      <p ng-hide="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" style="text-align: center; cursor: initial;">No Downloadable File</p>
+    </div>
+    <div class="grid-content large-4 medium-4 small-12">
+      <p class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="cancel_policy_modal" ng-click="SelectPolicy(policy.key, policy.policy)" style="text-align: center;"><i class="fa fa-trash" aria-hidden="true" style="margin-right: 10px;"></i>Delete Policy</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,452 @@
+<div class="grid-content large-12 medium-12 small-12 policy" style="margin: 1rem 0; box-shadow: 0 9px 20px 0 rgba(93,93,93,.4) !important; border: 1px solid transparent; border-radius: 6px; padding:0; padding-top: 1rem; background: #fff;">
+  <div class="grid-content large-12 medium-12 small-12">
+    <!-- {{insurance_types[policy.policy.subject].name_en}}
+    <span class="insurance-policy-subject-carrier"> - {{carriers[policy.policy.basic.carrier].name}}</span>
+    <span class="light" style="float: right; color: #4a4a4a;">Policy Number: <b>{{policy.policy.basic.policy_number}}</b></span> -->
+    <p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: xx-large; border-bottom: 1px solid #ebebeb; padding: 0; margin: 0; line-height: 15pt;">
+      <span>{{insurance_types[policy.policy.subject].name_en}}</span>
+      <span class="insurance-policy-subject-carrier">{{carriers[policy.policy.basic.carrier].name}}</span>
+    </p>
+  </div>
+  <div class="grid-block large-12" style="margin: 0; border-top: none;">
+    <div class="grid-content large-12 medium-12 small-12 center" style="padding: 1rem !important; background: #5320a9;">
+      <span class="light" style="float: none; color: #fff;">Policy Number: <b>{{policy.policy.basic.policy_number}}</b></span>
+    </div>
+    <div class="grid-content large-6 medium-12 small-12" style="background: white; padding: 1rem 2.5rem; min-height: 83%;">
+      <table>
+      <tr>
+        <td class="light w30" ng-click="showstartdate=true;" ng-mouseleave="showstartdate=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="showstartdate">
+            <ng-popup id="showstartdate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="showstartdate">
+              {{langService.inline_help.start_date.en}}
+            </ng-popup>
+          </i>Start Date
+        </td>
+        <td class="w70">{{genService.getDateObj(policy.policy.basic.start_date) | date: 'dd-MM-yyyy'}}</td>
+      </tr>
+      <tr>
+        <td class="light w30" ng-click="showrenewaldate=true;" ng-mouseleave="showrenewaldate=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="showrenewaldate">
+            <ng-popup id="showrenewaldate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="showrenewaldate">
+              {{langService.inline_help.next_renewal_date.en}}
+            </ng-popup>
+          </i>Renewal Date
+        </td>
+        <td class="w70">{{genService.getDateObj(policy.policy.basic.main_renewal_date) | date: 'dd-MM-yyyy'}}</td>
+      </tr>
+      <tr>
+        <td class="light w30" ng-click="annual_premium=true;" ng-mouseleave="annual_premium=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="popup7">
+            <ng-popup id="annual_premium" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="annual_premium">
+              {{langService.inline_help.premium.en}}
+            </ng-popup>
+          </i>Annual Premium
+        </td>
+        <td class="w70">{{(policy.policy.basic.premium * (1+policy.policy.basic.insurance_tax*0.01)) | euro}}</td>
+      </tr>
+      </table>
+    </div>
+    <div class="grid-content large-6 medium-12 small-12" style="background: white; padding: 1rem 2.5rem; min-height: 83%;">
+      <table>
+      <tr>
+        <td class="light w30" ng-click="policy_general_sum_insured=true;" ng-mouseleave="policy_general_sum_insured=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="policy_general_sum_insured">
+            <ng-popup id="showstartdate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="policy_general_sum_insured" style="left: auto;">
+              {{langService.inline_help.sum_insured.en}}
+            </ng-popup>
+          </i>Sum Insured
+        </td>
+        <td class="w70">{{policy.policy.insurance_types[policy.policy.subject].general.sum_insured | euro:policy.policy.insurance_types[policy.policy.subject].general.unlimited_sum_insured}}</td>
+      </tr>
+      <tr>
+        <td class="light w30" ng-click="policy_general_deductible=true;" ng-mouseleave="policy_general_deductible=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="policy_general_deductible">
+            <ng-popup id="showrenewaldate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="policy_general_deductible" style="left: auto;">
+              {{langService.inline_help.deductable.en}}
+            </ng-popup>
+          </i>Deductible
+        </td>
+        <td class="w70">{{policy.policy.insurance_types[policy.policy.subject].general | deductible}}</td>
+      </tr>
+      <tr>
+        <td class="light w30" ng-click="policy_general_maximisation=true;" ng-mouseleave="policy_general_maximisation=false;">
+          <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="policy_general_maximisation">
+            <ng-popup id="annual_premium" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="policy_general_maximisation" style="left: auto;">
+              {{langService.inline_help.maximisation.en}}
+            </ng-popup>
+          </i>Maximisation
+        </td>
+        <td class="w70">{{policy.policy.insurance_types[policy.policy.subject].general.maximisation | maximisation}}</td>
+      </tr>
+      </table>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-specific {{!policy.policy.insurance_types[policy.policy.subject].specific ? 'no-border-top' : ''}}" style="background: #fff; margin: 0; border-top: 1px solid #96969657; padding-top: 1rem; padding-bottom: 1rem;" ng-if="policy.policy.insurance_types[policy.policy.subject]">
+      <div class="grid-content large-12 medium-6 small-12 policy-card-data-block nopadding-row-policy-card" ng-repeat="(default_specific_id,default_specific_value) in policy.policy.insurance_types[policy.policy.subject].specific" ng-show="default_specific_value.included" ng-click="coverage_info=true;" ng-mouseleave="coverage_info=false;" style="padding: 0rem 2.5rem">
+        <table>
+          <tr>
+            <td class="w50" style="padding: 0 5px !important;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="coverage_info">
+                <ng-popup id="coverage_info" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-value-heading ngPopup-policy-v2-left" ng-show="coverage_info">
+                  {{comparisonData[default_specific_id].explanation_text_en}}
+                </ng-popup>
+              </i>{{comparisonData[default_specific_id].name_en}}
+            </td>
+            <td class="w20" ng-click="coverage_sublimit=true;" ng-mouseleave="coverage_sublimit=false;" style="padding: 1rem 2.8rem;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="coverage_sublimit">
+                <ng-popup id="coverage_sublimit" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="coverage_sublimit" style="left: auto;">
+                  {{langService.inline_help.sublimit.en}}
+                </ng-popup>
+              </i>Sublimit
+            </td>
+            <td class="w30">25,000</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12" ng-hide="show_details" ng-repeat="(insurancetype_key, insurancetype_value) in policy.policy.insurance_types" ng-if="insurancetype_key!==policy.policy.subject && IsAdditionalModule(insurancetype_value)" style="border-top: 1px solid #96969657; padding-bottom: 1rem;">
+      <div class="grid-content large-6 medium-6 small-6" style="transform: translateY(35%);">
+        <p style="padding: 0 2rem 0; margin-bottom: 0;">Additional Module</p>
+        <p class="color-gray frida-message" style="font-weight: 500; color: #5320a9 !important; font-size: 14pt; /*border-bottom: 1px solid #ebebeb;*/ padding: 0 2rem; padding-top: 0; margin: 0 !important; line-height: 15pt; text-align: left; white-space: initial;">
+          {{insurance_types[insurancetype_key].name_en}}
+        </p>
+      </div>
+      <div class="grid-content large-6 medium-6 small-6" style="padding: 1rem 2.5rem;">
+        <table>
+          <tr>
+            <td class="light w30" ng-click="additional_sum_insured=true;" ng-mouseleave="additional_sum_insured=false;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="additional_sum_insured">
+                <ng-popup id="additional_sum_insured" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="additional_sum_insured">
+                  {{langService.inline_help.sum_insured.en}}
+                </ng-popup>
+              </i>Sum Insured
+            </td>
+            <td class="w70">{{insurancetype_value.general.sum_insured | euro:insurancetype_value.general.unlimitedsum_insured}}</td>
+          </tr>
+          <tr>
+            <td class="light w30" ng-click="additional_deductible=true;" ng-mouseleave="additional_deductible=false;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="additional_deductible">
+                <ng-popup id="additional_deductible" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="additional_deductible">
+                  {{langService.inline_help.deductable.en}}
+                </ng-popup>
+              </i>Deductible
+            </td>
+            <td class="w70">{{insurancetype_value.general | deductible}}</td>
+          </tr>
+          <tr>
+            <td class="light w30" ng-click="additional_maximisation=true;" ng-mouseleave="additional_maximisation=false;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="popup7">
+                <ng-popup id="additional_maximisation" class="padding ngPopup ngPopup-policy ngPopup-policy-v2" ng-show="additional_maximisation">
+                  {{langService.inline_help.maximisation.en}}
+                </ng-popup>
+              </i>Maximisation
+            </td>
+            <td class="w70">{{insurancetype_value.general.maximisation | maximisation}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="grid-block large-12 medium-12 small-12" ng-repeat="(key, value) in insurancetype_value.specific" ng-if="value.included===true">
+        <div class="grid-content large-6 medium-6 small-12" ng-if="IsAdditionalModuleCriteria(insurancetype_value)" style="padding: 0rem 2.5rem;">
+          <table>
+            <tr>
+              <td ng-click="additional_info=true;" ng-mouseleave="additional_info=false;">
+              <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="additional_info">
+                <ng-popup id="additional_info" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-value-heading ngPopup-policy-v2-left" ng-show="additional_info">
+                  {{comparisonData[key].explanation_text_en}}
+                </ng-popup>
+              </i>{{comparisonData[key].name_en}}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="grid-content large-6 medium-6 small-12" ng-if="IsAdditionalModuleCriteria(insurancetype_value)" style="padding: 0 2.5rem;">
+          <table>
+            <tr>
+              <td class="light w30" ng-click="additional_sublimit=true;" ng-mouseleave="additional_sublimit=false;">
+                <i class="fa fa-info-circle policy-info-icon" ng-popup-toggle="additional_sublimit">
+                  <ng-popup id="additional_sublimit" class="padding ngPopup ngPopup-policy ngPopup-policy-v2_2" ng-show="additional_sublimit">
+                    {{langService.inline_help.sublimit.en}}
+                  </ng-popup>
+                </i>Sublimit
+              </td>
+              <td class="w70">{{insurancetype_value.specific[key].sublimit | euro}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-card-action-block align-center" style="background: #fff; margin: 0;">
+      <div class="grid-content large-4 medium-4 small-12 center" ng-show="IsDisplayMore(policy.policy)">
+        <button class="" ng-click="show_details = !show_details">
+          <i class="fa fa-chevron-circle-down policy-card-action-icon" aria-hidden="true" ng-show="show_details"></i>
+          <i class="fa fa-chevron-circle-up policy-card-action-icon" aria-hidden="true" ng-show="!show_details"></i>{{show_details && 'Show' || 'Hide'}} details
+        </button>
+        <!-- <p class="text-policy-detail de-relative pointer dark-hover policy-action" ng-click="show_details = !show_details" style="width: 100%; margin-bottom: 0 !important;">
+          <i class="fa fa-chevron-circle-down policy-card-action-icon" aria-hidden="true" ng-show="show_details"></i>
+          <i class="fa fa-chevron-circle-up policy-card-action-icon" aria-hidden="true" ng-show="!show_details"></i>{{show_details && 'Show' || 'Hide'}} details
+        </p> -->
+      </div>
+      <div class="grid-content large-4 medium-4 small-12">
+        <p ng-show="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="download_files_modal" ng-click="PrepareDownloads(policy.policy)" style="text-align: center; width: 100%;"><i class="fa fa-download" aria-hidden="true" style="margin-right: 10px; margin-bottom: 0 !important;"></i>Download Files</p>
+        <p ng-hide="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" style="text-align: center; cursor: initial; width: 100%; margin-bottom: 0 !important;">No Downloadable File</p>
+      </div>
+      <div class="grid-content large-4 medium-4 small-12 center">
+        <button zf-open="cancel_policy_modal" ng-click="SelectPolicy(policy.key, policy.policy)">
+          <i class="fa fa-trash" aria-hidden="true" style="margin-right: 10px;"></i>Delete Policy
+        </button>
+        <!-- <p class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="cancel_policy_modal" ng-click="SelectPolicy(policy.key, policy.policy)" style="text-align: center; width: 100%; margin-bottom: 0 !important;"><i class="fa fa-trash" aria-hidden="true" style="margin-right: 10px;"></i>Delete Policy</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Policy Card -->
+<div class="card corner bg-white shadow policy-card policy-card-main policy-card-v2" ng-if="policy.policy.status === 'active'" style="display: none;">
+  <div class="grid-block top-padding btm-padding policy-policy-box" ng-if="policy.policy.status === 'active'">
+    <div class="grid-block large-12 medium-12 small-12 policy-policy-box-header">
+      <div class="grid-content large-12 medium-12 small-12 color-liimex-blue relative policy-policy-box-header-inner">
+        <!-- <div class="grid-content large-2 medium-2 small-2 policy-insurance-icon"><img src="assets/img/financial-liability-insurance.png" style=" width: 30px;">
+        </div> -->
+        <div class="grid-content large-12 medium-12 small-12 demand-content offer-name">
+          <h6 class="demand-headline insurance-policy-subject-name">{{insurance_types[policy.policy.subject].name_en}}<span class="insurance-policy-subject-carrier"> - {{carriers[policy.policy.basic.carrier].name}}</span><p class="header-policy-number"> Policy Number: <b>{{policy.policy.basic.policy_number}}</b><p></h6>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-card-data-block policy-v2-basic-main-header">
+      <div class="grid-block large-3 medium-3 small-12 force-wrap policy-section-left policy-v2-basic-heading">
+        <h6 class="offer-comparison-heading-blue policy-v2-heading">General Information</h6>
+      </div>
+      <div class="grid-block large-9 medium-9 small-12 force-wrap policy-section-left">
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="showstartdate=true;" ng-mouseleave="showstartdate=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="showstartdate">
+                <ng-popup id="showstartdate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_1" ng-show="showstartdate">
+                  {{langService.inline_help.start_date.en}}
+                </ng-popup>
+              </i>Start Date
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{genService.getDateObj(policy.policy.basic.start_date) | date: 'dd-MM-yyyy'}}</h2>
+          </div>
+        </div>
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="showrenewaldate=true;" ng-mouseleave="showrenewaldate=false;">
+            <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="showrenewaldate">
+              <ng-popup id="showrenewaldate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_2" ng-show="showrenewaldate">
+                {{langService.inline_help.next_renewal_date.en}}
+              </ng-popup>
+            </i>Renewal Date
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{genService.getDateObj(policy.policy.basic.main_renewal_date) | date: 'dd-MM-yyyy'}}</h2>
+          </div>
+        </div>
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="annual_premium=true;" ng-mouseleave="annual_premium=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="popup7">
+                <ng-popup id="annual_premium" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_3" ng-show="annual_premium">
+                  {{langService.inline_help.premium.en}}
+                </ng-popup>
+              </i>Annual Premium
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{(policy.policy.basic.premium * (1+policy.policy.basic.insurance_tax*0.01)) | euro}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-card-data-block policy-v2-basic-main-header no-border-bottom">
+      <div class="grid-block large-3 medium-3 small-12 force-wrap policy-section-left policy-v2-basic-heading">
+        <!-- <h6 class="offer-comparison-heading-blue policy-v2-heading">Highlights</h6> -->
+      </div>
+      <div class="grid-block large-9 medium-9 small-12 force-wrap policy-section-left">
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_sum_insured=true;" ng-mouseleave="policy_general_sum_insured=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_sum_insured">
+                <ng-popup id="showstartdate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_1" ng-show="policy_general_sum_insured">
+                  {{langService.inline_help.sum_insured.en}}
+                </ng-popup>
+              </i>Sum Insured
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">
+              {{policy.policy.insurance_types[policy.policy.subject].general.sum_insured | euro:policy.policy.insurance_types[policy.policy.subject].general.unlimited_sum_insured}}
+            </h2>
+          </div>
+        </div>
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_deductible=true;" ng-mouseleave="policy_general_deductible=false;">
+            <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_deductible">
+              <ng-popup id="showrenewaldate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_2" ng-show="policy_general_deductible">
+                {{langService.inline_help.deductable.en}}
+              </ng-popup>
+            </i>Deductible
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{policy.policy.insurance_types[policy.policy.subject].general | deductible}}</h2>
+          </div>
+        </div>
+        <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_maximisation=true;" ng-mouseleave="policy_general_maximisation=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_maximisation">
+                <ng-popup id="annual_premium" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_3" ng-show="policy_general_maximisation">
+                  {{langService.inline_help.maximisation.en}}
+                </ng-popup>
+              </i>Maximisation
+            </h4>
+            <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{policy.policy.insurance_types[policy.policy.subject].general.maximisation ? policy.policy.insurance_types[policy.policy.subject].general.maximisation+'x' : '-'}}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-section-main no-min-height">
+      <div class="grid-block large-12 medium-12 small-12 policy-card-data-block policy-v2-header policy-v2-coverage-highlights policy-highlights" ng-repeat="(display_key,display_value) in policy.policy.insurance_types[policy.policy.subject].specific | limitTo: 1 track by $index" ng-if="IsDisplayHighlights(policy.policy.insurance_types[policy.policy.subject].specific) && $index==0">
+        <div class="grid-block large-3 medium-3 small-12 force-wrap policy-section-left compact-bottom">
+          <!-- <h6 class="offer-comparison-heading-blue policy-v2-heading">Criterias</h6> -->
+        </div>
+        <div class="grid-block large-3 medium-3 small-3 for-mobile-only">
+        </div>
+        <div class="grid-block large-9 medium-9 small-12 force-wrap policy-section-right policy_v2_sub_heading_main">
+          <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+            <div class="comparison-box-specific">
+              <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="coverage_sublimit=true;" ng-mouseleave="coverage_sublimit=false;">
+                <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="coverage_sublimit">
+                  <ng-popup id="coverage_sublimit" class="padding ngPopup ngPopup-policy ngPopup-policy-v2_1" ng-show="coverage_sublimit">
+                    {{langService.inline_help.sublimit.en}}
+                  </ng-popup>
+                </i>Sublimit
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-block large-12 medium-12 small-12 policy-section-main" ng-repeat="(highlightid,highlightvalue) in policy.policy.insurance_types" ng-if="highlightid===policy.policy.subject">
+        <div class="grid-block large-12 medium-12 small-12 policy-card-data-block nopadding-row-policy-card" ng-repeat="(default_specific_id,default_specific_value) in highlightvalue.specific" ng-show="default_specific_value.included">
+          <div class="grid-block large-3 medium-3 small-3 force-wrap policy-section-left">
+            <div class="comparison-box-specific">
+              <h4 class="comparision-feature-name policy_v2_value_heading" ng-click="coverage_info=true;" ng-mouseleave="coverage_info=false;">
+                <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="coverage_info">
+                  <ng-popup id="coverage_info" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-value-heading ngPopup-policy-v2-left" ng-show="coverage_info">
+                    {{comparisonData[default_specific_id].explanation_text_en}}
+                  </ng-popup>
+                </i>{{comparisonData[default_specific_id].name_en}}
+              </h4>
+            </div>
+          </div>
+          <div class="grid-block large-9 medium-9 small-9 force-wrap policy-section-right">
+            <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+              <div class="comparison-box-specific">
+                <h2 class="comparision-feature-main ng-binding">
+                  {{default_specific_value.sublimit | euro}}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-block large-12 medium-12 small-12 policy-section-main" ng-hide="show_details" ng-repeat="(insurancetype_key, insurancetype_value) in policy.policy.insurance_types" ng-if="insurancetype_key!==policy.policy.subject && IsAdditionalModule(insurancetype_value)">
+      <div class="grid-block large-12 medium-12 small-12 policy-card-data-block policyv2-addition-module">
+        <div class="grid-block large-3 medium-3 small-12 force-wrap policy-section-left">
+          <h6 class="offer-comparison-heading-blue policy-v2-heading">Additional Module - {{insurance_types[insurancetype_key].name_en}}</h6>
+        </div>
+        <div class="grid-block large-9 medium-9 small-12 force-wrap policy-section-left">
+          <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+            <div class="comparison-box-specific">
+              <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_additional_sum_insured=true;" ng-mouseleave="policy_general_additional_sum_insured=false;">
+                <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_additional_sum_insured">
+                  <ng-popup id="policy_general_additional_sum_insured" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_1" ng-show="policy_general_additional_sum_insured">
+                    {{langService.inline_help.sum_insured.en}}
+                  </ng-popup>
+                </i>Sum Insured
+              </h4>
+              <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">
+                {{insurancetype_value.general.sum_insured | euro:insurancetype_value.general.unlimitedsum_insured}}
+              </h2>
+            </div>
+          </div>
+          <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+            <div class="comparison-box-specific">
+              <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_additional_deductible=true;" ng-mouseleave="policy_general_additional_deductible=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_additional_deductible">
+                <ng-popup id="showrenewaldate" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_2" ng-show="policy_general_additional_deductible">
+                  {{langService.inline_help.deductable.en}}
+                </ng-popup>
+              </i>Deductible
+              </h4>
+              <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{insurancetype_value.general | deductible}}</h2>
+            </div>
+          </div>
+          <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+            <div class="comparison-box-specific">
+              <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="policy_general_additional_maximisation=true;" ng-mouseleave="policy_general_additional_maximisation=false;">
+                <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="policy_general_additional_maximisation">
+                  <ng-popup id="annual_premium" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-basic_3" ng-show="policy_general_additional_maximisation">
+                    {{langService.inline_help.maximisation.en}}
+                  </ng-popup>
+                </i>Maximisation
+              </h4>
+              <h2 class="comparision-feature-main policy_v2_basic_text ng-binding">{{insurancetype_value.general.maximisation | maximisation}}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="grid-block no-margin" ng-if="IsAdditionalModuleCriteria(insurancetype_value)">
+          <div class="grid-block large-3 medium-3 small-12 force-wrap policy-section-left compact-bottom">
+            <!-- <h6 class="offer-comparison-heading-blue policy-v2-heading">Criterias</h6> -->
+          </div>
+          <div class="grid-block large-3 medium-3 small-3 for-mobile-only">
+          </div>
+          <div class="grid-block large-9 medium-9 small-12 force-wrap policy-section-right policy_v2_sub_heading_main">
+            <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+              <div class="comparison-box-specific policy_v2_additional_sub_heading">
+                <h4 class="comparision-feature-name policy_v2_basic_sub_heading" ng-click="addition_sublimit=true;" ng-mouseleave="addition_sublimit=false;">
+                  <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="addition_sublimit">
+                    <ng-popup id="addition_sublimit" class="padding ngPopup ngPopup-policy ngPopup-policy-v2_1" ng-show="addition_sublimit">
+                      {{langService.inline_help.sublimit.en}}
+                    </ng-popup>
+                  </i>Sublimit
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid-block large-12 medium-12 small-12 policy-card-data-block nopadding-row-policy-card" ng-repeat="(key, value) in insurancetype_value.specific" ng-if="value.included===true">
+        <div class="grid-block large-3 medium-3 small-3 force-wrap policy-section-left">
+          <div class="comparison-box-specific">
+            <h4 class="comparision-feature-name policy_v2_value_heading" ng-click="additional_info=true;" ng-mouseleave="additional_info=false;">
+              <i class="fa fa-info-circle fa-small policy-info-icon" ng-popup-toggle="additional_info">
+                <ng-popup id="additional_info" class="padding ngPopup ngPopup-policy ngPopup-policy-v2 ngPopup-policy-v2-value-heading ngPopup-policy-v2-left" ng-show="additional_info">
+                  {{comparisonData[key].explanation_text_en}}
+                </ng-popup>
+              </i>{{comparisonData[key].name_en}}
+            </h4>
+          </div>
+        </div>
+        <div class="grid-block large-9 medium-9 small-9 force-wrap policy-section-right">
+          <div class="grid-content large-4 medium-4 small-4 relative policy-color-gray policy-card-grid">
+            <div class="comparison-box-specific">
+              <h2 class="comparision-feature-main ng-binding">
+                {{insurancetype_value.specific[key].sublimit | euro}}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-block large-12 medium-12 small-12 policy-card-action-block align-center">
+    <div class="grid-content large-4 medium-4 small-12" ng-show="IsDisplayMore(policy.policy)">
+      <p class="text-policy-detail de-relative pointer dark-hover policy-action" ng-click="show_details = !show_details" style="left: 0 !important">
+        <i class="fa fa-chevron-circle-down policy-card-action-icon" aria-hidden="true" ng-show="show_details"></i>
+        <i class="fa fa-chevron-circle-up policy-card-action-icon" aria-hidden="true" ng-show="!show_details"></i>{{show_details && 'Show' || 'Hide'}} details
+      </p>
+    </div>
+    <div class="grid-content large-4 medium-4 small-12">
+      <p ng-show="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="download_files_modal" ng-click="PrepareDownloads(policy.policy)" style="text-align: center;"><i class="fa fa-download" aria-hidden="true" style="margin-right: 10px;"></i>Download Files</p>
+      <p ng-hide="policy.policy.documents" class="text-policy-detail de-relative pointer dark-hover policy-action" style="text-align: center; cursor: initial;">No Downloadable File</p>
+    </div>
+    <div class="grid-content large-4 medium-4 small-12">
+      <p class="text-policy-detail de-relative pointer dark-hover policy-action" zf-open="cancel_policy_modal" ng-click="SelectPolicy(policy.key, policy.policy)" style="text-align: center;"><i class="fa fa-trash" aria-hidden="true" style="margin-right: 10px;"></i>Delete Policy</p>
+    </div>
+  </div>
+</div>
